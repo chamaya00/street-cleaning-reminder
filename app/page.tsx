@@ -1,3 +1,5 @@
+import PhoneVerification from '@/components/auth/PhoneVerification';
+
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800">
@@ -12,22 +14,23 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="flex flex-col items-center gap-4 rounded-xl bg-white p-8 shadow-lg dark:bg-gray-800">
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            Phase 1 Complete - Project Setup
+        <div className="flex flex-col items-center gap-6 rounded-xl bg-white p-8 shadow-lg dark:bg-gray-800 w-full max-w-md">
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+            Get Started
+          </h2>
+          <p className="text-sm text-gray-600 dark:text-gray-400">
+            Enter your phone number to receive SMS reminders
           </p>
-          <p className="text-gray-600 dark:text-gray-300">
-            Authentication and Map UI coming in Phase 2 &amp; 3
-          </p>
+          <PhoneVerification />
         </div>
 
         <div className="mt-4 text-sm text-gray-500 dark:text-gray-400">
-          <p>Features coming soon:</p>
+          <p>How it works:</p>
           <ul className="mt-2 list-inside list-disc text-left">
-            <li>Phone number verification</li>
-            <li>Interactive map to select blocks</li>
-            <li>SMS reminders at customizable times</li>
-            <li>Notification management dashboard</li>
+            <li>Select your parking spots on the map</li>
+            <li>Get reminders the night before and morning of</li>
+            <li>Reply &quot;1&quot; to dismiss when you&apos;ve moved your car</li>
+            <li>Never get a ticket again</li>
           </ul>
         </div>
       </main>
