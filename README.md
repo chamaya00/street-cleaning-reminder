@@ -102,6 +102,73 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) to view the app.
 
+## Testing
+
+### Running Tests
+
+```bash
+# Run tests once
+npm test
+
+# Run tests in watch mode (auto-rerun on file changes)
+npm run test:watch
+
+# Run tests with coverage report
+npm run test:coverage
+
+# Run tests exactly as CI does (with coverage)
+npm run test:ci
+```
+
+### Before Pushing Code
+
+**IMPORTANT: Always verify your tests work in a CI-like environment before pushing:**
+
+```bash
+# Simulate CI environment (clean install + test)
+npm run verify-ci
+```
+
+This command:
+1. Removes `node_modules` (clean slate)
+2. Runs `npm ci` (exact dependency install from lock file)
+3. Runs tests with coverage (exactly as CI does)
+
+**Why this matters:** Tests can pass locally but fail in CI due to:
+- Missing dependencies in `package.json`
+- Cached packages in your local `node_modules`
+- Different Node.js or OS environments
+
+### Checking for Flaky Tests
+
+```bash
+# Run tests 5 times to detect randomness/flakiness
+npm run test:flakiness
+```
+
+If tests fail inconsistently, they may have:
+- Non-deterministic behavior (random values, timing issues)
+- Shared state between tests
+- Date/time dependencies
+
+### Test Coverage
+
+After running `npm run test:coverage`, view the detailed report:
+
+```bash
+# Open coverage report in browser
+open coverage/lcov-report/index.html
+```
+
+**Coverage targets:**
+- Line coverage: > 80% for business logic
+- Branch coverage: > 80% for critical paths
+- All public functions should be tested
+
+### Writing Good Tests
+
+See `.claude/testing-guidelines.md` for comprehensive testing best practices and guidelines that AI assistants and developers should follow.
+
 ## Project Structure
 
 ```
