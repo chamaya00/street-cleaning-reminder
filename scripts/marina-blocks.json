@@ -1,0 +1,1600 @@
+[
+  {
+    "id": "CHESTNUT_ST_2800",
+    "streetName": "Chestnut St",
+    "blockNumber": 2800,
+    "cnn": "CHESTNUT_ST_2800",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4358,
+            37.8006
+          ],
+          [
+            -122.435,
+            37.8006
+          ],
+          [
+            -122.435,
+            37.801
+          ],
+          [
+            -122.4358,
+            37.801
+          ],
+          [
+            -122.4358,
+            37.8006
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 1,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "weekly"
+    },
+    "southSchedule": {
+      "dayOfWeek": 2,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "weekly"
+    },
+    "createdAt": "2026-01-03T18:04:50.986Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "CHESTNUT_ST_2900",
+    "streetName": "Chestnut St",
+    "blockNumber": 2900,
+    "cnn": "CHESTNUT_ST_2900",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4368,
+            37.8006
+          ],
+          [
+            -122.436,
+            37.8006
+          ],
+          [
+            -122.436,
+            37.801
+          ],
+          [
+            -122.4368,
+            37.801
+          ],
+          [
+            -122.4368,
+            37.8006
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 2,
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "frequency": "weekly"
+    },
+    "southSchedule": {
+      "dayOfWeek": 3,
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "frequency": "weekly"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "CHESTNUT_ST_3000",
+    "streetName": "Chestnut St",
+    "blockNumber": 3000,
+    "cnn": "CHESTNUT_ST_3000",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4378,
+            37.8006
+          ],
+          [
+            -122.437,
+            37.8006
+          ],
+          [
+            -122.437,
+            37.801
+          ],
+          [
+            -122.4378,
+            37.801
+          ],
+          [
+            -122.4378,
+            37.8006
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 3,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "1st_3rd"
+    },
+    "southSchedule": {
+      "dayOfWeek": 4,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "2nd_4th"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "CHESTNUT_ST_3100",
+    "streetName": "Chestnut St",
+    "blockNumber": 3100,
+    "cnn": "CHESTNUT_ST_3100",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4388,
+            37.8006
+          ],
+          [
+            -122.438,
+            37.8006
+          ],
+          [
+            -122.438,
+            37.801
+          ],
+          [
+            -122.4388,
+            37.801
+          ],
+          [
+            -122.4388,
+            37.8006
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 4,
+      "startTime": "10:00",
+      "endTime": "12:00",
+      "frequency": "weekly"
+    },
+    "southSchedule": {
+      "dayOfWeek": 5,
+      "startTime": "10:00",
+      "endTime": "12:00",
+      "frequency": "weekly"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "CHESTNUT_ST_3200",
+    "streetName": "Chestnut St",
+    "blockNumber": 3200,
+    "cnn": "CHESTNUT_ST_3200",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4398,
+            37.8006
+          ],
+          [
+            -122.43900000000001,
+            37.8006
+          ],
+          [
+            -122.43900000000001,
+            37.801
+          ],
+          [
+            -122.4398,
+            37.801
+          ],
+          [
+            -122.4398,
+            37.8006
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 1,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "weekly"
+    },
+    "southSchedule": {
+      "dayOfWeek": 2,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "weekly"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "LOMBARD_ST_2800",
+    "streetName": "Lombard St",
+    "blockNumber": 2800,
+    "cnn": "LOMBARD_ST_2800",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4358,
+            37.7996
+          ],
+          [
+            -122.435,
+            37.7996
+          ],
+          [
+            -122.435,
+            37.8
+          ],
+          [
+            -122.4358,
+            37.8
+          ],
+          [
+            -122.4358,
+            37.7996
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 2,
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "frequency": "weekly"
+    },
+    "southSchedule": {
+      "dayOfWeek": 3,
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "frequency": "weekly"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "LOMBARD_ST_2900",
+    "streetName": "Lombard St",
+    "blockNumber": 2900,
+    "cnn": "LOMBARD_ST_2900",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4368,
+            37.7996
+          ],
+          [
+            -122.436,
+            37.7996
+          ],
+          [
+            -122.436,
+            37.8
+          ],
+          [
+            -122.4368,
+            37.8
+          ],
+          [
+            -122.4368,
+            37.7996
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 3,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "1st_3rd"
+    },
+    "southSchedule": {
+      "dayOfWeek": 4,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "2nd_4th"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "LOMBARD_ST_3000",
+    "streetName": "Lombard St",
+    "blockNumber": 3000,
+    "cnn": "LOMBARD_ST_3000",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4378,
+            37.7996
+          ],
+          [
+            -122.437,
+            37.7996
+          ],
+          [
+            -122.437,
+            37.8
+          ],
+          [
+            -122.4378,
+            37.8
+          ],
+          [
+            -122.4378,
+            37.7996
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 4,
+      "startTime": "10:00",
+      "endTime": "12:00",
+      "frequency": "weekly"
+    },
+    "southSchedule": {
+      "dayOfWeek": 5,
+      "startTime": "10:00",
+      "endTime": "12:00",
+      "frequency": "weekly"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "LOMBARD_ST_3100",
+    "streetName": "Lombard St",
+    "blockNumber": 3100,
+    "cnn": "LOMBARD_ST_3100",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4388,
+            37.7996
+          ],
+          [
+            -122.438,
+            37.7996
+          ],
+          [
+            -122.438,
+            37.8
+          ],
+          [
+            -122.4388,
+            37.8
+          ],
+          [
+            -122.4388,
+            37.7996
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 1,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "weekly"
+    },
+    "southSchedule": {
+      "dayOfWeek": 2,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "weekly"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "LOMBARD_ST_3200",
+    "streetName": "Lombard St",
+    "blockNumber": 3200,
+    "cnn": "LOMBARD_ST_3200",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4398,
+            37.7996
+          ],
+          [
+            -122.43900000000001,
+            37.7996
+          ],
+          [
+            -122.43900000000001,
+            37.8
+          ],
+          [
+            -122.4398,
+            37.8
+          ],
+          [
+            -122.4398,
+            37.7996
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 2,
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "frequency": "weekly"
+    },
+    "southSchedule": {
+      "dayOfWeek": 3,
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "frequency": "weekly"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "GREENWICH_ST_2800",
+    "streetName": "Greenwich St",
+    "blockNumber": 2800,
+    "cnn": "GREENWICH_ST_2800",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4358,
+            37.7986
+          ],
+          [
+            -122.435,
+            37.7986
+          ],
+          [
+            -122.435,
+            37.799
+          ],
+          [
+            -122.4358,
+            37.799
+          ],
+          [
+            -122.4358,
+            37.7986
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 3,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "1st_3rd"
+    },
+    "southSchedule": {
+      "dayOfWeek": 4,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "2nd_4th"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "GREENWICH_ST_2900",
+    "streetName": "Greenwich St",
+    "blockNumber": 2900,
+    "cnn": "GREENWICH_ST_2900",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4368,
+            37.7986
+          ],
+          [
+            -122.436,
+            37.7986
+          ],
+          [
+            -122.436,
+            37.799
+          ],
+          [
+            -122.4368,
+            37.799
+          ],
+          [
+            -122.4368,
+            37.7986
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 4,
+      "startTime": "10:00",
+      "endTime": "12:00",
+      "frequency": "weekly"
+    },
+    "southSchedule": {
+      "dayOfWeek": 5,
+      "startTime": "10:00",
+      "endTime": "12:00",
+      "frequency": "weekly"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "GREENWICH_ST_3000",
+    "streetName": "Greenwich St",
+    "blockNumber": 3000,
+    "cnn": "GREENWICH_ST_3000",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4378,
+            37.7986
+          ],
+          [
+            -122.437,
+            37.7986
+          ],
+          [
+            -122.437,
+            37.799
+          ],
+          [
+            -122.4378,
+            37.799
+          ],
+          [
+            -122.4378,
+            37.7986
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 1,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "weekly"
+    },
+    "southSchedule": {
+      "dayOfWeek": 2,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "weekly"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "GREENWICH_ST_3100",
+    "streetName": "Greenwich St",
+    "blockNumber": 3100,
+    "cnn": "GREENWICH_ST_3100",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4388,
+            37.7986
+          ],
+          [
+            -122.438,
+            37.7986
+          ],
+          [
+            -122.438,
+            37.799
+          ],
+          [
+            -122.4388,
+            37.799
+          ],
+          [
+            -122.4388,
+            37.7986
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 2,
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "frequency": "weekly"
+    },
+    "southSchedule": {
+      "dayOfWeek": 3,
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "frequency": "weekly"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "FILBERT_ST_2800",
+    "streetName": "Filbert St",
+    "blockNumber": 2800,
+    "cnn": "FILBERT_ST_2800",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4358,
+            37.7976
+          ],
+          [
+            -122.435,
+            37.7976
+          ],
+          [
+            -122.435,
+            37.798
+          ],
+          [
+            -122.4358,
+            37.798
+          ],
+          [
+            -122.4358,
+            37.7976
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 3,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "1st_3rd"
+    },
+    "southSchedule": {
+      "dayOfWeek": 4,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "2nd_4th"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "FILBERT_ST_2900",
+    "streetName": "Filbert St",
+    "blockNumber": 2900,
+    "cnn": "FILBERT_ST_2900",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4368,
+            37.7976
+          ],
+          [
+            -122.436,
+            37.7976
+          ],
+          [
+            -122.436,
+            37.798
+          ],
+          [
+            -122.4368,
+            37.798
+          ],
+          [
+            -122.4368,
+            37.7976
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 4,
+      "startTime": "10:00",
+      "endTime": "12:00",
+      "frequency": "weekly"
+    },
+    "southSchedule": {
+      "dayOfWeek": 5,
+      "startTime": "10:00",
+      "endTime": "12:00",
+      "frequency": "weekly"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "FILBERT_ST_3000",
+    "streetName": "Filbert St",
+    "blockNumber": 3000,
+    "cnn": "FILBERT_ST_3000",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4378,
+            37.7976
+          ],
+          [
+            -122.437,
+            37.7976
+          ],
+          [
+            -122.437,
+            37.798
+          ],
+          [
+            -122.4378,
+            37.798
+          ],
+          [
+            -122.4378,
+            37.7976
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 1,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "weekly"
+    },
+    "southSchedule": {
+      "dayOfWeek": 2,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "weekly"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "UNION_ST_2800",
+    "streetName": "Union St",
+    "blockNumber": 2800,
+    "cnn": "UNION_ST_2800",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4358,
+            37.7966
+          ],
+          [
+            -122.435,
+            37.7966
+          ],
+          [
+            -122.435,
+            37.797
+          ],
+          [
+            -122.4358,
+            37.797
+          ],
+          [
+            -122.4358,
+            37.7966
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 2,
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "frequency": "weekly"
+    },
+    "southSchedule": {
+      "dayOfWeek": 3,
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "frequency": "weekly"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "UNION_ST_2900",
+    "streetName": "Union St",
+    "blockNumber": 2900,
+    "cnn": "UNION_ST_2900",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4368,
+            37.7966
+          ],
+          [
+            -122.436,
+            37.7966
+          ],
+          [
+            -122.436,
+            37.797
+          ],
+          [
+            -122.4368,
+            37.797
+          ],
+          [
+            -122.4368,
+            37.7966
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 3,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "1st_3rd"
+    },
+    "southSchedule": {
+      "dayOfWeek": 4,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "2nd_4th"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "UNION_ST_3000",
+    "streetName": "Union St",
+    "blockNumber": 3000,
+    "cnn": "UNION_ST_3000",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4378,
+            37.7966
+          ],
+          [
+            -122.437,
+            37.7966
+          ],
+          [
+            -122.437,
+            37.797
+          ],
+          [
+            -122.4378,
+            37.797
+          ],
+          [
+            -122.4378,
+            37.7966
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 4,
+      "startTime": "10:00",
+      "endTime": "12:00",
+      "frequency": "weekly"
+    },
+    "southSchedule": {
+      "dayOfWeek": 5,
+      "startTime": "10:00",
+      "endTime": "12:00",
+      "frequency": "weekly"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "UNION_ST_3100",
+    "streetName": "Union St",
+    "blockNumber": 3100,
+    "cnn": "UNION_ST_3100",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4388,
+            37.7966
+          ],
+          [
+            -122.438,
+            37.7966
+          ],
+          [
+            -122.438,
+            37.797
+          ],
+          [
+            -122.4388,
+            37.797
+          ],
+          [
+            -122.4388,
+            37.7966
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 1,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "weekly"
+    },
+    "southSchedule": {
+      "dayOfWeek": 2,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "weekly"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "MARINA_BLVD_100",
+    "streetName": "Marina Blvd",
+    "blockNumber": 100,
+    "cnn": "MARINA_BLVD_100",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4358,
+            37.8053
+          ],
+          [
+            -122.435,
+            37.8053
+          ],
+          [
+            -122.435,
+            37.8057
+          ],
+          [
+            -122.4358,
+            37.8057
+          ],
+          [
+            -122.4358,
+            37.8053
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 2,
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "frequency": "weekly"
+    },
+    "southSchedule": {
+      "dayOfWeek": 3,
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "frequency": "weekly"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "MARINA_BLVD_200",
+    "streetName": "Marina Blvd",
+    "blockNumber": 200,
+    "cnn": "MARINA_BLVD_200",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4368,
+            37.8053
+          ],
+          [
+            -122.436,
+            37.8053
+          ],
+          [
+            -122.436,
+            37.8057
+          ],
+          [
+            -122.4368,
+            37.8057
+          ],
+          [
+            -122.4368,
+            37.8053
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 3,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "1st_3rd"
+    },
+    "southSchedule": {
+      "dayOfWeek": 4,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "2nd_4th"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "MARINA_BLVD_300",
+    "streetName": "Marina Blvd",
+    "blockNumber": 300,
+    "cnn": "MARINA_BLVD_300",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4378,
+            37.8053
+          ],
+          [
+            -122.437,
+            37.8053
+          ],
+          [
+            -122.437,
+            37.8057
+          ],
+          [
+            -122.4378,
+            37.8057
+          ],
+          [
+            -122.4378,
+            37.8053
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 4,
+      "startTime": "10:00",
+      "endTime": "12:00",
+      "frequency": "weekly"
+    },
+    "southSchedule": {
+      "dayOfWeek": 5,
+      "startTime": "10:00",
+      "endTime": "12:00",
+      "frequency": "weekly"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "MARINA_BLVD_400",
+    "streetName": "Marina Blvd",
+    "blockNumber": 400,
+    "cnn": "MARINA_BLVD_400",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4388,
+            37.8053
+          ],
+          [
+            -122.438,
+            37.8053
+          ],
+          [
+            -122.438,
+            37.8057
+          ],
+          [
+            -122.4388,
+            37.8057
+          ],
+          [
+            -122.4388,
+            37.8053
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 1,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "weekly"
+    },
+    "southSchedule": {
+      "dayOfWeek": 2,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "weekly"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "MARINA_BLVD_500",
+    "streetName": "Marina Blvd",
+    "blockNumber": 500,
+    "cnn": "MARINA_BLVD_500",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4398,
+            37.8053
+          ],
+          [
+            -122.43900000000001,
+            37.8053
+          ],
+          [
+            -122.43900000000001,
+            37.8057
+          ],
+          [
+            -122.4398,
+            37.8057
+          ],
+          [
+            -122.4398,
+            37.8053
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 2,
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "frequency": "weekly"
+    },
+    "southSchedule": {
+      "dayOfWeek": 3,
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "frequency": "weekly"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "BEACH_ST_400",
+    "streetName": "Beach St",
+    "blockNumber": 400,
+    "cnn": "BEACH_ST_400",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4358,
+            37.8043
+          ],
+          [
+            -122.435,
+            37.8043
+          ],
+          [
+            -122.435,
+            37.8047
+          ],
+          [
+            -122.4358,
+            37.8047
+          ],
+          [
+            -122.4358,
+            37.8043
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 3,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "1st_3rd"
+    },
+    "southSchedule": {
+      "dayOfWeek": 4,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "2nd_4th"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "BEACH_ST_500",
+    "streetName": "Beach St",
+    "blockNumber": 500,
+    "cnn": "BEACH_ST_500",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4368,
+            37.8043
+          ],
+          [
+            -122.436,
+            37.8043
+          ],
+          [
+            -122.436,
+            37.8047
+          ],
+          [
+            -122.4368,
+            37.8047
+          ],
+          [
+            -122.4368,
+            37.8043
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 4,
+      "startTime": "10:00",
+      "endTime": "12:00",
+      "frequency": "weekly"
+    },
+    "southSchedule": {
+      "dayOfWeek": 5,
+      "startTime": "10:00",
+      "endTime": "12:00",
+      "frequency": "weekly"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "BEACH_ST_600",
+    "streetName": "Beach St",
+    "blockNumber": 600,
+    "cnn": "BEACH_ST_600",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4378,
+            37.8043
+          ],
+          [
+            -122.437,
+            37.8043
+          ],
+          [
+            -122.437,
+            37.8047
+          ],
+          [
+            -122.4378,
+            37.8047
+          ],
+          [
+            -122.4378,
+            37.8043
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 1,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "weekly"
+    },
+    "southSchedule": {
+      "dayOfWeek": 2,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "weekly"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "BEACH_ST_700",
+    "streetName": "Beach St",
+    "blockNumber": 700,
+    "cnn": "BEACH_ST_700",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4388,
+            37.8043
+          ],
+          [
+            -122.438,
+            37.8043
+          ],
+          [
+            -122.438,
+            37.8047
+          ],
+          [
+            -122.4388,
+            37.8047
+          ],
+          [
+            -122.4388,
+            37.8043
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 2,
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "frequency": "weekly"
+    },
+    "southSchedule": {
+      "dayOfWeek": 3,
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "frequency": "weekly"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "BAY_ST_2000",
+    "streetName": "Bay St",
+    "blockNumber": 2000,
+    "cnn": "BAY_ST_2000",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4358,
+            37.8023
+          ],
+          [
+            -122.435,
+            37.8023
+          ],
+          [
+            -122.435,
+            37.8027
+          ],
+          [
+            -122.4358,
+            37.8027
+          ],
+          [
+            -122.4358,
+            37.8023
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 3,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "1st_3rd"
+    },
+    "southSchedule": {
+      "dayOfWeek": 4,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "2nd_4th"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "BAY_ST_2100",
+    "streetName": "Bay St",
+    "blockNumber": 2100,
+    "cnn": "BAY_ST_2100",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4368,
+            37.8023
+          ],
+          [
+            -122.436,
+            37.8023
+          ],
+          [
+            -122.436,
+            37.8027
+          ],
+          [
+            -122.4368,
+            37.8027
+          ],
+          [
+            -122.4368,
+            37.8023
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 4,
+      "startTime": "10:00",
+      "endTime": "12:00",
+      "frequency": "weekly"
+    },
+    "southSchedule": {
+      "dayOfWeek": 5,
+      "startTime": "10:00",
+      "endTime": "12:00",
+      "frequency": "weekly"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "BAY_ST_2200",
+    "streetName": "Bay St",
+    "blockNumber": 2200,
+    "cnn": "BAY_ST_2200",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4378,
+            37.8023
+          ],
+          [
+            -122.437,
+            37.8023
+          ],
+          [
+            -122.437,
+            37.8027
+          ],
+          [
+            -122.4378,
+            37.8027
+          ],
+          [
+            -122.4378,
+            37.8023
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 1,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "weekly"
+    },
+    "southSchedule": {
+      "dayOfWeek": 2,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "frequency": "weekly"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  },
+  {
+    "id": "BAY_ST_2300",
+    "streetName": "Bay St",
+    "blockNumber": 2300,
+    "cnn": "BAY_ST_2300",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.4388,
+            37.8023
+          ],
+          [
+            -122.438,
+            37.8023
+          ],
+          [
+            -122.438,
+            37.8027
+          ],
+          [
+            -122.4388,
+            37.8027
+          ],
+          [
+            -122.4388,
+            37.8023
+          ]
+        ]
+      ]
+    },
+    "northSchedule": {
+      "dayOfWeek": 2,
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "frequency": "weekly"
+    },
+    "southSchedule": {
+      "dayOfWeek": 3,
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "frequency": "weekly"
+    },
+    "createdAt": "2026-01-03T18:04:50.987Z",
+    "updatedAt": "2026-01-03T18:04:50.987Z"
+  }
+]

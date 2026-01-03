@@ -1,0 +1,42 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Blocks are read-only for authenticated users, write-only for admin
+    match /blocks/{blockId} {
+      allow read: if true;  // Public read for map display
+      allow write: if false; // Only admin SDK can write
+    }
+
+    // Users can only read/write their own data
+    match /users/{userId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+      allow write: if false; // Only admin SDK can write users
+    }
+
+    // Subscriptions are user-specific
+    match /subscriptions/{subscriptionId} {
+      allow read: if request.auth != null &&
+        resource.data.userId == request.auth.uid;
+      allow write: if false; // Only admin SDK can write
+    }
+
+    // Notification sets are user-specific
+    match /notificationSets/{setId} {
+      allow read: if request.auth != null &&
+        resource.data.userId == request.auth.uid;
+      allow write: if false; // Only admin SDK can write
+    }
+
+    // Sent notifications are user-specific
+    match /sentNotifications/{notificationId} {
+      allow read: if request.auth != null &&
+        resource.data.userId == request.auth.uid;
+      allow write: if false; // Only admin SDK can write
+    }
+
+    // Verification codes - no direct access (admin SDK only)
+    match /verificationCodes/{codeId} {
+      allow read, write: if false;
+    }
+  }
+}
