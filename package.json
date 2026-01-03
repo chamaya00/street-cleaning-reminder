@@ -7,6 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:ci": "jest --ci --coverage --maxWorkers=2",
+    "test:coverage": "jest --coverage",
+    "verify-ci": "echo '🧹 Cleaning node_modules...' && rm -rf node_modules && echo '📦 Installing with npm ci...' && npm ci && echo '🧪 Running tests as CI would...' && npm run test:ci && echo '✅ CI verification complete!'",
+    "test:flakiness": "echo '🔄 Testing for flakiness (running 5 times)...' && npm test && npm test && npm test && npm test && npm test && echo '✅ No flakiness detected!'",
     "seed-blocks": "tsx scripts/seed-sample-blocks.ts",
     "import-blocks": "tsx scripts/import-blocks.ts",
     "upload-blocks": "tsx scripts/upload-blocks.ts"
@@ -22,14 +28,22 @@
     "twilio": "^5.11.1"
   },
   "devDependencies": {
+    "@jest/globals": "^30.2.0",
     "@tailwindcss/postcss": "^4",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.1",
+    "@types/jest": "^30.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "dotenv": "^17.2.3",
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
+    "jest": "^30.2.0",
+    "jest-environment-jsdom": "^30.2.0",
     "tailwindcss": "^4",
+    "ts-jest": "^29.4.6",
+    "ts-node": "^10.9.2",
     "tsx": "^4.21.0",
     "typescript": "^5"
   }

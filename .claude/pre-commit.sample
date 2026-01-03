@@ -1,0 +1,30 @@
+#!/bin/bash
+#
+# Optional pre-commit hook to ensure tests pass before committing
+#
+# To install this hook:
+#   cp .claude/pre-commit.sample .git/hooks/pre-commit
+#   chmod +x .git/hooks/pre-commit
+#
+# To bypass this hook when needed:
+#   git commit --no-verify
+#
+
+echo "🔍 Pre-commit hook: Running tests..."
+
+# Run tests
+npm test --silent
+
+if [ $? -ne 0 ]; then
+  echo ""
+  echo "❌ Tests failed! Commit aborted."
+  echo ""
+  echo "To fix:"
+  echo "  1. Fix the failing tests"
+  echo "  2. Or run: git commit --no-verify (to bypass)"
+  echo ""
+  exit 1
+fi
+
+echo "✅ Tests passed!"
+exit 0
