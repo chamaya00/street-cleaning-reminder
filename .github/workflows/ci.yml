@@ -1,0 +1,88 @@
+name: CI
+
+# When this runs: Every push and pull request to any branch
+on:
+  push:
+    branches: ['*']
+  pull_request:
+    branches: ['*']
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Get the code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Set up Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # 4. Run linter - catches code style issues and potential bugs
+      - name: Lint
+        run: npm run lint
+
+      # 5. Type check - ensures TypeScript compiles without errors
+      - name: Type check
+        run: npx tsc --noEmit
+
+      # 6. Build - verifies the production build works
+      - name: Build
+        run: npm run build
+
+      # 7. Verify sample data can be generated
+      - name: Generate sample blocks
+        run: npm run seed-blocks
+
+      # 8. Validate sample data structure
+      - name: Validate block data
+        run: |
+          echo "Checking block count..."
+          BLOCK_COUNT=$(grep -c '"id"' scripts/marina-blocks.json)
+          echo "Found $BLOCK_COUNT blocks"
+
+          if [ "$BLOCK_COUNT" -lt 30 ]; then
+            echo "ERROR: Expected at least 30 blocks, got $BLOCK_COUNT"
+            exit 1
+          fi
+
+          echo "Checking required fields..."
+          for field in streetName blockNumber geometry northSchedule southSchedule; do
+            if ! grep -q "\"$field\"" scripts/marina-blocks.json; then
+              echo "ERROR: Missing field: $field"
+              exit 1
+            fi
+          done
+
+          echo "Checking schedule fields..."
+          for field in dayOfWeek startTime endTime frequency; do
+            if ! grep -q "\"$field\"" scripts/marina-blocks.json; then
+              echo "ERROR: Missing schedule field: $field"
+              exit 1
+            fi
+          done
+
+          echo "✅ All validations passed!"
+
+  # Future: Add test job when we have unit tests
+  # test:
+  #   name: Test
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: actions/setup-node@v4
+  #       with:
+  #         node-version: '20'
+  #         cache: 'npm'
+  #     - run: npm ci
+  #     - run: npm test
