@@ -111,7 +111,7 @@ export async function PUT(
 
     // 5. Fetch blocks for computing notification sets
     const blocksToFetch = blockIds.length > 0 ? blockIds : [];
-    let subscribedBlocks: BlockWithId[] = [];
+    const subscribedBlocks: BlockWithId[] = [];
 
     if (blocksToFetch.length > 0) {
       // Firestore 'in' queries are limited to 30 items
