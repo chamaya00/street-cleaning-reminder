@@ -93,3 +93,49 @@ jobs:
 
       - name: Run tests
         run: npm run test:ci
+
+  # Integration tests run against real Firebase and Twilio
+  # Only runs when secrets are configured (skips on forks/first-time contributors)
+  integration:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    # Only run if secrets are available (won't run on forks)
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check if secrets are configured
+        id: check-secrets
+        run: |
+          if [ -n "${{ secrets.FIREBASE_ADMIN_PRIVATE_KEY }}" ]; then
+            echo "secrets_available=true" >> $GITHUB_OUTPUT
+          else
+            echo "secrets_available=false" >> $GITHUB_OUTPUT
+            echo "⚠️ Integration test secrets not configured - skipping"
+          fi
+
+      - name: Run integration tests
+        if: steps.check-secrets.outputs.secrets_available == 'true'
+        env:
+          NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECT_ID }}
+          FIREBASE_ADMIN_CLIENT_EMAIL: ${{ secrets.FIREBASE_ADMIN_CLIENT_EMAIL }}
+          FIREBASE_ADMIN_PRIVATE_KEY: ${{ secrets.FIREBASE_ADMIN_PRIVATE_KEY }}
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          TWILIO_PHONE_NUMBER: ${{ secrets.TWILIO_PHONE_NUMBER }}
+        run: npm run test:integration
+
+      - name: Skip notice
+        if: steps.check-secrets.outputs.secrets_available != 'true'
+        run: echo "ℹ️ Integration tests skipped - configure GitHub secrets to enable"

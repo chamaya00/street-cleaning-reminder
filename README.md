@@ -165,9 +165,55 @@ open coverage/lcov-report/index.html
 - Branch coverage: > 80% for critical paths
 - All public functions should be tested
 
+### Integration Tests
+
+Integration tests run against real Firebase and Twilio services:
+
+```bash
+# Run integration tests (requires .env.local with real credentials)
+npm run test:integration
+```
+
+These tests verify:
+- Firebase Admin SDK connects and can read/write to Firestore
+- Twilio credentials are valid and phone number is configured
+- API contracts match expectations
+
+**Note:** Integration tests don't send real SMS by default. Set `TEST_PHONE_NUMBER` to enable actual SMS sending (costs money).
+
 ### Writing Good Tests
 
 See `.claude/testing-guidelines.md` for comprehensive testing best practices and guidelines that AI assistants and developers should follow.
+
+## CI/CD
+
+### GitHub Actions
+
+The CI pipeline runs automatically on every push and pull request:
+
+1. **Validate** - Linting, type checking, build verification
+2. **Test** - Unit tests with mocked dependencies
+3. **Integration** - Tests against real Firebase/Twilio (when secrets are configured)
+
+### Configuring GitHub Secrets
+
+To enable integration tests in CI, add these secrets in your GitHub repository settings (Settings → Secrets and variables → Actions → New repository secret):
+
+| Secret Name | Description | Example |
+|-------------|-------------|---------|
+| `NEXT_PUBLIC_FIREBASE_PROJECT_ID` | Firebase project ID | `my-project-12345` |
+| `FIREBASE_ADMIN_CLIENT_EMAIL` | Service account email | `firebase-adminsdk-xxx@my-project.iam.gserviceaccount.com` |
+| `FIREBASE_ADMIN_PRIVATE_KEY` | Service account private key | `-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n` |
+| `TWILIO_ACCOUNT_SID` | Twilio account SID | `ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx` |
+| `TWILIO_AUTH_TOKEN` | Twilio auth token | `xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx` |
+| `TWILIO_PHONE_NUMBER` | Twilio phone number | `+14155551234` |
+
+**Getting these values:**
+
+1. **Firebase**: Go to Firebase Console → Project Settings → Service Accounts → Generate New Private Key
+2. **Twilio**: Go to Twilio Console → Account Info (on dashboard)
+
+**Important:** The `FIREBASE_ADMIN_PRIVATE_KEY` contains newlines. When adding to GitHub secrets, paste the entire key including `-----BEGIN PRIVATE KEY-----` and `-----END PRIVATE KEY-----`.
 
 ## Project Structure
 

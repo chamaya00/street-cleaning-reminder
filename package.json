@@ -13,6 +13,7 @@
     "test:coverage": "jest --coverage",
     "verify-ci": "echo '🧹 Cleaning node_modules...' && rm -rf node_modules && echo '📦 Installing with npm ci...' && npm ci && echo '🧪 Running tests as CI would...' && npm run test:ci && echo '✅ CI verification complete!'",
     "test:flakiness": "echo '🔄 Testing for flakiness (running 5 times)...' && npm test && npm test && npm test && npm test && npm test && echo '✅ No flakiness detected!'",
+    "test:integration": "jest --config jest.integration.config.ts",
     "seed-blocks": "tsx scripts/seed-sample-blocks.ts",
     "import-blocks": "tsx scripts/import-blocks.ts",
     "upload-blocks": "tsx scripts/upload-blocks.ts"
