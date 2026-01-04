@@ -25,6 +25,13 @@ const config: Config = {
     '**/?(*.)+(spec|test).ts?(x)',
   ],
 
+  // Exclude integration tests from default run (use npm run test:integration)
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '/.next/',
+    '\\.integration\\.test\\.ts$',
+  ],
+
   // Coverage configuration
   collectCoverageFrom: [
     'lib/**/*.{ts,tsx}',
