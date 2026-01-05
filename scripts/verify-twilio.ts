@@ -56,9 +56,28 @@ async function verifyTwilio() {
     console.log('✅ Successfully connected to Twilio API');
     console.log(`   Account Name: ${account.friendlyName}`);
     console.log(`   Account Status: ${account.status}`);
-  } catch (error) {
+  } catch (error: any) {
     console.error('❌ Failed to connect to Twilio API');
     console.error(`   Error: ${error instanceof Error ? error.message : 'Unknown error'}`);
+
+    // Additional error details
+    if (error.status) {
+      console.error(`   HTTP Status: ${error.status}`);
+    }
+    if (error.code) {
+      console.error(`   Error Code: ${error.code}`);
+    }
+    if (error.moreInfo) {
+      console.error(`   More Info: ${error.moreInfo}`);
+    }
+
+    console.error('\n💡 Troubleshooting tips:');
+    console.error('   1. Verify you copied the Auth Token correctly (click the eye icon in Twilio Console)');
+    console.error('   2. Make sure you\'re using LIVE credentials, not TEST credentials');
+    console.error('   3. Check if your Twilio account is active and not suspended');
+    console.error('   4. Try regenerating your Auth Token in the Twilio Console');
+    console.error('   5. Visit: https://console.twilio.com/us1/account/keys-credentials/api-keys');
+
     process.exit(1);
   }
 
