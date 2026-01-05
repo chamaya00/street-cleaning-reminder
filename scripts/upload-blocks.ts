@@ -104,7 +104,7 @@ async function main(): Promise<void> {
         streetName: block.streetName,
         blockNumber: block.blockNumber,
         cnn: block.cnn,
-        geometry: block.geometry,
+        geometry: JSON.stringify(block.geometry), // Store as JSON string
         northSchedule: block.northSchedule,
         southSchedule: block.southSchedule,
         createdAt: Timestamp.now(),
