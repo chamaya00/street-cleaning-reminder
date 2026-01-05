@@ -16,7 +16,8 @@
     "test:integration": "jest --config jest.integration.config.ts",
     "seed-blocks": "tsx scripts/seed-sample-blocks.ts",
     "import-blocks": "tsx scripts/import-blocks.ts",
-    "upload-blocks": "tsx scripts/upload-blocks.ts"
+    "upload-blocks": "tsx scripts/upload-blocks.ts",
+    "verify-firestore": "tsx scripts/verify-firestore.ts"
   },
   "dependencies": {
     "@types/mapbox-gl": "^3.4.1",
