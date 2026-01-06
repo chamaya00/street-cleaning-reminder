@@ -356,14 +356,14 @@ export interface DataSFError {
  * This should be called from the client-side (browser) to avoid proxy issues.
  *
  * @param options.limit - Maximum number of records to fetch (default: 50000)
- * @param options.timeout - Request timeout in milliseconds (default: 15000)
+ * @param options.timeout - Request timeout in milliseconds (default: no timeout)
  * @returns Promise with blocks data or error
  */
 export async function fetchBlocksFromDataSF(options?: {
   limit?: number;
   timeout?: number;
 }): Promise<DataSFResult> {
-  const { limit = 50000, timeout = 15000 } = options || {};
+  const { limit = 50000, timeout } = options || {};
 
   // Build the API URL with SoQL query for Marina area
   // We use a bounding box filter to reduce data transfer
@@ -374,19 +374,19 @@ export async function fetchBlocksFromDataSF(options?: {
 
   const url = `${DATASF_STREET_SWEEPING_URL}?${params}`;
 
-  // Create abort controller for timeout
+  // Create abort controller for timeout (only if timeout is specified)
   const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), timeout);
+  const timeoutId = timeout ? setTimeout(() => controller.abort(), timeout) : null;
 
   try {
     const response = await fetch(url, {
-      signal: controller.signal,
+      signal: timeout ? controller.signal : undefined,
       headers: {
         Accept: 'application/json',
       },
     });
 
-    clearTimeout(timeoutId);
+    if (timeoutId) clearTimeout(timeoutId);
 
     if (!response.ok) {
       throw {
@@ -433,7 +433,7 @@ export async function fetchBlocksFromDataSF(options?: {
       recordCount: rawRecords.length,
     };
   } catch (error) {
-    clearTimeout(timeoutId);
+    if (timeoutId) clearTimeout(timeoutId);
 
     if (error instanceof Error) {
       if (error.name === 'AbortError') {

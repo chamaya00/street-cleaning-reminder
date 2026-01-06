@@ -36,13 +36,13 @@ export type UseBlocksReturn = UseBlocksState & UseBlocksActions;
  * 2. If DataSF fails, fall back to /api/blocks (server-side, uses Firestore or static data)
  *
  * @param options.preferDataSF - If true, always try DataSF first (default: true)
- * @param options.dataSFTimeout - Timeout for DataSF requests in ms (default: 15000)
+ * @param options.dataSFTimeout - Timeout for DataSF requests in ms (default: no timeout)
  */
 export function useBlocks(options?: {
   preferDataSF?: boolean;
   dataSFTimeout?: number;
 }): UseBlocksReturn {
-  const { preferDataSF = true, dataSFTimeout = 15000 } = options || {};
+  const { preferDataSF = true, dataSFTimeout } = options || {};
 
   const [blocks, setBlocks] = useState<BlockWithId[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -79,7 +79,7 @@ export function useBlocks(options?: {
     setError(null);
 
     try {
-      const result = await fetchBlocksFromDataSF({ timeout: dataSFTimeout });
+      const result = await fetchBlocksFromDataSF(dataSFTimeout ? { timeout: dataSFTimeout } : undefined);
 
       setBlocks(result.blocks);
       setSource('datasf');
