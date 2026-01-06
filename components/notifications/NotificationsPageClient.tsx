@@ -151,8 +151,8 @@ export function NotificationsPageClient({
         }
       }
 
-      // Redirect to home page
-      router.push('/');
+      // Refresh the page to show the authenticated notifications view
+      router.refresh();
     } catch {
       setFormState(prev => ({
         ...prev,
