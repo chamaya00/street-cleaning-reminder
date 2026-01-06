@@ -6,10 +6,14 @@
  *
  * This creates a marina-blocks.json file with sample data that can be used
  * for development and testing without needing to connect to the SF DataSF API.
+ *
+ * The geometry uses LineString format representing actual street centerlines,
+ * not rectangles. This matches how real street data from DataSF would appear.
  */
 
 import * as fs from 'fs';
 import * as path from 'path';
+import type { LineString, MultiLineString } from 'geojson';
 
 interface CleaningSchedule {
   dayOfWeek: number;
@@ -23,32 +27,366 @@ interface Block {
   streetName: string;
   blockNumber: number;
   cnn: string;
-  geometry: {
-    type: string;
-    coordinates: number[][][];
-  };
+  geometry: LineString | MultiLineString;
   northSchedule: CleaningSchedule | null;
   southSchedule: CleaningSchedule | null;
   createdAt: string;
   updatedAt: string;
 }
 
-// Marina district center coordinates
-const MARINA_CENTER = {
-  lat: 37.8015,
-  lng: -122.4350,
-};
+// Real Marina district street coordinates (approximate centerlines)
+// Streets run roughly east-west in this area
+// Coordinates are [longitude, latitude] per GeoJSON spec
 
-// Street definitions with typical schedules
-const MARINA_STREETS = [
-  { name: 'Chestnut St', blocks: [2800, 2900, 3000, 3100, 3200], baseLat: 37.8008 },
-  { name: 'Lombard St', blocks: [2800, 2900, 3000, 3100, 3200], baseLat: 37.7998 },
-  { name: 'Greenwich St', blocks: [2800, 2900, 3000, 3100], baseLat: 37.7988 },
-  { name: 'Filbert St', blocks: [2800, 2900, 3000], baseLat: 37.7978 },
-  { name: 'Union St', blocks: [2800, 2900, 3000, 3100], baseLat: 37.7968 },
-  { name: 'Marina Blvd', blocks: [100, 200, 300, 400, 500], baseLat: 37.8055 },
-  { name: 'Beach St', blocks: [400, 500, 600, 700], baseLat: 37.8045 },
-  { name: 'Bay St', blocks: [2000, 2100, 2200, 2300], baseLat: 37.8025 },
+interface StreetDefinition {
+  name: string;
+  blocks: {
+    number: number;
+    // Each block is defined by start and end coordinates [lng, lat]
+    // These follow the actual street path (can have multiple points for curves)
+    coordinates: [number, number][];
+  }[];
+}
+
+// Marina District streets with realistic coordinates
+// Block numbers correspond to the 100-block addressing system
+const MARINA_STREETS: StreetDefinition[] = [
+  {
+    name: 'Chestnut St',
+    blocks: [
+      {
+        number: 2800,
+        coordinates: [
+          [-122.4350, 37.80052],
+          [-122.4362, 37.80052],
+        ],
+      },
+      {
+        number: 2900,
+        coordinates: [
+          [-122.4362, 37.80052],
+          [-122.4374, 37.80052],
+        ],
+      },
+      {
+        number: 3000,
+        coordinates: [
+          [-122.4374, 37.80052],
+          [-122.4386, 37.80052],
+        ],
+      },
+      {
+        number: 3100,
+        coordinates: [
+          [-122.4386, 37.80052],
+          [-122.4398, 37.80052],
+        ],
+      },
+      {
+        number: 3200,
+        coordinates: [
+          [-122.4398, 37.80052],
+          [-122.4410, 37.80052],
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Lombard St',
+    blocks: [
+      {
+        number: 2800,
+        coordinates: [
+          [-122.4350, 37.79962],
+          [-122.4362, 37.79962],
+        ],
+      },
+      {
+        number: 2900,
+        coordinates: [
+          [-122.4362, 37.79962],
+          [-122.4374, 37.79962],
+        ],
+      },
+      {
+        number: 3000,
+        coordinates: [
+          [-122.4374, 37.79962],
+          [-122.4386, 37.79962],
+        ],
+      },
+      {
+        number: 3100,
+        coordinates: [
+          [-122.4386, 37.79962],
+          [-122.4398, 37.79962],
+        ],
+      },
+      {
+        number: 3200,
+        coordinates: [
+          [-122.4398, 37.79962],
+          [-122.4410, 37.79962],
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Greenwich St',
+    blocks: [
+      {
+        number: 2800,
+        coordinates: [
+          [-122.4350, 37.79872],
+          [-122.4362, 37.79872],
+        ],
+      },
+      {
+        number: 2900,
+        coordinates: [
+          [-122.4362, 37.79872],
+          [-122.4374, 37.79872],
+        ],
+      },
+      {
+        number: 3000,
+        coordinates: [
+          [-122.4374, 37.79872],
+          [-122.4386, 37.79872],
+        ],
+      },
+      {
+        number: 3100,
+        coordinates: [
+          [-122.4386, 37.79872],
+          [-122.4398, 37.79872],
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Filbert St',
+    blocks: [
+      {
+        number: 2800,
+        coordinates: [
+          [-122.4350, 37.79782],
+          [-122.4362, 37.79782],
+        ],
+      },
+      {
+        number: 2900,
+        coordinates: [
+          [-122.4362, 37.79782],
+          [-122.4374, 37.79782],
+        ],
+      },
+      {
+        number: 3000,
+        coordinates: [
+          [-122.4374, 37.79782],
+          [-122.4386, 37.79782],
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Union St',
+    blocks: [
+      {
+        number: 2800,
+        coordinates: [
+          [-122.4350, 37.79692],
+          [-122.4362, 37.79692],
+        ],
+      },
+      {
+        number: 2900,
+        coordinates: [
+          [-122.4362, 37.79692],
+          [-122.4374, 37.79692],
+        ],
+      },
+      {
+        number: 3000,
+        coordinates: [
+          [-122.4374, 37.79692],
+          [-122.4386, 37.79692],
+        ],
+      },
+      {
+        number: 3100,
+        coordinates: [
+          [-122.4386, 37.79692],
+          [-122.4398, 37.79692],
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Marina Blvd',
+    blocks: [
+      {
+        number: 100,
+        coordinates: [
+          [-122.4350, 37.80550],
+          [-122.4362, 37.80550],
+        ],
+      },
+      {
+        number: 200,
+        coordinates: [
+          [-122.4362, 37.80550],
+          [-122.4374, 37.80550],
+        ],
+      },
+      {
+        number: 300,
+        coordinates: [
+          [-122.4374, 37.80550],
+          [-122.4386, 37.80550],
+        ],
+      },
+      {
+        number: 400,
+        coordinates: [
+          [-122.4386, 37.80550],
+          [-122.4398, 37.80550],
+        ],
+      },
+      {
+        number: 500,
+        coordinates: [
+          [-122.4398, 37.80550],
+          [-122.4410, 37.80550],
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Beach St',
+    blocks: [
+      {
+        number: 400,
+        coordinates: [
+          [-122.4350, 37.80460],
+          [-122.4362, 37.80460],
+        ],
+      },
+      {
+        number: 500,
+        coordinates: [
+          [-122.4362, 37.80460],
+          [-122.4374, 37.80460],
+        ],
+      },
+      {
+        number: 600,
+        coordinates: [
+          [-122.4374, 37.80460],
+          [-122.4386, 37.80460],
+        ],
+      },
+      {
+        number: 700,
+        coordinates: [
+          [-122.4386, 37.80460],
+          [-122.4398, 37.80460],
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Bay St',
+    blocks: [
+      {
+        number: 2000,
+        coordinates: [
+          [-122.4350, 37.80250],
+          [-122.4362, 37.80250],
+        ],
+      },
+      {
+        number: 2100,
+        coordinates: [
+          [-122.4362, 37.80250],
+          [-122.4374, 37.80250],
+        ],
+      },
+      {
+        number: 2200,
+        coordinates: [
+          [-122.4374, 37.80250],
+          [-122.4386, 37.80250],
+        ],
+      },
+      {
+        number: 2300,
+        coordinates: [
+          [-122.4386, 37.80250],
+          [-122.4398, 37.80250],
+        ],
+      },
+    ],
+  },
+  // Add north-south cross streets (Avenues) with example blocks
+  {
+    name: 'Divisadero St',
+    blocks: [
+      {
+        number: 2800, // Near Marina Blvd
+        coordinates: [
+          [-122.4398, 37.80550],
+          [-122.4398, 37.80460],
+        ],
+      },
+      {
+        number: 2900, // Beach to Bay
+        coordinates: [
+          [-122.4398, 37.80460],
+          [-122.4398, 37.80250],
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Scott St',
+    blocks: [
+      {
+        number: 2800, // Near Marina Blvd
+        coordinates: [
+          [-122.4374, 37.80550],
+          [-122.4374, 37.80460],
+        ],
+      },
+      {
+        number: 2900, // Beach to Bay
+        coordinates: [
+          [-122.4374, 37.80460],
+          [-122.4374, 37.80250],
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Pierce St',
+    blocks: [
+      {
+        number: 2800, // Near Marina Blvd
+        coordinates: [
+          [-122.4362, 37.80550],
+          [-122.4362, 37.80460],
+        ],
+      },
+      {
+        number: 2900, // Beach to Bay
+        coordinates: [
+          [-122.4362, 37.80460],
+          [-122.4362, 37.80250],
+        ],
+      },
+    ],
+  },
 ];
 
 // Typical cleaning schedules
@@ -71,32 +409,10 @@ const SCHEDULES: { north: CleaningSchedule; south: CleaningSchedule }[] = [
   },
 ];
 
-function createBlockGeometry(
-  baseLat: number,
-  baseLng: number,
-  blockOffset: number
-): Block['geometry'] {
-  // Create an elongated polygon that represents a street block
-  // Street blocks run east-west, so they should be wider in longitude
-  const streetWidth = 0.00003; // ~3 meters (thin strip for the parking lane)
-  const blockLength = 0.001; // ~100 meters (typical city block length)
-  const blockSpacing = 0.00105; // Slightly more than block length for gaps at intersections
-
-  // Calculate the starting longitude for this block
-  const startLng = baseLng - (blockOffset * blockSpacing);
-
-  // Create a thin horizontal rectangle representing the street segment
-  const coords = [
-    [startLng, baseLat - streetWidth],           // SW corner
-    [startLng - blockLength, baseLat - streetWidth], // SE corner
-    [startLng - blockLength, baseLat + streetWidth], // NE corner
-    [startLng, baseLat + streetWidth],           // NW corner
-    [startLng, baseLat - streetWidth],           // Close polygon (SW)
-  ];
-
+function createLineStringGeometry(coordinates: [number, number][]): LineString {
   return {
-    type: 'Polygon',
-    coordinates: [coords],
+    type: 'LineString',
+    coordinates: coordinates,
   };
 }
 
@@ -105,9 +421,8 @@ function generateBlocks(): Block[] {
   let scheduleIndex = 0;
 
   for (const street of MARINA_STREETS) {
-    for (let i = 0; i < street.blocks.length; i++) {
-      const blockNumber = street.blocks[i];
-      const cnn = `${street.name.replace(/\s+/g, '_')}_${blockNumber}`.toUpperCase();
+    for (const blockDef of street.blocks) {
+      const cnn = `${street.name.replace(/\s+/g, '_')}_${blockDef.number}`.toUpperCase();
 
       const schedule = SCHEDULES[scheduleIndex % SCHEDULES.length];
       scheduleIndex++;
@@ -115,9 +430,9 @@ function generateBlocks(): Block[] {
       blocks.push({
         id: cnn,
         streetName: street.name,
-        blockNumber,
+        blockNumber: blockDef.number,
         cnn,
-        geometry: createBlockGeometry(street.baseLat, MARINA_CENTER.lng, i),
+        geometry: createLineStringGeometry(blockDef.coordinates),
         northSchedule: schedule.north,
         southSchedule: schedule.south,
         createdAt: new Date().toISOString(),
@@ -130,7 +445,7 @@ function generateBlocks(): Block[] {
 }
 
 function main(): void {
-  console.log('Generating sample Marina district blocks...\n');
+  console.log('Generating sample Marina district blocks with LineString geometry...\n');
 
   const blocks = generateBlocks();
 
@@ -154,6 +469,10 @@ function main(): void {
   const outputPath = path.join(process.cwd(), 'scripts', 'marina-blocks.json');
   fs.writeFileSync(outputPath, JSON.stringify(blocks, null, 2));
   console.log(`\nWrote sample data to ${outputPath}`);
+
+  // Show sample geometry
+  console.log('\nSample geometry (LineString instead of Polygon):');
+  console.log(JSON.stringify(blocks[0].geometry, null, 2));
 
   console.log('\nTo upload to Firestore, configure your Firebase credentials and run:');
   console.log('  npx tsx scripts/upload-blocks.ts');

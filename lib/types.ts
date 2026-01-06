@@ -1,5 +1,5 @@
 import { Timestamp } from 'firebase/firestore';
-import type { Polygon, MultiLineString } from 'geojson';
+import type { Polygon, LineString, MultiLineString } from 'geojson';
 
 // Firestore document types
 
@@ -22,7 +22,7 @@ export interface Block {
   streetName: string;         // "Chestnut St"
   blockNumber: number;        // 2800
   cnn: string;                // SF street segment ID
-  geometry: Polygon | MultiLineString;  // For map display
+  geometry: Polygon | LineString | MultiLineString;  // For map display (LineString for street centerlines)
   northSchedule: CleaningSchedule | null;
   southSchedule: CleaningSchedule | null;
 }

@@ -44,6 +44,10 @@ function FitBounds({ blocks }: { blocks: BlockWithId[] }) {
         block.geometry.coordinates[0].forEach((coord) => {
           allCoords.push(toLatLng(coord as number[]));
         });
+      } else if (block.geometry.type === 'LineString') {
+        block.geometry.coordinates.forEach((coord) => {
+          allCoords.push(toLatLng(coord as number[]));
+        });
       } else if (block.geometry.type === 'MultiLineString') {
         block.geometry.coordinates.forEach((line) => {
           line.forEach((coord) => {
@@ -119,6 +123,24 @@ function BlockShape({
         eventHandlers={eventHandlers}
       />
     );
+  } else if (block.geometry.type === 'LineString') {
+    // For LineString (street centerlines), draw as a single polyline
+    const positions = block.geometry.coordinates.map((coord) =>
+      toLatLng(coord as number[])
+    );
+    return (
+      <Polyline
+        positions={positions}
+        pathOptions={{
+          color: color,
+          weight: 6, // Thicker line for better visibility and clickability
+          opacity: opacity,
+          lineCap: 'round',
+          lineJoin: 'round',
+        }}
+        eventHandlers={eventHandlers}
+      />
+    );
   } else if (block.geometry.type === 'MultiLineString') {
     // For MultiLineString, draw as polylines
     return (
@@ -131,8 +153,10 @@ function BlockShape({
               positions={positions}
               pathOptions={{
                 color: color,
-                weight: 4,
+                weight: 6,
                 opacity: opacity,
+                lineCap: 'round',
+                lineJoin: 'round',
               }}
               eventHandlers={eventHandlers}
             />

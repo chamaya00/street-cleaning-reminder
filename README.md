@@ -15,7 +15,7 @@ A web app that helps users avoid street cleaning parking tickets in San Francisc
 - **Hosting:** Vercel
 - **Database:** Firebase Firestore
 - **SMS:** Twilio
-- **Maps:** Mapbox GL JS
+- **Maps:** Leaflet + OpenStreetMap
 - **Street Data:** SF DataSF API
 
 ## Getting Started
@@ -25,7 +25,6 @@ A web app that helps users avoid street cleaning parking tickets in San Francisc
 - Node.js 18+
 - Firebase project with Firestore enabled
 - Twilio account with a phone number
-- Mapbox account with access token
 
 ### Installation
 
@@ -64,9 +63,6 @@ FIREBASE_ADMIN_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE K
 TWILIO_ACCOUNT_SID=your-account-sid
 TWILIO_AUTH_TOKEN=your-auth-token
 TWILIO_PHONE_NUMBER=+1xxxxxxxxxx
-
-# Mapbox
-NEXT_PUBLIC_MAPBOX_TOKEN=your-mapbox-token
 
 # App URL
 NEXT_PUBLIC_APP_URL=http://localhost:3000
