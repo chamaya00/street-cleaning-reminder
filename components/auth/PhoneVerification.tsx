@@ -120,8 +120,8 @@ export default function PhoneVerification() {
         return;
       }
 
-      // Success - redirect to map
-      router.push('/map');
+      // Success - redirect to home
+      router.push('/');
     } catch {
       setFormState(prev => ({
         ...prev,
