@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect, useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { MapView } from './MapView';
 import { Header } from '@/components/layout/Header';
-import type { BlockWithId } from '@/lib/types';
+import { useBlocks } from '@/hooks/useBlocks';
 
 interface HomeMapClientProps {
   isAuthenticated: boolean;
@@ -18,40 +18,21 @@ export function HomeMapClient({
   initialBlockIds = []
 }: HomeMapClientProps) {
   const router = useRouter();
-  const [blocks, setBlocks] = useState<BlockWithId[]>([]);
-  const [blocksLoading, setBlocksLoading] = useState(true);
-  const [blocksError, setBlocksError] = useState<string | null>(null);
+
+  // Load blocks with DataSF fallback
+  const {
+    blocks,
+    isLoading: blocksLoading,
+    error: blocksError,
+    source: blocksSource,
+    // refreshFromDataSF available for manual refresh if needed
+  } = useBlocks({ preferDataSF: true });
 
   // Selection state
   const [savedBlockIds, setSavedBlockIds] = useState<Set<string>>(new Set(initialBlockIds));
   const [selectedBlockIds, setSelectedBlockIds] = useState<Set<string>>(new Set(initialBlockIds));
   const [isSaving, setIsSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
-
-  // Load blocks
-  useEffect(() => {
-    async function loadBlocks() {
-      try {
-        setBlocksLoading(true);
-        setBlocksError(null);
-
-        const response = await fetch('/api/blocks');
-        if (!response.ok) {
-          throw new Error('Failed to load blocks');
-        }
-
-        const data = await response.json();
-        setBlocks(data.blocks || []);
-      } catch (err) {
-        console.error('Error loading blocks:', err);
-        setBlocksError(err instanceof Error ? err.message : 'Failed to load blocks');
-      } finally {
-        setBlocksLoading(false);
-      }
-    }
-
-    loadBlocks();
-  }, []);
 
   // Calculate if there are unsaved changes
   const hasUnsavedChanges = useMemo(() => {
@@ -181,15 +162,29 @@ export function HomeMapClient({
       {/* Selection count and action bar */}
       <div className="flex-shrink-0 bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 px-4 py-2">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            {selectedBlockIds.size} block{selectedBlockIds.size !== 1 ? 's' : ''} selected
-            {selectedBlockIds.size === 0 && (
-              <span className="text-gray-400 dark:text-gray-500">
-                {' '}
-                &middot; Click blocks on the map to add them
+          <div className="flex items-center gap-3">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              {selectedBlockIds.size} block{selectedBlockIds.size !== 1 ? 's' : ''} selected
+              {selectedBlockIds.size === 0 && (
+                <span className="text-gray-400 dark:text-gray-500">
+                  {' '}
+                  &middot; Click blocks on the map to add them
+                </span>
+              )}
+            </p>
+            {blocksSource && (
+              <span
+                className={`text-xs px-2 py-0.5 rounded-full ${
+                  blocksSource === 'datasf'
+                    ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
+                    : 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400'
+                }`}
+                title={blocksSource === 'datasf' ? 'Live data from SF Open Data' : 'Cached/static data'}
+              >
+                {blocksSource === 'datasf' ? 'Live Data' : 'Cached'}
               </span>
             )}
-          </p>
+          </div>
 
           {/* Get Notified button for unauthenticated users with selections */}
           {!isAuthenticated && selectedBlockIds.size > 0 && (
