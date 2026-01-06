@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import type { NotificationSetWithStatus } from '@/lib/types';
 import { NotificationTabs } from './NotificationTabs';
+import { Header } from '@/components/layout/Header';
 
 // Helper to check sessionStorage for pending blocks
 function subscribeToPendingBlocks(_callback: () => void) {
@@ -236,37 +237,14 @@ export function NotificationsPageClient({
   // Authenticated view
   if (isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-        {/* Header */}
-        <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-3">
-          <div className="max-w-3xl mx-auto flex items-center justify-between">
-            <div>
-              <h1 className="text-xl font-bold text-gray-900 dark:text-white">
-                My Notifications
-              </h1>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                Signed in as {userPhone}
-              </p>
-            </div>
-            <div className="flex items-center gap-3">
-              <Link
-                href="/"
-                className="text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
-              >
-                Edit Blocks
-              </Link>
-              <a
-                href="/api/auth/logout"
-                className="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
-              >
-                Sign Out
-              </a>
-            </div>
-          </div>
-        </header>
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col">
+        <Header isAuthenticated={true} userPhone={userPhone} />
 
         {/* Content */}
-        <main className="max-w-3xl mx-auto px-4 py-6">
+        <main className="max-w-3xl mx-auto px-4 py-6 w-full">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+            My Notifications
+          </h1>
           <NotificationTabs
             notificationSets={notificationSets}
             alertToken={alertToken}
@@ -280,17 +258,7 @@ export function NotificationsPageClient({
   // Unauthenticated view - phone verification
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 flex flex-col">
-      {/* Header */}
-      <header className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700 px-4 py-3">
-        <div className="max-w-3xl mx-auto flex items-center justify-between">
-          <Link
-            href="/"
-            className="text-xl font-bold text-gray-900 dark:text-white"
-          >
-            SF Street Cleaning Reminder
-          </Link>
-        </div>
-      </header>
+      <Header isAuthenticated={false} />
 
       {/* Content */}
       <main className="flex-1 flex items-center justify-center px-6 py-12">
