@@ -5,26 +5,37 @@ echo "🚀 Twilio Setup Test Script for Google Cloud Shell"
 echo "=================================================="
 echo ""
 
-# Step 1: Check if .env.local exists, if not provide instructions
-if [ ! -f .env.local ]; then
-    echo "⚠️  .env.local file not found!"
+# Step 1: Check for credentials (environment variables or .env.local)
+if [ -n "$TWILIO_ACCOUNT_SID" ] && [ -n "$TWILIO_AUTH_TOKEN" ] && [ -n "$TWILIO_PHONE_NUMBER" ]; then
+    echo "✅ Using Twilio credentials from environment variables"
+    export TWILIO_ACCOUNT_SID
+    export TWILIO_AUTH_TOKEN
+    export TWILIO_PHONE_NUMBER
+elif [ -f .env.local ]; then
+    echo "✅ Using credentials from .env.local"
+    # Export variables from .env.local
+    export $(grep -v '^#' .env.local | grep -E '^TWILIO_' | xargs)
+else
+    echo "⚠️  No Twilio credentials found!"
     echo ""
-    echo "Please create .env.local with your credentials first."
+    echo "Option 1: Set environment variables before running this script:"
+    echo "  export TWILIO_ACCOUNT_SID=your_account_sid"
+    echo "  export TWILIO_AUTH_TOKEN=your_auth_token"
+    echo "  export TWILIO_PHONE_NUMBER=+1XXXXXXXXXX"
     echo ""
-    echo "Quick setup:"
-    echo "  1. Copy the template: cp .env.local.example .env.local"
-    echo "  2. Edit with your credentials: nano .env.local"
-    echo "  3. Run this script again: ./test-twilio-gcloud.sh"
-    echo ""
-    echo "Or create it manually with these required variables:"
-    echo "  TWILIO_ACCOUNT_SID=your_account_sid"
-    echo "  TWILIO_AUTH_TOKEN=your_auth_token"
-    echo "  TWILIO_PHONE_NUMBER=+1XXXXXXXXXX"
+    echo "Option 2: Create .env.local file:"
+    echo "  cp .env.local.example .env.local"
+    echo "  nano .env.local"
     echo ""
     exit 1
 fi
 
-echo "✅ Found .env.local"
+# Verify credentials are set
+if [ -z "$TWILIO_ACCOUNT_SID" ] || [ -z "$TWILIO_AUTH_TOKEN" ] || [ -z "$TWILIO_PHONE_NUMBER" ]; then
+    echo "❌ Error: Twilio credentials are not properly set"
+    exit 1
+fi
+
 echo ""
 
 # Step 2: Install dependencies (only if needed)
@@ -40,7 +51,13 @@ echo ""
 # Step 3: Create quick test script
 echo "🔧 Creating test script..."
 cat > twilio-quick-test.js << 'JS_EOF'
-require('dotenv').config({ path: '.env.local' });
+// Load .env.local if it exists (won't override existing env vars)
+try {
+  require('dotenv').config({ path: '.env.local' });
+} catch (e) {
+  // dotenv not available or .env.local doesn't exist, that's ok
+}
+
 const twilio = require('twilio');
 
 async function testTwilio() {
@@ -53,7 +70,8 @@ async function testTwilio() {
   const phoneNumber = process.env.TWILIO_PHONE_NUMBER;
 
   if (!accountSid || !authToken || !phoneNumber) {
-    console.error('❌ Missing Twilio credentials in .env.local');
+    console.error('❌ Missing Twilio credentials');
+    console.error('   Make sure environment variables are set or .env.local exists');
     process.exit(1);
   }
 
