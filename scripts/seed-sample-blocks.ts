@@ -76,16 +76,22 @@ function createBlockGeometry(
   baseLng: number,
   blockOffset: number
 ): Block['geometry'] {
-  // Create a simple polygon for the block
-  const latOffset = 0.0002; // ~22 meters
-  const lngOffset = 0.0008 + blockOffset * 0.001; // Offset along the street
+  // Create an elongated polygon that represents a street block
+  // Street blocks run east-west, so they should be wider in longitude
+  const streetWidth = 0.00003; // ~3 meters (thin strip for the parking lane)
+  const blockLength = 0.001; // ~100 meters (typical city block length)
+  const blockSpacing = 0.00105; // Slightly more than block length for gaps at intersections
 
+  // Calculate the starting longitude for this block
+  const startLng = baseLng - (blockOffset * blockSpacing);
+
+  // Create a thin horizontal rectangle representing the street segment
   const coords = [
-    [baseLng - lngOffset, baseLat - latOffset],
-    [baseLng - lngOffset + 0.0008, baseLat - latOffset],
-    [baseLng - lngOffset + 0.0008, baseLat + latOffset],
-    [baseLng - lngOffset, baseLat + latOffset],
-    [baseLng - lngOffset, baseLat - latOffset], // Close the polygon
+    [startLng, baseLat - streetWidth],           // SW corner
+    [startLng - blockLength, baseLat - streetWidth], // SE corner
+    [startLng - blockLength, baseLat + streetWidth], // NE corner
+    [startLng, baseLat + streetWidth],           // NW corner
+    [startLng, baseLat - streetWidth],           // Close polygon (SW)
   ];
 
   return {
