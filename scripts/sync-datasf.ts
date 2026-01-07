@@ -101,10 +101,7 @@ interface StreetSegment {
   streetName: string;
   fromAddress: string;
   toAddress: string;
-  geometry: {
-    type: string;
-    coordinates: number[][] | number[][][] | number[];
-  };
+  geometry: string; // GeoJSON stored as string to avoid Firestore nested entity limits
   schedules: CleaningSchedule[];
   syncVersion: string;
   updatedAt: Timestamp;
@@ -386,13 +383,13 @@ function mergeData(
     matchCount++;
 
     // Use centerline geometry (more accurate) but sweeping schedule info
-    // Serialize geometry to plain object for Firestore compatibility
+    // Store geometry as JSON string to avoid Firestore nested entity limits
     const segment: StreetSegment = {
       cnn,
       streetName: sweepingInfo.streetName || centerlineInfo.streetName,
       fromAddress: sweepingInfo.fromAddress || centerlineInfo.fromAddress,
       toAddress: sweepingInfo.toAddress || centerlineInfo.toAddress,
-      geometry: JSON.parse(JSON.stringify(centerlineInfo.geometry)),
+      geometry: JSON.stringify(centerlineInfo.geometry),
       schedules: sweepingInfo.schedules,
       syncVersion,
       updatedAt: Timestamp.now(),
