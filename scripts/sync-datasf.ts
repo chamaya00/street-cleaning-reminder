@@ -20,16 +20,35 @@ import * as dotenv from 'dotenv';
 // Load environment variables from .env.local if running locally
 dotenv.config({ path: '.env.local' });
 
-// DataSF API endpoints
-const SWEEPING_API_URL = 'https://data.sfgov.org/resource/yhqp-riqs.json';
-const CENTERLINES_API_URL = 'https://data.sfgov.org/resource/3psu-pn9h.json';
+// DataSF API endpoints - using GeoJSON format for WGS84 coordinates
+// The .json endpoint returns State Plane coordinates (EPSG:2227) which don't align with web maps
+// The .geojson endpoint returns WGS84 coordinates (EPSG:4326) per GeoJSON spec (RFC 7946)
+const SWEEPING_API_URL = 'https://data.sfgov.org/resource/yhqp-riqs.geojson';
+const CENTERLINES_API_URL = 'https://data.sfgov.org/resource/3psu-pn9h.geojson';
 
 // Fetch limits
 const SWEEPING_LIMIT = 99999;
 const CENTERLINES_LIMIT = 99999;
 
-// Raw data types from DataSF
-interface RawSweepingRecord {
+// GeoJSON FeatureCollection types (returned by .geojson endpoint)
+interface GeoJSONGeometry {
+  type: string;
+  coordinates: number[][] | number[][][] | number[];
+}
+
+interface GeoJSONFeature<T> {
+  type: 'Feature';
+  properties: T;
+  geometry: GeoJSONGeometry | null;
+}
+
+interface GeoJSONFeatureCollection<T> {
+  type: 'FeatureCollection';
+  features: GeoJSONFeature<T>[];
+}
+
+// Raw property types from DataSF (contained in feature.properties)
+interface RawSweepingProperties {
   cnn?: string;
   cnnrightleft?: string;
   streetname?: string;
@@ -52,17 +71,9 @@ interface RawSweepingRecord {
   week4?: string;
   week5?: string;
   holidays?: string;
-  line?: {
-    type: string;
-    coordinates: number[][] | number[][][] | number[];
-  };
-  the_geom?: {
-    type: string;
-    coordinates: number[][] | number[][][] | number[];
-  };
 }
 
-interface RawCenterlineRecord {
+interface RawCenterlineProperties {
   cnn?: string;
   streetname?: string;
   street?: string;
@@ -73,18 +84,6 @@ interface RawCenterlineRecord {
   rt_toadd?: string;
   f_st?: string;
   t_st?: string;
-  line?: {
-    type: string;
-    coordinates: number[][] | number[][][] | number[];
-  };
-  the_geom?: {
-    type: string;
-    coordinates: number[][] | number[][][] | number[];
-  };
-  geometry?: {
-    type: string;
-    coordinates: number[][] | number[][][] | number[];
-  };
 }
 
 // Processed data types
@@ -239,14 +238,14 @@ async function fetchWithRetry<T>(
   throw new Error('All retries failed');
 }
 
-async function fetchSweepingData(): Promise<RawSweepingRecord[]> {
+async function fetchSweepingData(): Promise<GeoJSONFeatureCollection<RawSweepingProperties>> {
   const url = `${SWEEPING_API_URL}?$limit=${SWEEPING_LIMIT}`;
-  return fetchWithRetry<RawSweepingRecord[]>(url);
+  return fetchWithRetry<GeoJSONFeatureCollection<RawSweepingProperties>>(url);
 }
 
-async function fetchCenterlinesData(): Promise<RawCenterlineRecord[]> {
+async function fetchCenterlinesData(): Promise<GeoJSONFeatureCollection<RawCenterlineProperties>> {
   const url = `${CENTERLINES_API_URL}?$limit=${CENTERLINES_LIMIT}`;
-  return fetchWithRetry<RawCenterlineRecord[]>(url);
+  return fetchWithRetry<GeoJSONFeatureCollection<RawCenterlineProperties>>(url);
 }
 
 interface CenterlineInfo {
@@ -260,21 +259,23 @@ interface CenterlineInfo {
   toAddress: string;
 }
 
-function processCenterlines(records: RawCenterlineRecord[]): Map<string, CenterlineInfo> {
+function processCenterlines(featureCollection: GeoJSONFeatureCollection<RawCenterlineProperties>): Map<string, CenterlineInfo> {
   const centerlines = new Map<string, CenterlineInfo>();
 
-  for (const record of records) {
-    const cnn = normalizeCNN(record.cnn);
+  for (const feature of featureCollection.features) {
+    const props = feature.properties;
+    const cnn = normalizeCNN(props.cnn);
     if (!cnn) continue;
 
-    const geometry = record.line || record.the_geom || record.geometry;
+    // Geometry is now at the feature level in GeoJSON format (with WGS84 coordinates)
+    const geometry = feature.geometry;
     if (!geometry || !geometry.coordinates) continue;
 
-    const streetName = normalizeStreetName(record.streetname || record.street || '');
+    const streetName = normalizeStreetName(props.streetname || props.street || '');
 
     // Get address range from various possible fields
-    const fromAddress = record.lf_fadd || record.rt_fadd || '';
-    const toAddress = record.lf_toadd || record.rt_toadd || '';
+    const fromAddress = props.lf_fadd || props.rt_fadd || '';
+    const toAddress = props.lf_toadd || props.rt_toadd || '';
 
     centerlines.set(cnn, {
       cnn,
@@ -296,26 +297,27 @@ interface SweepingInfo {
   schedules: CleaningSchedule[];
 }
 
-function processSweepingData(records: RawSweepingRecord[]): Map<string, SweepingInfo> {
+function processSweepingData(featureCollection: GeoJSONFeatureCollection<RawSweepingProperties>): Map<string, SweepingInfo> {
   const sweepingByCNN = new Map<string, SweepingInfo>();
 
-  for (const record of records) {
+  for (const feature of featureCollection.features) {
+    const props = feature.properties;
     // Try multiple CNN fields
-    const cnn = normalizeCNN(record.cnn || record.cnnrightleft);
+    const cnn = normalizeCNN(props.cnn || props.cnnrightleft);
     if (!cnn) continue;
 
-    const dayOfWeek = parseDay(record.weekday || record.day);
-    const startTime = parseTime(record.fromhour || record.starttime);
-    const endTime = parseTime(record.tohour || record.endtime);
+    const dayOfWeek = parseDay(props.weekday || props.day);
+    const startTime = parseTime(props.fromhour || props.starttime);
+    const endTime = parseTime(props.tohour || props.endtime);
 
     if (dayOfWeek === null || !startTime || !endTime) continue;
 
-    const side = parseSide(record.blockside || record.side);
+    const side = parseSide(props.blockside || props.side);
     const weeksOfMonth = parseWeeksOfMonth(
-      record.week1,
-      record.week2,
-      record.week3,
-      record.week4
+      props.week1,
+      props.week2,
+      props.week3,
+      props.week4
     );
 
     const schedule: CleaningSchedule = {
@@ -327,10 +329,10 @@ function processSweepingData(records: RawSweepingRecord[]): Map<string, Sweeping
     };
 
     const streetName = normalizeStreetName(
-      record.streetname || record.corridor || record.fullname || ''
+      props.streetname || props.corridor || props.fullname || ''
     );
-    const fromAddress = record.from_address || '';
-    const toAddress = record.to_address || '';
+    const fromAddress = props.from_address || '';
+    const toAddress = props.to_address || '';
 
     let info = sweepingByCNN.get(cnn);
     if (!info) {
@@ -548,11 +550,11 @@ async function main(): Promise<void> {
   // Step 1: Fetch data from both APIs
   console.log('Step 1: Fetching data from DataSF...\n');
 
-  let sweepingRecords: RawSweepingRecord[];
-  let centerlineRecords: RawCenterlineRecord[];
+  let sweepingData: GeoJSONFeatureCollection<RawSweepingProperties>;
+  let centerlinesData: GeoJSONFeatureCollection<RawCenterlineProperties>;
 
   try {
-    [sweepingRecords, centerlineRecords] = await Promise.all([
+    [sweepingData, centerlinesData] = await Promise.all([
       fetchSweepingData(),
       fetchCenterlinesData(),
     ]);
@@ -561,17 +563,17 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
-  console.log(`\nFetched:`);
-  console.log(`  - ${sweepingRecords.length} sweeping records`);
-  console.log(`  - ${centerlineRecords.length} centerline records`);
+  console.log(`\nFetched (GeoJSON format with WGS84 coordinates):`);
+  console.log(`  - ${sweepingData.features.length} sweeping features`);
+  console.log(`  - ${centerlinesData.features.length} centerline features`);
 
   // Step 2: Process and merge data
   console.log('\nStep 2: Processing and merging data...\n');
 
-  const centerlines = processCenterlines(centerlineRecords);
+  const centerlines = processCenterlines(centerlinesData);
   console.log(`Processed ${centerlines.size} unique centerlines`);
 
-  const sweeping = processSweepingData(sweepingRecords);
+  const sweeping = processSweepingData(sweepingData);
   console.log(`Processed ${sweeping.size} unique sweeping CNNs`);
 
   const segments = mergeData(centerlines, sweeping, syncVersion);
