@@ -386,12 +386,13 @@ function mergeData(
     matchCount++;
 
     // Use centerline geometry (more accurate) but sweeping schedule info
+    // Serialize geometry to plain object for Firestore compatibility
     const segment: StreetSegment = {
       cnn,
       streetName: sweepingInfo.streetName || centerlineInfo.streetName,
       fromAddress: sweepingInfo.fromAddress || centerlineInfo.fromAddress,
       toAddress: sweepingInfo.toAddress || centerlineInfo.toAddress,
-      geometry: centerlineInfo.geometry,
+      geometry: JSON.parse(JSON.stringify(centerlineInfo.geometry)),
       schedules: sweepingInfo.schedules,
       syncVersion,
       updatedAt: Timestamp.now(),
