@@ -1,24 +1,18 @@
 /**
- * Sync DataSF Street Data to Firestore
+ * Sync DataSF Street Data to JSON File
  *
  * This script fetches street sweeping schedules and street centerlines from
- * SF Open Data, joins them by CNN, and writes to Firestore.
+ * SF Open Data, joins them by CNN, and outputs to a static JSON file.
  *
  * Usage:
  *   npx tsx scripts/sync-datasf.ts
  *
- * Environment variables required:
- *   FIREBASE_PROJECT_ID (or NEXT_PUBLIC_FIREBASE_PROJECT_ID)
- *   FIREBASE_CLIENT_EMAIL (or FIREBASE_ADMIN_CLIENT_EMAIL)
- *   FIREBASE_PRIVATE_KEY (or FIREBASE_ADMIN_PRIVATE_KEY)
+ * Output:
+ *   public/data/street-segments.json
  */
 
-import { initializeApp, cert, getApps } from 'firebase-admin/app';
-import { getFirestore, Timestamp, WriteBatch } from 'firebase-admin/firestore';
-import * as dotenv from 'dotenv';
-
-// Load environment variables from .env.local if running locally
-dotenv.config({ path: '.env.local' });
+import * as fs from 'fs';
+import * as path from 'path';
 
 // DataSF API endpoints - using GeoJSON format for WGS84 coordinates
 // The .json endpoint returns State Plane coordinates (EPSG:2227) which don't align with web maps
@@ -100,10 +94,15 @@ interface StreetSegment {
   streetName: string;
   fromAddress: string;
   toAddress: string;
-  geometry: string; // GeoJSON stored as string to avoid Firestore nested entity limits
+  geometry: GeoJSONGeometry; // GeoJSON geometry object (no longer stringified)
   schedules: CleaningSchedule[];
-  syncVersion: string;
-  updatedAt: Timestamp;
+}
+
+interface StreetSegmentsFile {
+  version: string;
+  generatedAt: string;
+  count: number;
+  segments: StreetSegment[];
 }
 
 // Day of week mapping
@@ -366,8 +365,7 @@ function processSweepingData(featureCollection: GeoJSONFeatureCollection<RawSwee
 
 function mergeData(
   centerlines: Map<string, CenterlineInfo>,
-  sweeping: Map<string, SweepingInfo>,
-  syncVersion: string
+  sweeping: Map<string, SweepingInfo>
 ): StreetSegment[] {
   const segments: StreetSegment[] = [];
   let matchCount = 0;
@@ -385,16 +383,13 @@ function mergeData(
     matchCount++;
 
     // Use centerline geometry (more accurate) but sweeping schedule info
-    // Store geometry as JSON string to avoid Firestore nested entity limits
     const segment: StreetSegment = {
       cnn,
       streetName: sweepingInfo.streetName || centerlineInfo.streetName,
       fromAddress: sweepingInfo.fromAddress || centerlineInfo.fromAddress,
       toAddress: sweepingInfo.toAddress || centerlineInfo.toAddress,
-      geometry: JSON.stringify(centerlineInfo.geometry),
+      geometry: centerlineInfo.geometry,
       schedules: sweepingInfo.schedules,
-      syncVersion,
-      updatedAt: Timestamp.now(),
     };
 
     segments.push(segment);
@@ -408,134 +403,40 @@ function mergeData(
   return segments;
 }
 
-async function writeToFirestore(
+function writeToJsonFile(
   segments: StreetSegment[],
-  syncVersion: string
-): Promise<{ success: boolean; error?: string }> {
-  const projectId = process.env.FIREBASE_PROJECT_ID || process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
-  const clientEmail = process.env.FIREBASE_CLIENT_EMAIL || process.env.FIREBASE_ADMIN_CLIENT_EMAIL;
-  const privateKey = (process.env.FIREBASE_PRIVATE_KEY || process.env.FIREBASE_ADMIN_PRIVATE_KEY)?.replace(/\\n/g, '\n');
-
-  if (!projectId || !clientEmail || !privateKey) {
-    return { success: false, error: 'Firebase credentials not configured' };
-  }
-
-  // Initialize Firebase Admin if not already done
-  if (getApps().length === 0) {
-    initializeApp({
-      credential: cert({
-        projectId,
-        clientEmail,
-        privateKey,
-      }),
-    });
-  }
-
-  const db = getFirestore();
-  const streetSegmentsCollection = db.collection('streetSegments');
-  const syncMetadataDoc = db.collection('syncMetadata').doc('latest');
-
-  const BATCH_SIZE = 500;
+  version: string
+): { success: boolean; error?: string; filePath?: string } {
+  const outputDir = path.join(process.cwd(), 'public', 'data');
+  const outputPath = path.join(outputDir, 'street-segments.json');
 
   try {
-    console.log(`\nWriting ${segments.length} segments to Firestore...`);
-
-    // Write all segments in batches
-    for (let i = 0; i < segments.length; i += BATCH_SIZE) {
-      const batch: WriteBatch = db.batch();
-      const batchSegments = segments.slice(i, i + BATCH_SIZE);
-
-      for (const segment of batchSegments) {
-        const docRef = streetSegmentsCollection.doc(segment.cnn);
-        batch.set(docRef, segment);
-      }
-
-      await batch.commit();
-      const progress = Math.min(i + BATCH_SIZE, segments.length);
-      console.log(`  Written ${progress}/${segments.length} segments`);
+    // Ensure output directory exists
+    if (!fs.existsSync(outputDir)) {
+      fs.mkdirSync(outputDir, { recursive: true });
+      console.log(`Created directory: ${outputDir}`);
     }
 
-    // Success! Update metadata and clean up old versions
-    console.log(`\nSync successful. Cleaning up old data...`);
+    const fileData: StreetSegmentsFile = {
+      version,
+      generatedAt: new Date().toISOString(),
+      count: segments.length,
+      segments,
+    };
 
-    // Get old version documents and delete them
-    const oldDocsSnapshot = await streetSegmentsCollection
-      .where('syncVersion', '!=', syncVersion)
-      .limit(500)
-      .get();
+    console.log(`\nWriting ${segments.length} segments to ${outputPath}...`);
 
-    let deletedCount = 0;
-    while (oldDocsSnapshot.size > 0 || deletedCount === 0) {
-      const snapshot = await streetSegmentsCollection
-        .where('syncVersion', '!=', syncVersion)
-        .limit(500)
-        .get();
+    fs.writeFileSync(outputPath, JSON.stringify(fileData, null, 2));
 
-      if (snapshot.empty) break;
-
-      const deleteBatch = db.batch();
-      for (const doc of snapshot.docs) {
-        deleteBatch.delete(doc.ref);
-      }
-      await deleteBatch.commit();
-      deletedCount += snapshot.size;
-      console.log(`  Deleted ${deletedCount} old documents...`);
-    }
-
-    // Update sync metadata
-    await syncMetadataDoc.set({
-      currentVersion: syncVersion,
-      completedAt: Timestamp.now(),
-      stats: {
-        segmentsMerged: segments.length,
-        deletedOldDocs: deletedCount,
-      },
-      status: 'success',
-    });
+    // Calculate file size
+    const stats = fs.statSync(outputPath);
+    const fileSizeMB = (stats.size / (1024 * 1024)).toFixed(2);
+    console.log(`  File size: ${fileSizeMB} MB`);
 
     console.log(`\nSync complete!`);
-    return { success: true };
+    return { success: true, filePath: outputPath };
   } catch (error) {
-    console.error(`\nSync failed:`, error);
-
-    // Rollback: delete documents with the new syncVersion
-    console.log(`Rolling back...`);
-    try {
-      let rolledBack = 0;
-      let hasMore = true;
-      while (hasMore) {
-        const snapshot = await streetSegmentsCollection
-          .where('syncVersion', '==', syncVersion)
-          .limit(500)
-          .get();
-
-        if (snapshot.empty) {
-          hasMore = false;
-          break;
-        }
-
-        const rollbackBatch = db.batch();
-        for (const doc of snapshot.docs) {
-          rollbackBatch.delete(doc.ref);
-        }
-        await rollbackBatch.commit();
-        rolledBack += snapshot.size;
-        console.log(`  Rolled back ${rolledBack} documents...`);
-      }
-      console.log(`Rollback complete.`);
-    } catch (rollbackError) {
-      console.error(`Rollback failed:`, rollbackError);
-    }
-
-    // Update metadata to indicate failure
-    await syncMetadataDoc.set({
-      currentVersion: syncVersion,
-      completedAt: Timestamp.now(),
-      stats: {},
-      status: 'failed',
-      error: error instanceof Error ? error.message : 'Unknown error',
-    }, { merge: true });
-
+    console.error(`\nFailed to write JSON file:`, error);
     return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
   }
 }
@@ -576,7 +477,7 @@ async function main(): Promise<void> {
   const sweeping = processSweepingData(sweepingData);
   console.log(`Processed ${sweeping.size} unique sweeping CNNs`);
 
-  const segments = mergeData(centerlines, sweeping, syncVersion);
+  const segments = mergeData(centerlines, sweeping);
   console.log(`\nMerged into ${segments.length} street segments`);
 
   if (segments.length === 0) {
@@ -584,10 +485,10 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
-  // Step 3: Write to Firestore
-  console.log('\nStep 3: Writing to Firestore...\n');
+  // Step 3: Write to JSON file
+  console.log('\nStep 3: Writing to JSON file...\n');
 
-  const result = await writeToFirestore(segments, syncVersion);
+  const result = writeToJsonFile(segments, syncVersion);
 
   if (!result.success) {
     console.error(`\nSync failed: ${result.error}`);
@@ -595,6 +496,7 @@ async function main(): Promise<void> {
   }
 
   console.log('\nSync completed successfully!');
+  console.log(`Output: ${result.filePath}`);
 }
 
 main().catch((error) => {

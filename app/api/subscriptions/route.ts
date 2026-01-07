@@ -1,14 +1,134 @@
 import { NextRequest, NextResponse } from 'next/server';
+import * as fs from 'fs';
+import * as path from 'path';
 import { getAdminDb } from '@/lib/firebase-admin';
 import { getSessionUser } from '@/lib/auth';
 import { computeNotificationSets, type BlockWithId } from '@/lib/notification-sets';
 import { FieldValue, Timestamp } from 'firebase-admin/firestore';
 import type {
-  Block,
   UpdateSubscriptionsRequest,
   UpdateSubscriptionsResponse,
   NotificationSet,
+  CleaningSchedule,
 } from '@/lib/types';
+
+// Types for reading street segments from JSON file
+interface SegmentSchedule {
+  side: 'North' | 'South' | 'Both';
+  dayOfWeek: number;
+  startTime: string;
+  endTime: string;
+  weeksOfMonth: number[];
+}
+
+interface GeoJSONGeometry {
+  type: string;
+  coordinates: number[][] | number[][][] | number[];
+}
+
+interface StreetSegment {
+  cnn: string;
+  streetName: string;
+  fromAddress: string;
+  toAddress: string;
+  geometry: GeoJSONGeometry;
+  schedules: SegmentSchedule[];
+}
+
+interface StreetSegmentsFile {
+  version: string;
+  generatedAt: string;
+  count: number;
+  segments: StreetSegment[];
+}
+
+// Cache for loaded segments
+let cachedSegments: StreetSegmentsFile | null = null;
+let cacheTime: number = 0;
+const CACHE_TTL_MS = 60 * 1000; // 1 minute cache
+
+function loadSegmentsFromFile(): StreetSegmentsFile {
+  const now = Date.now();
+
+  if (cachedSegments && (now - cacheTime) < CACHE_TTL_MS) {
+    return cachedSegments;
+  }
+
+  const filePath = path.join(process.cwd(), 'public', 'data', 'street-segments.json');
+
+  if (!fs.existsSync(filePath)) {
+    throw new Error('Street segments file not found');
+  }
+
+  const fileContent = fs.readFileSync(filePath, 'utf-8');
+  cachedSegments = JSON.parse(fileContent) as StreetSegmentsFile;
+  cacheTime = now;
+
+  return cachedSegments;
+}
+
+function weeksToFrequency(weeks: number[]): CleaningSchedule['frequency'] {
+  const sorted = [...weeks].sort();
+  const key = sorted.join(',');
+
+  if (key === '1,2,3,4') return 'weekly';
+  if (key === '1,3') return '1st_3rd';
+  if (key === '2,4') return '2nd_4th';
+  if (key === '1') return '1st';
+  if (key === '2') return '2nd';
+  if (key === '3') return '3rd';
+  if (key === '4') return '4th';
+
+  return 'weekly';
+}
+
+function parseBlockNumber(fromAddress: string): number {
+  if (!fromAddress) return 0;
+  const match = fromAddress.match(/^(\d+)/);
+  if (match) {
+    const num = parseInt(match[1]);
+    return Math.floor(num / 100) * 100;
+  }
+  return 0;
+}
+
+function getBlocksFromJsonFile(blockIds: string[]): BlockWithId[] {
+  const data = loadSegmentsFromFile();
+  const blockIdSet = new Set(blockIds);
+
+  return data.segments
+    .filter(segment => blockIdSet.has(segment.cnn))
+    .map(segment => {
+      let northSchedule: CleaningSchedule | null = null;
+      let southSchedule: CleaningSchedule | null = null;
+
+      for (const schedule of segment.schedules) {
+        const cleaningSchedule: CleaningSchedule = {
+          dayOfWeek: schedule.dayOfWeek,
+          startTime: schedule.startTime,
+          endTime: schedule.endTime,
+          frequency: weeksToFrequency(schedule.weeksOfMonth),
+        };
+
+        if (schedule.side === 'North' || schedule.side === 'Both') {
+          northSchedule = cleaningSchedule;
+        }
+        if (schedule.side === 'South' || schedule.side === 'Both') {
+          southSchedule = cleaningSchedule;
+        }
+      }
+
+      return {
+        id: segment.cnn,
+        streetName: segment.streetName,
+        blockNumber: parseBlockNumber(segment.fromAddress),
+        cnn: segment.cnn,
+        geometry: segment.geometry as BlockWithId['geometry'],
+        northSchedule,
+        southSchedule,
+      };
+    });
+}
 
 /**
  * GET /api/subscriptions
@@ -109,31 +229,10 @@ export async function PUT(
       });
     }
 
-    // 5. Fetch blocks for computing notification sets
-    const blocksToFetch = blockIds.length > 0 ? blockIds : [];
-    const subscribedBlocks: BlockWithId[] = [];
-
-    if (blocksToFetch.length > 0) {
-      // Firestore 'in' queries are limited to 30 items
-      const chunks: string[][] = [];
-      for (let i = 0; i < blocksToFetch.length; i += 30) {
-        chunks.push(blocksToFetch.slice(i, i + 30));
-      }
-
-      for (const chunk of chunks) {
-        const blocksSnapshot = await db
-          .collection('blocks')
-          .where('__name__', 'in', chunk)
-          .get();
-
-        for (const doc of blocksSnapshot.docs) {
-          subscribedBlocks.push({
-            id: doc.id,
-            ...(doc.data() as Block),
-          });
-        }
-      }
-    }
+    // 5. Fetch blocks for computing notification sets from JSON file
+    const subscribedBlocks: BlockWithId[] = blockIds.length > 0
+      ? getBlocksFromJsonFile(blockIds)
+      : [];
 
     // 6. Compute new notification sets
     const computedSets = computeNotificationSets(userId, subscribedBlocks);
