@@ -31,7 +31,7 @@ const CENTERLINES_LIMIT = 99999;
 // Raw data types from DataSF
 interface RawSweepingRecord {
   cnn?: string;
-  cnnrightle?: string;
+  cnnrightleft?: string;
   streetname?: string;
   corridor?: string;
   fullname?: string;
@@ -46,17 +46,17 @@ interface RawSweepingRecord {
   tohour?: string;
   starttime?: string;
   endtime?: string;
-  week1ofmonth?: string;
-  week2ofmonth?: string;
-  week3ofmonth?: string;
-  week4ofmonth?: string;
-  week5ofmonth?: string;
+  week1?: string;
+  week2?: string;
+  week3?: string;
+  week4?: string;
+  week5?: string;
   holidays?: string;
-  the_geom?: {
+  line?: {
     type: string;
     coordinates: number[][] | number[][][] | number[];
   };
-  geometry?: {
+  the_geom?: {
     type: string;
     coordinates: number[][] | number[][][] | number[];
   };
@@ -67,21 +67,21 @@ interface RawCenterlineRecord {
   streetname?: string;
   street?: string;
   st_type?: string;
-  lf_faession?: string;
-  lf_toession?: string;
-  rt_faession?: string;
-  rt_toession?: string;
-  from_st?: string;
-  to_st?: string;
+  lf_fadd?: string;
+  lf_toadd?: string;
+  rt_fadd?: string;
+  rt_toadd?: string;
+  f_st?: string;
+  t_st?: string;
+  line?: {
+    type: string;
+    coordinates: number[][] | number[][][] | number[];
+  };
   the_geom?: {
     type: string;
     coordinates: number[][] | number[][][] | number[];
   };
   geometry?: {
-    type: string;
-    coordinates: number[][] | number[][][] | number[];
-  };
-  shape?: {
     type: string;
     coordinates: number[][] | number[][][] | number[];
   };
@@ -270,14 +270,14 @@ function processCenterlines(records: RawCenterlineRecord[]): Map<string, Centerl
     const cnn = normalizeCNN(record.cnn);
     if (!cnn) continue;
 
-    const geometry = record.the_geom || record.geometry || record.shape;
+    const geometry = record.line || record.the_geom || record.geometry;
     if (!geometry || !geometry.coordinates) continue;
 
     const streetName = normalizeStreetName(record.streetname || record.street || '');
 
     // Get address range from various possible fields
-    const fromAddress = record.lf_faession || record.rt_faession || '';
-    const toAddress = record.lf_toession || record.rt_toession || '';
+    const fromAddress = record.lf_fadd || record.rt_fadd || '';
+    const toAddress = record.lf_toadd || record.rt_toadd || '';
 
     centerlines.set(cnn, {
       cnn,
@@ -304,7 +304,7 @@ function processSweepingData(records: RawSweepingRecord[]): Map<string, Sweeping
 
   for (const record of records) {
     // Try multiple CNN fields
-    const cnn = normalizeCNN(record.cnn || record.cnnrightle);
+    const cnn = normalizeCNN(record.cnn || record.cnnrightleft);
     if (!cnn) continue;
 
     const dayOfWeek = parseDay(record.weekday || record.day);
@@ -315,10 +315,10 @@ function processSweepingData(records: RawSweepingRecord[]): Map<string, Sweeping
 
     const side = parseSide(record.blockside || record.side);
     const weeksOfMonth = parseWeeksOfMonth(
-      record.week1ofmonth,
-      record.week2ofmonth,
-      record.week3ofmonth,
-      record.week4ofmonth
+      record.week1,
+      record.week2,
+      record.week3,
+      record.week4
     );
 
     const schedule: CleaningSchedule = {
