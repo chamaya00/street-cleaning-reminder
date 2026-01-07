@@ -19,14 +19,13 @@ export function HomeMapClient({
 }: HomeMapClientProps) {
   const router = useRouter();
 
-  // Load blocks with DataSF fallback
+  // Load blocks from Firestore (synced from DataSF via scheduled job)
   const {
     blocks,
     isLoading: blocksLoading,
     error: blocksError,
     source: blocksSource,
-    // refreshFromDataSF available for manual refresh if needed
-  } = useBlocks({ preferDataSF: true });
+  } = useBlocks();
 
   // Selection state
   const [savedBlockIds, setSavedBlockIds] = useState<Set<string>>(new Set(initialBlockIds));
@@ -174,14 +173,10 @@ export function HomeMapClient({
             </p>
             {blocksSource && (
               <span
-                className={`text-xs px-2 py-0.5 rounded-full ${
-                  blocksSource === 'datasf'
-                    ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
-                    : 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400'
-                }`}
-                title={blocksSource === 'datasf' ? 'Live data from SF Open Data' : 'Cached/static data'}
+                className="text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
+                title="Data synced from SF Open Data"
               >
-                {blocksSource === 'datasf' ? 'Live Data' : 'Cached'}
+                SF Data
               </span>
             )}
           </div>

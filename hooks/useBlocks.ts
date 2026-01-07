@@ -2,9 +2,8 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import type { BlockWithId } from '@/lib/types';
-import { fetchBlocksFromDataSF, type DataSFError } from '@/lib/datasf';
 
-export type BlocksSource = 'datasf' | 'api' | 'static';
+export type BlocksSource = 'api' | 'cache';
 
 export interface UseBlocksState {
   /** The loaded blocks */
@@ -15,43 +14,31 @@ export interface UseBlocksState {
   error: string | null;
   /** Source of the loaded data */
   source: BlocksSource | null;
-  /** Number of raw records fetched (if from DataSF) */
-  recordCount: number | null;
 }
 
 export interface UseBlocksActions {
-  /** Manually refresh blocks from DataSF */
-  refreshFromDataSF: () => Promise<void>;
-  /** Force reload from static API */
-  loadFromAPI: () => Promise<void>;
+  /** Manually refresh blocks from API */
+  refresh: () => Promise<void>;
 }
 
 export type UseBlocksReturn = UseBlocksState & UseBlocksActions;
 
 /**
- * Hook for loading street blocks with DataSF fallback.
+ * Hook for loading street blocks from the API.
  *
- * Strategy:
- * 1. First, try to fetch fresh data from DataSF API (client-side, bypasses proxy)
- * 2. If DataSF fails, fall back to /api/blocks (server-side, uses Firestore or static data)
- *
- * @param options.preferDataSF - If true, always try DataSF first (default: true)
- * @param options.dataSFTimeout - Timeout for DataSF requests in ms (default: no timeout)
+ * Data is synced from DataSF to Firestore via a scheduled GitHub Action,
+ * so the API always returns fresh data from Firestore (with fallback to static data).
  */
-export function useBlocks(options?: {
-  preferDataSF?: boolean;
-  dataSFTimeout?: number;
-}): UseBlocksReturn {
-  const { preferDataSF = true, dataSFTimeout } = options || {};
-
+export function useBlocks(): UseBlocksReturn {
   const [blocks, setBlocks] = useState<BlockWithId[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [source, setSource] = useState<BlocksSource | null>(null);
-  const [recordCount, setRecordCount] = useState<number | null>(null);
 
-  // Fetch from static API
   const loadFromAPI = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
+
     try {
       const response = await fetch('/api/blocks');
       if (!response.ok) {
@@ -63,81 +50,28 @@ export function useBlocks(options?: {
 
       setBlocks(loadedBlocks);
       setSource('api');
-      setRecordCount(null);
       setError(null);
 
-      return loadedBlocks;
+      console.log(`[useBlocks] Loaded ${loadedBlocks.length} blocks from API`);
     } catch (err) {
-      const message = err instanceof Error ? err.message : 'Failed to load from API';
-      throw new Error(message);
-    }
-  }, []);
-
-  // Fetch from DataSF
-  const refreshFromDataSF = useCallback(async () => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const result = await fetchBlocksFromDataSF(dataSFTimeout ? { timeout: dataSFTimeout } : undefined);
-
-      setBlocks(result.blocks);
-      setSource('datasf');
-      setRecordCount(result.recordCount);
-      setError(null);
-
-      console.log(
-        `[useBlocks] Loaded ${result.blocks.length} blocks from DataSF (${result.recordCount} raw records)`
-      );
-    } catch (dataSFError) {
-      const dsError = dataSFError as DataSFError;
-      console.warn(`[useBlocks] DataSF fetch failed: ${dsError.message} (${dsError.code})`);
-
-      // Fall back to API
-      try {
-        await loadFromAPI();
-        console.log(`[useBlocks] Fell back to API successfully`);
-      } catch (apiError) {
-        const message = apiError instanceof Error ? apiError.message : 'Failed to load blocks';
-        setError(message);
-        console.error(`[useBlocks] API fallback also failed: ${message}`);
-      }
+      const message = err instanceof Error ? err.message : 'Failed to load blocks';
+      setError(message);
+      console.error(`[useBlocks] Failed to load blocks: ${message}`);
     } finally {
       setIsLoading(false);
     }
-  }, [dataSFTimeout, loadFromAPI]);
+  }, []);
 
   // Initial load
   useEffect(() => {
-    async function initialLoad() {
-      setIsLoading(true);
-
-      if (preferDataSF) {
-        // Try DataSF first, then fall back
-        await refreshFromDataSF();
-      } else {
-        // Just use API
-        try {
-          await loadFromAPI();
-        } catch (err) {
-          const message = err instanceof Error ? err.message : 'Failed to load blocks';
-          setError(message);
-        } finally {
-          setIsLoading(false);
-        }
-      }
-    }
-
-    initialLoad();
-  }, [preferDataSF, refreshFromDataSF, loadFromAPI]);
+    loadFromAPI();
+  }, [loadFromAPI]);
 
   return {
     blocks,
     isLoading,
     error,
     source,
-    recordCount,
-    refreshFromDataSF,
-    loadFromAPI,
+    refresh: loadFromAPI,
   };
 }
