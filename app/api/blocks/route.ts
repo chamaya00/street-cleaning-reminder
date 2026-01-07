@@ -17,10 +17,7 @@ interface StreetSegmentDoc {
   streetName: string;
   fromAddress: string;
   toAddress: string;
-  geometry: {
-    type: string;
-    coordinates: number[][] | number[][][] | number[];
-  };
+  geometry: string; // GeoJSON stored as JSON string to avoid Firestore nested entity limits
   schedules: FirestoreSchedule[];
   syncVersion: string;
 }
@@ -78,7 +75,7 @@ function transformSegmentToBlock(doc: StreetSegmentDoc): BlockWithId {
     streetName: doc.streetName,
     blockNumber: parseBlockNumber(doc.fromAddress),
     cnn: doc.cnn,
-    geometry: doc.geometry as BlockWithId['geometry'],
+    geometry: JSON.parse(doc.geometry) as BlockWithId['geometry'],
     northSchedule,
     southSchedule,
   };
