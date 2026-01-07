@@ -1,9 +1,11 @@
 import { NextResponse } from 'next/server';
+import * as fs from 'fs';
+import * as path from 'path';
 import type { BlockWithId, GetBlocksResponse, CleaningSchedule } from '@/lib/types';
 import sampleBlocks from '@/scripts/marina-blocks.json';
 
-// Schedule format from Firestore streetSegments collection
-interface FirestoreSchedule {
+// Schedule format from street segments JSON file
+interface SegmentSchedule {
   side: 'North' | 'South' | 'Both';
   dayOfWeek: number;
   startTime: string;
@@ -11,16 +13,34 @@ interface FirestoreSchedule {
   weeksOfMonth: number[];
 }
 
-// Raw document from streetSegments collection
-interface StreetSegmentDoc {
+// GeoJSON geometry type
+interface GeoJSONGeometry {
+  type: string;
+  coordinates: number[][] | number[][][] | number[];
+}
+
+// Segment from JSON file
+interface StreetSegment {
   cnn: string;
   streetName: string;
   fromAddress: string;
   toAddress: string;
-  geometry: string; // GeoJSON stored as JSON string to avoid Firestore nested entity limits
-  schedules: FirestoreSchedule[];
-  syncVersion: string;
+  geometry: GeoJSONGeometry;
+  schedules: SegmentSchedule[];
 }
+
+// JSON file structure
+interface StreetSegmentsFile {
+  version: string;
+  generatedAt: string;
+  count: number;
+  segments: StreetSegment[];
+}
+
+// Cache for loaded segments
+let cachedSegments: StreetSegmentsFile | null = null;
+let cacheTime: number = 0;
+const CACHE_TTL_MS = 60 * 1000; // 1 minute cache
 
 // Convert weeksOfMonth array to frequency string
 function weeksToFrequency(weeks: number[]): CleaningSchedule['frequency'] {
@@ -49,12 +69,12 @@ function parseBlockNumber(fromAddress: string): number {
   return 0;
 }
 
-// Transform streetSegment doc to BlockWithId format
-function transformSegmentToBlock(doc: StreetSegmentDoc): BlockWithId {
+// Transform street segment to BlockWithId format
+function transformSegmentToBlock(segment: StreetSegment): BlockWithId {
   let northSchedule: CleaningSchedule | null = null;
   let southSchedule: CleaningSchedule | null = null;
 
-  for (const schedule of doc.schedules) {
+  for (const schedule of segment.schedules) {
     const cleaningSchedule: CleaningSchedule = {
       dayOfWeek: schedule.dayOfWeek,
       startTime: schedule.startTime,
@@ -71,48 +91,43 @@ function transformSegmentToBlock(doc: StreetSegmentDoc): BlockWithId {
   }
 
   return {
-    id: doc.cnn,
-    streetName: doc.streetName,
-    blockNumber: parseBlockNumber(doc.fromAddress),
-    cnn: doc.cnn,
-    geometry: JSON.parse(doc.geometry) as BlockWithId['geometry'],
+    id: segment.cnn,
+    streetName: segment.streetName,
+    blockNumber: parseBlockNumber(segment.fromAddress),
+    cnn: segment.cnn,
+    geometry: segment.geometry as BlockWithId['geometry'],
     northSchedule,
     southSchedule,
   };
 }
 
-async function fetchBlocksFromFirestore(): Promise<BlockWithId[]> {
-  // Only attempt Firebase if credentials are configured
-  if (!process.env.FIREBASE_ADMIN_PRIVATE_KEY) {
-    throw new Error('Firebase not configured');
+function loadSegmentsFromFile(): StreetSegmentsFile {
+  const now = Date.now();
+
+  // Return cached data if still valid
+  if (cachedSegments && (now - cacheTime) < CACHE_TTL_MS) {
+    return cachedSegments;
   }
 
-  const { getAdminDb } = await import('@/lib/firebase-admin');
-  const db = getAdminDb();
+  const filePath = path.join(process.cwd(), 'public', 'data', 'street-segments.json');
 
-  // First try the new streetSegments collection
-  const streetSegmentsSnapshot = await db.collection('streetSegments').get();
-
-  if (!streetSegmentsSnapshot.empty) {
-    console.log(`[api/blocks] Loaded ${streetSegmentsSnapshot.size} segments from streetSegments collection`);
-    return streetSegmentsSnapshot.docs.map((doc) =>
-      transformSegmentToBlock(doc.data() as StreetSegmentDoc)
-    );
+  if (!fs.existsSync(filePath)) {
+    throw new Error('Street segments file not found');
   }
 
-  // Fall back to legacy blocks collection if streetSegments is empty
-  console.log('[api/blocks] streetSegments collection empty, trying legacy blocks collection');
-  const blocksSnapshot = await db.collection('blocks').get();
+  const fileContent = fs.readFileSync(filePath, 'utf-8');
+  cachedSegments = JSON.parse(fileContent) as StreetSegmentsFile;
+  cacheTime = now;
 
-  if (!blocksSnapshot.empty) {
-    console.log(`[api/blocks] Loaded ${blocksSnapshot.size} blocks from legacy blocks collection`);
-    return blocksSnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    } as BlockWithId));
-  }
+  return cachedSegments;
+}
 
-  throw new Error('No blocks found in Firestore');
+function fetchBlocksFromJsonFile(): BlockWithId[] {
+  const data = loadSegmentsFromFile();
+
+  console.log(`[api/blocks] Loaded ${data.count} segments from JSON file (version: ${data.version})`);
+
+  return data.segments.map(transformSegmentToBlock);
 }
 
 function getSampleBlocks(): BlockWithId[] {
@@ -121,11 +136,11 @@ function getSampleBlocks(): BlockWithId[] {
 
 export async function GET(): Promise<NextResponse<GetBlocksResponse | { error: string }>> {
   try {
-    const blocks = await fetchBlocksFromFirestore();
+    const blocks = fetchBlocksFromJsonFile();
     return NextResponse.json({ blocks });
   } catch (error) {
-    // Fall back to sample data if Firebase is not configured or fails
-    console.log('[api/blocks] Using sample blocks data (Firebase not available):', error);
+    // Fall back to sample data if JSON file is not available
+    console.log('[api/blocks] Using sample blocks data (JSON file not available):', error);
     const blocks = getSampleBlocks();
     return NextResponse.json({ blocks });
   }
