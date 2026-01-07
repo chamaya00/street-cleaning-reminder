@@ -31,7 +31,8 @@ jobs:
       - name: Check for changes
         id: check_changes
         run: |
-          if git diff --quiet public/data/street-segments.json 2>/dev/null; then
+          # Use git status to detect both modified and new untracked files
+          if [ -z "$(git status --porcelain public/data/street-segments.json)" ]; then
             echo "changed=false" >> $GITHUB_OUTPUT
             echo "No changes detected in street segments data"
           else
