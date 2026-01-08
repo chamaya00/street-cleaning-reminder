@@ -55,7 +55,7 @@ export function Header({ isAuthenticated, userPhone }: HeaderProps) {
             </>
           ) : (
             <Link
-              href="/notifications"
+              href="/login"
               className="text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
             >
               Sign In
