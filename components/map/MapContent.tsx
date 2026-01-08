@@ -61,7 +61,11 @@ function FitBounds({ blocks }: { blocks: SideBlockWithId[] }) {
   return null;
 }
 
-// Individual side block component with hover state
+// Line weight constants
+const VISIBLE_LINE_WEIGHT = 6;  // Visible line thickness
+const HIT_AREA_WEIGHT = 24;     // Invisible hit area for easier tapping
+
+// Individual side block component with hover state and large hit area
 function BlockShape({
   block,
   isSelected,
@@ -108,17 +112,32 @@ function BlockShape({
       toLatLng(coord as number[])
     );
     return (
-      <Polyline
-        positions={positions}
-        pathOptions={{
-          color: color,
-          weight: 4,
-          opacity: opacity,
-          lineCap: 'round',
-          lineJoin: 'round',
-        }}
-        eventHandlers={eventHandlers}
-      />
+      <>
+        {/* Invisible hit area - wider line for easier tapping */}
+        <Polyline
+          positions={positions}
+          pathOptions={{
+            color: 'transparent',
+            weight: HIT_AREA_WEIGHT,
+            opacity: 0,
+            lineCap: 'round',
+            lineJoin: 'round',
+          }}
+          eventHandlers={eventHandlers}
+        />
+        {/* Visible line */}
+        <Polyline
+          positions={positions}
+          pathOptions={{
+            color: color,
+            weight: VISIBLE_LINE_WEIGHT,
+            opacity: opacity,
+            lineCap: 'round',
+            lineJoin: 'round',
+          }}
+          interactive={false}
+        />
+      </>
     );
   } else if (block.geometry.type === 'MultiLineString') {
     return (
@@ -126,18 +145,32 @@ function BlockShape({
         {block.geometry.coordinates.map((line, index) => {
           const positions = line.map((coord) => toLatLng(coord as number[]));
           return (
-            <Polyline
-              key={`${block.id}-${index}`}
-              positions={positions}
-              pathOptions={{
-                color: color,
-                weight: 4,
-                opacity: opacity,
-                lineCap: 'round',
-                lineJoin: 'round',
-              }}
-              eventHandlers={eventHandlers}
-            />
+            <span key={`${block.id}-${index}`}>
+              {/* Invisible hit area */}
+              <Polyline
+                positions={positions}
+                pathOptions={{
+                  color: 'transparent',
+                  weight: HIT_AREA_WEIGHT,
+                  opacity: 0,
+                  lineCap: 'round',
+                  lineJoin: 'round',
+                }}
+                eventHandlers={eventHandlers}
+              />
+              {/* Visible line */}
+              <Polyline
+                positions={positions}
+                pathOptions={{
+                  color: color,
+                  weight: VISIBLE_LINE_WEIGHT,
+                  opacity: opacity,
+                  lineCap: 'round',
+                  lineJoin: 'round',
+                }}
+                interactive={false}
+              />
+            </span>
           );
         })}
       </>

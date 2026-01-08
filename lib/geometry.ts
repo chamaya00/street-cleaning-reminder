@@ -3,10 +3,11 @@
  * Used to render separate selectable sides for each street segment.
  */
 
-// Offset distance in degrees (approximately 4 meters at SF latitude)
+// Offset distance in degrees (approximately 6 meters at SF latitude)
 // At 37.8° latitude: 1 degree longitude ≈ 87km, 1 degree latitude ≈ 111km
-// 4 meters ≈ 0.000045 degrees longitude, 0.000036 degrees latitude
-const OFFSET_DISTANCE = 0.000040;
+// 6 meters ≈ 0.000069 degrees longitude, 0.000054 degrees latitude
+// Increased for better visual separation and easier tap targeting
+const OFFSET_DISTANCE = 0.000060;
 
 type Coordinate = [number, number]; // [lng, lat] in GeoJSON format
 
