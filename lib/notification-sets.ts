@@ -1,15 +1,8 @@
-import type { Block, CleaningSchedule, NotificationSet, NotificationSetBlock } from './types';
+import type { CleaningSchedule, NotificationSet, NotificationSetBlock, SideBlockWithId } from './types';
 import { createHash } from 'crypto';
 
 /**
- * Represents a block with its ID for processing
- */
-export interface BlockWithId extends Block {
-  id: string;
-}
-
-/**
- * Represents a single side of a block with its schedule
+ * Represents a single side of a block with its schedule (internal processing type)
  */
 interface BlockSide {
   blockId: string;
@@ -132,35 +125,17 @@ export function getSideLabel(sides: Set<'N' | 'S'>): string {
 }
 
 /**
- * Expands blocks into individual sides with their schedules.
- * Each block can have up to 2 sides (N and S), each with its own schedule.
+ * Converts side-specific blocks into BlockSide format for grouping.
+ * Each SideBlockWithId already represents a single side.
  */
-export function expandBlocksToSides(blocks: BlockWithId[]): BlockSide[] {
-  const sides: BlockSide[] = [];
-
-  for (const block of blocks) {
-    if (block.northSchedule) {
-      sides.push({
-        blockId: block.id,
-        blockNumber: block.blockNumber,
-        streetName: block.streetName,
-        side: 'N',
-        schedule: block.northSchedule,
-      });
-    }
-
-    if (block.southSchedule) {
-      sides.push({
-        blockId: block.id,
-        blockNumber: block.blockNumber,
-        streetName: block.streetName,
-        side: 'S',
-        schedule: block.southSchedule,
-      });
-    }
-  }
-
-  return sides;
+export function expandBlocksToSides(blocks: SideBlockWithId[]): BlockSide[] {
+  return blocks.map(block => ({
+    blockId: block.id,
+    blockNumber: block.blockNumber,
+    streetName: block.streetName,
+    side: block.side,
+    schedule: block.schedule,
+  }));
 }
 
 /**
@@ -187,12 +162,12 @@ export function groupBlocksBySchedule(blockSides: BlockSide[]): Map<string, Bloc
 }
 
 /**
- * Computes notification sets from a list of subscribed blocks.
+ * Computes notification sets from a list of subscribed side-specific blocks.
  * Groups blocks by (streetName + schedule) and creates a NotificationSet for each group.
  */
 export function computeNotificationSets(
   userId: string,
-  subscribedBlocks: BlockWithId[]
+  subscribedBlocks: SideBlockWithId[]
 ): Omit<NotificationSet, 'createdAt' | 'updatedAt'>[] {
   // 1. Expand blocks to individual sides
   const blockSides = expandBlocksToSides(subscribedBlocks);

@@ -1,13 +1,13 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import type { BlockWithId } from '@/lib/types';
+import type { SideBlockWithId } from '@/lib/types';
 
 export type BlocksSource = 'api' | 'cache';
 
 export interface UseBlocksState {
-  /** The loaded blocks */
-  blocks: BlockWithId[];
+  /** The loaded side-specific blocks */
+  blocks: SideBlockWithId[];
   /** Whether blocks are currently loading */
   isLoading: boolean;
   /** Error message if loading failed */
@@ -24,13 +24,11 @@ export interface UseBlocksActions {
 export type UseBlocksReturn = UseBlocksState & UseBlocksActions;
 
 /**
- * Hook for loading street blocks from the API.
- *
- * Data is synced from DataSF to Firestore via a scheduled GitHub Action,
- * so the API always returns fresh data from Firestore (with fallback to static data).
+ * Hook for loading side-specific street blocks from the API.
+ * Each block represents one side (N or S) of a street segment.
  */
 export function useBlocks(): UseBlocksReturn {
-  const [blocks, setBlocks] = useState<BlockWithId[]>([]);
+  const [blocks, setBlocks] = useState<SideBlockWithId[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [source, setSource] = useState<BlocksSource | null>(null);

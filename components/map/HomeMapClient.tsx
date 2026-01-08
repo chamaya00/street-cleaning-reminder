@@ -163,11 +163,11 @@ export function HomeMapClient({
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              {selectedBlockIds.size} block{selectedBlockIds.size !== 1 ? 's' : ''} selected
+              {selectedBlockIds.size} street side{selectedBlockIds.size !== 1 ? 's' : ''} selected
               {selectedBlockIds.size === 0 && (
                 <span className="text-gray-400 dark:text-gray-500">
                   {' '}
-                  &middot; Click blocks on the map to add them
+                  &middot; Tap street sides on the map to select
                 </span>
               )}
             </p>

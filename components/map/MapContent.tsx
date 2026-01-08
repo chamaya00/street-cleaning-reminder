@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { MapContainer, TileLayer, Polygon, Polyline, useMap } from 'react-leaflet';
+import { useEffect, useState } from 'react';
+import { MapContainer, TileLayer, Polyline, useMap } from 'react-leaflet';
 import type { LatLngBoundsExpression, LatLngExpression } from 'leaflet';
-import type { BlockWithId } from '@/lib/types';
+import type { SideBlockWithId } from '@/lib/types';
 import 'leaflet/dist/leaflet.css';
 
 // Marina district center coordinates [lat, lng]
@@ -20,7 +20,7 @@ const SELECTED_OPACITY = 0.6;
 const UNSELECTED_OPACITY = 0.3;
 
 interface MapContentProps {
-  blocks: BlockWithId[];
+  blocks: SideBlockWithId[];
   selectedBlockIds: Set<string>;
   savedBlockIds: Set<string>;
   onBlockClick: (blockId: string) => void;
@@ -32,7 +32,7 @@ function toLatLng(coords: number[]): LatLngExpression {
 }
 
 // Component to fit map bounds to blocks
-function FitBounds({ blocks }: { blocks: BlockWithId[] }) {
+function FitBounds({ blocks }: { blocks: SideBlockWithId[] }) {
   const map = useMap();
 
   useEffect(() => {
@@ -40,11 +40,7 @@ function FitBounds({ blocks }: { blocks: BlockWithId[] }) {
 
     const allCoords: LatLngExpression[] = [];
     blocks.forEach((block) => {
-      if (block.geometry.type === 'Polygon') {
-        block.geometry.coordinates[0].forEach((coord) => {
-          allCoords.push(toLatLng(coord as number[]));
-        });
-      } else if (block.geometry.type === 'LineString') {
+      if (block.geometry.type === 'LineString') {
         block.geometry.coordinates.forEach((coord) => {
           allCoords.push(toLatLng(coord as number[]));
         });
@@ -65,14 +61,14 @@ function FitBounds({ blocks }: { blocks: BlockWithId[] }) {
   return null;
 }
 
-// Individual block component with hover state
+// Individual side block component with hover state
 function BlockShape({
   block,
   isSelected,
   isSaved,
   onClick,
 }: {
-  block: BlockWithId;
+  block: SideBlockWithId;
   isSelected: boolean;
   isSaved: boolean;
   onClick: () => void;
@@ -107,24 +103,7 @@ function BlockShape({
     mouseout: () => setIsHovered(false),
   };
 
-  if (block.geometry.type === 'Polygon') {
-    const positions = block.geometry.coordinates[0].map((coord) =>
-      toLatLng(coord as number[])
-    );
-    return (
-      <Polygon
-        positions={positions}
-        pathOptions={{
-          color: color,
-          fillColor: color,
-          fillOpacity: opacity,
-          weight: 2,
-        }}
-        eventHandlers={eventHandlers}
-      />
-    );
-  } else if (block.geometry.type === 'LineString') {
-    // For LineString (street centerlines), draw as a single polyline
+  if (block.geometry.type === 'LineString') {
     const positions = block.geometry.coordinates.map((coord) =>
       toLatLng(coord as number[])
     );
@@ -133,7 +112,7 @@ function BlockShape({
         positions={positions}
         pathOptions={{
           color: color,
-          weight: 6, // Thicker line for better visibility and clickability
+          weight: 4,
           opacity: opacity,
           lineCap: 'round',
           lineJoin: 'round',
@@ -142,7 +121,6 @@ function BlockShape({
       />
     );
   } else if (block.geometry.type === 'MultiLineString') {
-    // For MultiLineString, draw as polylines
     return (
       <>
         {block.geometry.coordinates.map((line, index) => {
@@ -153,7 +131,7 @@ function BlockShape({
               positions={positions}
               pathOptions={{
                 color: color,
-                weight: 6,
+                weight: 4,
                 opacity: opacity,
                 lineCap: 'round',
                 lineJoin: 'round',

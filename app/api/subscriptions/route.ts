@@ -3,13 +3,15 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { getAdminDb } from '@/lib/firebase-admin';
 import { getSessionUser } from '@/lib/auth';
-import { computeNotificationSets, type BlockWithId } from '@/lib/notification-sets';
+import { computeNotificationSets } from '@/lib/notification-sets';
 import { FieldValue, Timestamp } from 'firebase-admin/firestore';
 import type {
   UpdateSubscriptionsRequest,
   UpdateSubscriptionsResponse,
   NotificationSet,
   CleaningSchedule,
+  SideBlockWithId,
+  StreetSide,
 } from '@/lib/types';
 
 // Types for reading street segments from JSON file
@@ -92,42 +94,79 @@ function parseBlockNumber(fromAddress: string): number {
   return 0;
 }
 
-function getBlocksFromJsonFile(blockIds: string[]): BlockWithId[] {
+/**
+ * Parse a side-specific block ID into its components.
+ * Block IDs are in format "cnn-side", e.g., "8753101-N" or "8753101-S"
+ */
+function parseSideBlockId(blockId: string): { cnn: string; side: StreetSide } | null {
+  const match = blockId.match(/^(.+)-(N|S)$/);
+  if (!match) return null;
+  return { cnn: match[1], side: match[2] as StreetSide };
+}
+
+function getSideBlocksFromJsonFile(blockIds: string[]): SideBlockWithId[] {
   const data = loadSegmentsFromFile();
-  const blockIdSet = new Set(blockIds);
 
-  return data.segments
-    .filter(segment => blockIdSet.has(segment.cnn))
-    .map(segment => {
-      let northSchedule: CleaningSchedule | null = null;
-      let southSchedule: CleaningSchedule | null = null;
+  // Parse block IDs to get CNN and side
+  const parsedIds = blockIds
+    .map(id => ({ id, parsed: parseSideBlockId(id) }))
+    .filter((item): item is { id: string; parsed: { cnn: string; side: StreetSide } } =>
+      item.parsed !== null
+    );
 
-      for (const schedule of segment.schedules) {
-        const cleaningSchedule: CleaningSchedule = {
-          dayOfWeek: schedule.dayOfWeek,
-          startTime: schedule.startTime,
-          endTime: schedule.endTime,
-          frequency: weeksToFrequency(schedule.weeksOfMonth),
-        };
+  // Group by CNN for efficient lookup
+  const cnnToSides = new Map<string, { id: string; side: StreetSide }[]>();
+  for (const { id, parsed } of parsedIds) {
+    const existing = cnnToSides.get(parsed.cnn) || [];
+    existing.push({ id, side: parsed.side });
+    cnnToSides.set(parsed.cnn, existing);
+  }
 
-        if (schedule.side === 'North' || schedule.side === 'Both') {
-          northSchedule = cleaningSchedule;
-        }
-        if (schedule.side === 'South' || schedule.side === 'Both') {
-          southSchedule = cleaningSchedule;
-        }
-      }
+  const result: SideBlockWithId[] = [];
 
-      return {
-        id: segment.cnn,
-        streetName: segment.streetName,
-        blockNumber: parseBlockNumber(segment.fromAddress),
-        cnn: segment.cnn,
-        geometry: segment.geometry as BlockWithId['geometry'],
-        northSchedule,
-        southSchedule,
+  for (const segment of data.segments) {
+    const sidesNeeded = cnnToSides.get(segment.cnn);
+    if (!sidesNeeded) continue;
+
+    // Build schedule map
+    let northSchedule: CleaningSchedule | null = null;
+    let southSchedule: CleaningSchedule | null = null;
+
+    for (const schedule of segment.schedules) {
+      const cleaningSchedule: CleaningSchedule = {
+        dayOfWeek: schedule.dayOfWeek,
+        startTime: schedule.startTime,
+        endTime: schedule.endTime,
+        frequency: weeksToFrequency(schedule.weeksOfMonth),
       };
-    });
+
+      if (schedule.side === 'North' || schedule.side === 'Both') {
+        northSchedule = cleaningSchedule;
+      }
+      if (schedule.side === 'South' || schedule.side === 'Both') {
+        southSchedule = cleaningSchedule;
+      }
+    }
+
+    const blockNumber = parseBlockNumber(segment.fromAddress);
+
+    for (const { id, side } of sidesNeeded) {
+      const schedule = side === 'N' ? northSchedule : southSchedule;
+      if (!schedule) continue;
+
+      result.push({
+        id,
+        streetName: segment.streetName,
+        blockNumber,
+        cnn: segment.cnn,
+        side,
+        geometry: { type: 'LineString', coordinates: [] }, // Geometry not needed for notification sets
+        schedule,
+      });
+    }
+  }
+
+  return result;
 }
 
 /**
@@ -230,8 +269,8 @@ export async function PUT(
     }
 
     // 5. Fetch blocks for computing notification sets from JSON file
-    const subscribedBlocks: BlockWithId[] = blockIds.length > 0
-      ? getBlocksFromJsonFile(blockIds)
+    const subscribedBlocks: SideBlockWithId[] = blockIds.length > 0
+      ? getSideBlocksFromJsonFile(blockIds)
       : [];
 
     // 6. Compute new notification sets

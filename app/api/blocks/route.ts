@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import * as fs from 'fs';
 import * as path from 'path';
-import type { BlockWithId, GetBlocksResponse, CleaningSchedule } from '@/lib/types';
-import sampleBlocks from '@/scripts/marina-blocks.json';
+import type { SideBlockWithId, GetSideBlocksResponse, CleaningSchedule, StreetSide } from '@/lib/types';
+import { offsetLineString, offsetMultiLineString, getSideOffset } from '@/lib/geometry';
 
 // Schedule format from street segments JSON file
 interface SegmentSchedule {
@@ -69,10 +69,25 @@ function parseBlockNumber(fromAddress: string): number {
   return 0;
 }
 
-// Transform street segment to BlockWithId format
-function transformSegmentToBlock(segment: StreetSegment): BlockWithId {
-  let northSchedule: CleaningSchedule | null = null;
-  let southSchedule: CleaningSchedule | null = null;
+type Coordinate = [number, number];
+
+// Transform street segment to side-specific blocks
+function transformSegmentToSideBlocks(segment: StreetSegment): SideBlockWithId[] {
+  const blocks: SideBlockWithId[] = [];
+  const blockNumber = parseBlockNumber(segment.fromAddress);
+
+  // Get base coordinates from geometry
+  let baseCoords: Coordinate[] = [];
+  if (segment.geometry.type === 'LineString') {
+    baseCoords = segment.geometry.coordinates as Coordinate[];
+  } else if (segment.geometry.type === 'MultiLineString') {
+    // For MultiLineString, use the first line to determine bearing
+    baseCoords = (segment.geometry.coordinates as Coordinate[][])[0] || [];
+  }
+
+  // Group schedules by side
+  const northSchedules: CleaningSchedule[] = [];
+  const southSchedules: CleaningSchedule[] = [];
 
   for (const schedule of segment.schedules) {
     const cleaningSchedule: CleaningSchedule = {
@@ -83,22 +98,77 @@ function transformSegmentToBlock(segment: StreetSegment): BlockWithId {
     };
 
     if (schedule.side === 'North' || schedule.side === 'Both') {
-      northSchedule = cleaningSchedule;
+      northSchedules.push(cleaningSchedule);
     }
     if (schedule.side === 'South' || schedule.side === 'Both') {
-      southSchedule = cleaningSchedule;
+      southSchedules.push(cleaningSchedule);
     }
   }
 
-  return {
-    id: segment.cnn,
-    streetName: segment.streetName,
-    blockNumber: parseBlockNumber(segment.fromAddress),
-    cnn: segment.cnn,
-    geometry: segment.geometry as BlockWithId['geometry'],
-    northSchedule,
-    southSchedule,
-  };
+  // Create North side block if it has a schedule
+  if (northSchedules.length > 0) {
+    const side: StreetSide = 'N';
+    const offsetSide = getSideOffset(baseCoords, 'North');
+
+    let offsetGeometry: SideBlockWithId['geometry'];
+    if (segment.geometry.type === 'LineString') {
+      offsetGeometry = {
+        type: 'LineString',
+        coordinates: offsetLineString(segment.geometry.coordinates as Coordinate[], offsetSide),
+      };
+    } else if (segment.geometry.type === 'MultiLineString') {
+      offsetGeometry = {
+        type: 'MultiLineString',
+        coordinates: offsetMultiLineString(segment.geometry.coordinates as Coordinate[][], offsetSide),
+      };
+    } else {
+      // Skip Polygon geometries for side-specific blocks
+      return blocks;
+    }
+
+    blocks.push({
+      id: `${segment.cnn}-${side}`,
+      streetName: segment.streetName,
+      blockNumber,
+      cnn: segment.cnn,
+      side,
+      geometry: offsetGeometry,
+      schedule: northSchedules[0], // Use first schedule (they should be the same)
+    });
+  }
+
+  // Create South side block if it has a schedule
+  if (southSchedules.length > 0) {
+    const side: StreetSide = 'S';
+    const offsetSide = getSideOffset(baseCoords, 'South');
+
+    let offsetGeometry: SideBlockWithId['geometry'];
+    if (segment.geometry.type === 'LineString') {
+      offsetGeometry = {
+        type: 'LineString',
+        coordinates: offsetLineString(segment.geometry.coordinates as Coordinate[], offsetSide),
+      };
+    } else if (segment.geometry.type === 'MultiLineString') {
+      offsetGeometry = {
+        type: 'MultiLineString',
+        coordinates: offsetMultiLineString(segment.geometry.coordinates as Coordinate[][], offsetSide),
+      };
+    } else {
+      return blocks;
+    }
+
+    blocks.push({
+      id: `${segment.cnn}-${side}`,
+      streetName: segment.streetName,
+      blockNumber,
+      cnn: segment.cnn,
+      side,
+      geometry: offsetGeometry,
+      schedule: southSchedules[0],
+    });
+  }
+
+  return blocks;
 }
 
 function loadSegmentsFromFile(): StreetSegmentsFile {
@@ -122,26 +192,29 @@ function loadSegmentsFromFile(): StreetSegmentsFile {
   return cachedSegments;
 }
 
-function fetchBlocksFromJsonFile(): BlockWithId[] {
+function fetchSideBlocksFromJsonFile(): SideBlockWithId[] {
   const data = loadSegmentsFromFile();
 
   console.log(`[api/blocks] Loaded ${data.count} segments from JSON file (version: ${data.version})`);
 
-  return data.segments.map(transformSegmentToBlock);
+  // Transform each segment into side-specific blocks
+  const allBlocks: SideBlockWithId[] = [];
+  for (const segment of data.segments) {
+    const sideBlocks = transformSegmentToSideBlocks(segment);
+    allBlocks.push(...sideBlocks);
+  }
+
+  console.log(`[api/blocks] Created ${allBlocks.length} side-specific blocks`);
+
+  return allBlocks;
 }
 
-function getSampleBlocks(): BlockWithId[] {
-  return sampleBlocks as BlockWithId[];
-}
-
-export async function GET(): Promise<NextResponse<GetBlocksResponse | { error: string }>> {
+export async function GET(): Promise<NextResponse<GetSideBlocksResponse | { error: string }>> {
   try {
-    const blocks = fetchBlocksFromJsonFile();
+    const blocks = fetchSideBlocksFromJsonFile();
     return NextResponse.json({ blocks });
   } catch (error) {
-    // Fall back to sample data if JSON file is not available
-    console.log('[api/blocks] Using sample blocks data (JSON file not available):', error);
-    const blocks = getSampleBlocks();
-    return NextResponse.json({ blocks });
+    console.error('[api/blocks] Error loading blocks:', error);
+    return NextResponse.json({ error: 'Failed to load blocks' }, { status: 500 });
   }
 }

@@ -1,7 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef } from 'react';
-import type { BlockWithId } from '@/lib/types';
+import type { SideBlockWithId } from '@/lib/types';
 import dynamic from 'next/dynamic';
 
 // Dynamically import the map component to avoid SSR issues with Leaflet
@@ -26,7 +25,7 @@ const SELECTED_OPACITY = 0.6;
 const UNSELECTED_OPACITY = 0.3;
 
 interface MapViewProps {
-  blocks: BlockWithId[];
+  blocks: SideBlockWithId[];
   selectedBlockIds: Set<string>;
   savedBlockIds: Set<string>;
   onBlockClick: (blockId: string) => void;
@@ -65,32 +64,35 @@ export function MapView({
         <div className="space-y-1.5">
           <div className="flex items-center gap-2">
             <div
-              className="w-4 h-4 rounded"
+              className="w-4 h-1 rounded"
               style={{ backgroundColor: SELECTED_COLOR, opacity: SELECTED_OPACITY }}
             />
             <span className="text-gray-600 dark:text-gray-300">Saved</span>
           </div>
           <div className="flex items-center gap-2">
             <div
-              className="w-4 h-4 rounded"
+              className="w-4 h-1 rounded"
               style={{ backgroundColor: PENDING_ADD_COLOR, opacity: SELECTED_OPACITY }}
             />
             <span className="text-gray-600 dark:text-gray-300">To be added</span>
           </div>
           <div className="flex items-center gap-2">
             <div
-              className="w-4 h-4 rounded"
+              className="w-4 h-1 rounded"
               style={{ backgroundColor: PENDING_REMOVE_COLOR, opacity: SELECTED_OPACITY }}
             />
             <span className="text-gray-600 dark:text-gray-300">To be removed</span>
           </div>
           <div className="flex items-center gap-2">
             <div
-              className="w-4 h-4 rounded border-2"
-              style={{ borderColor: UNSELECTED_COLOR, opacity: UNSELECTED_OPACITY }}
+              className="w-4 h-1 rounded"
+              style={{ backgroundColor: UNSELECTED_COLOR, opacity: UNSELECTED_OPACITY }}
             />
             <span className="text-gray-600 dark:text-gray-300">Unselected</span>
           </div>
+        </div>
+        <div className="mt-2 pt-2 border-t border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400">
+          Tap each street side to select
         </div>
       </div>
     </div>

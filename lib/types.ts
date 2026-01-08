@@ -27,6 +27,22 @@ export interface Block {
   southSchedule: CleaningSchedule | null;
 }
 
+// Side-specific block for individual street side selection
+export type StreetSide = 'N' | 'S';
+
+export interface SideBlock {
+  streetName: string;
+  blockNumber: number;
+  cnn: string;                // Original SF street segment ID
+  side: StreetSide;           // Which side of the street
+  geometry: LineString | MultiLineString;  // Offset geometry for this side
+  schedule: CleaningSchedule; // The cleaning schedule for this side
+}
+
+export interface SideBlockWithId extends SideBlock {
+  id: string;                 // Format: "{cnn}-{side}" e.g., "8753101-N"
+}
+
 export interface Subscription {
   userId: string;
   blockId: string;
@@ -96,6 +112,10 @@ export interface BlockWithId extends Block {
 
 export interface GetBlocksResponse {
   blocks: BlockWithId[];
+}
+
+export interface GetSideBlocksResponse {
+  blocks: SideBlockWithId[];
 }
 
 export interface UpdateSubscriptionsRequest {

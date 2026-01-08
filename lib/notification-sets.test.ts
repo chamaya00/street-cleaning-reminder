@@ -7,9 +7,8 @@ import {
   groupBlocksBySchedule,
   computeNotificationSets,
   generateSetKey,
-  type BlockWithId,
 } from './notification-sets';
-import type { CleaningSchedule } from './types';
+import type { CleaningSchedule, SideBlockWithId } from './types';
 
 describe('notification-sets', () => {
   describe('formatBlockRange', () => {
@@ -75,69 +74,54 @@ describe('notification-sets', () => {
   });
 
   describe('expandBlocksToSides', () => {
-    it('expands block with both schedules to two sides', () => {
-      const block: BlockWithId = {
-        id: 'block1',
+    it('converts side block to BlockSide format', () => {
+      const block: SideBlockWithId = {
+        id: 'CNN1-N',
         streetName: 'Chestnut St',
         blockNumber: 2800,
         cnn: 'CNN1',
-        geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] },
-        northSchedule: { dayOfWeek: 1, startTime: '08:00', endTime: '10:00', frequency: 'weekly' },
-        southSchedule: { dayOfWeek: 2, startTime: '09:00', endTime: '11:00', frequency: 'weekly' },
+        side: 'N',
+        geometry: { type: 'LineString', coordinates: [[0, 0], [1, 0]] },
+        schedule: { dayOfWeek: 1, startTime: '08:00', endTime: '10:00', frequency: 'weekly' },
       };
 
       const sides = expandBlocksToSides([block]);
-      expect(sides).toHaveLength(2);
+      expect(sides).toHaveLength(1);
+      expect(sides[0].blockId).toBe('CNN1-N');
       expect(sides[0].side).toBe('N');
       expect(sides[0].schedule.dayOfWeek).toBe(1);
-      expect(sides[1].side).toBe('S');
-      expect(sides[1].schedule.dayOfWeek).toBe(2);
     });
 
-    it('handles block with only north schedule', () => {
-      const block: BlockWithId = {
-        id: 'block1',
-        streetName: 'Chestnut St',
-        blockNumber: 2800,
-        cnn: 'CNN1',
-        geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] },
-        northSchedule: { dayOfWeek: 1, startTime: '08:00', endTime: '10:00', frequency: 'weekly' },
-        southSchedule: null,
-      };
+    it('handles multiple side blocks', () => {
+      const blocks: SideBlockWithId[] = [
+        {
+          id: 'CNN1-N',
+          streetName: 'Chestnut St',
+          blockNumber: 2800,
+          cnn: 'CNN1',
+          side: 'N',
+          geometry: { type: 'LineString', coordinates: [[0, 0], [1, 0]] },
+          schedule: { dayOfWeek: 1, startTime: '08:00', endTime: '10:00', frequency: 'weekly' },
+        },
+        {
+          id: 'CNN1-S',
+          streetName: 'Chestnut St',
+          blockNumber: 2800,
+          cnn: 'CNN1',
+          side: 'S',
+          geometry: { type: 'LineString', coordinates: [[0, 0], [1, 0]] },
+          schedule: { dayOfWeek: 2, startTime: '09:00', endTime: '11:00', frequency: 'weekly' },
+        },
+      ];
 
-      const sides = expandBlocksToSides([block]);
-      expect(sides).toHaveLength(1);
+      const sides = expandBlocksToSides(blocks);
+      expect(sides).toHaveLength(2);
       expect(sides[0].side).toBe('N');
+      expect(sides[1].side).toBe('S');
     });
 
-    it('handles block with only south schedule', () => {
-      const block: BlockWithId = {
-        id: 'block1',
-        streetName: 'Chestnut St',
-        blockNumber: 2800,
-        cnn: 'CNN1',
-        geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] },
-        northSchedule: null,
-        southSchedule: { dayOfWeek: 2, startTime: '09:00', endTime: '11:00', frequency: 'weekly' },
-      };
-
-      const sides = expandBlocksToSides([block]);
-      expect(sides).toHaveLength(1);
-      expect(sides[0].side).toBe('S');
-    });
-
-    it('handles block with no schedules', () => {
-      const block: BlockWithId = {
-        id: 'block1',
-        streetName: 'Chestnut St',
-        blockNumber: 2800,
-        cnn: 'CNN1',
-        geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] },
-        northSchedule: null,
-        southSchedule: null,
-      };
-
-      const sides = expandBlocksToSides([block]);
+    it('returns empty array for empty input', () => {
+      const sides = expandBlocksToSides([]);
       expect(sides).toHaveLength(0);
     });
   });
@@ -225,24 +209,24 @@ describe('notification-sets', () => {
 
     it('creates single set for blocks with same schedule', () => {
       const schedule: CleaningSchedule = { dayOfWeek: 1, startTime: '08:00', endTime: '10:00', frequency: 'weekly' };
-      const blocks: BlockWithId[] = [
+      const blocks: SideBlockWithId[] = [
         {
-          id: 'b1',
+          id: 'CNN1-N',
           streetName: 'Chestnut St',
           blockNumber: 2800,
           cnn: 'CNN1',
-          geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] },
-          northSchedule: schedule,
-          southSchedule: null,
+          side: 'N',
+          geometry: { type: 'LineString', coordinates: [[0, 0], [1, 0]] },
+          schedule,
         },
         {
-          id: 'b2',
+          id: 'CNN2-N',
           streetName: 'Chestnut St',
           blockNumber: 2900,
           cnn: 'CNN2',
-          geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] },
-          northSchedule: schedule,
-          southSchedule: null,
+          side: 'N',
+          geometry: { type: 'LineString', coordinates: [[0, 0], [1, 0]] },
+          schedule,
         },
       ];
 
@@ -255,24 +239,24 @@ describe('notification-sets', () => {
 
     it('creates separate sets for different streets', () => {
       const schedule: CleaningSchedule = { dayOfWeek: 1, startTime: '08:00', endTime: '10:00', frequency: 'weekly' };
-      const blocks: BlockWithId[] = [
+      const blocks: SideBlockWithId[] = [
         {
-          id: 'b1',
+          id: 'CNN1-N',
           streetName: 'Chestnut St',
           blockNumber: 2800,
           cnn: 'CNN1',
-          geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] },
-          northSchedule: schedule,
-          southSchedule: null,
+          side: 'N',
+          geometry: { type: 'LineString', coordinates: [[0, 0], [1, 0]] },
+          schedule,
         },
         {
-          id: 'b2',
+          id: 'CNN2-N',
           streetName: 'Lombard St',
           blockNumber: 2800,
           cnn: 'CNN2',
-          geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] },
-          northSchedule: schedule,
-          southSchedule: null,
+          side: 'N',
+          geometry: { type: 'LineString', coordinates: [[0, 0], [1, 0]] },
+          schedule,
         },
       ];
 
@@ -281,15 +265,24 @@ describe('notification-sets', () => {
     });
 
     it('creates separate sets for different days', () => {
-      const blocks: BlockWithId[] = [
+      const blocks: SideBlockWithId[] = [
         {
-          id: 'b1',
+          id: 'CNN1-N',
           streetName: 'Chestnut St',
           blockNumber: 2800,
           cnn: 'CNN1',
-          geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] },
-          northSchedule: { dayOfWeek: 1, startTime: '08:00', endTime: '10:00', frequency: 'weekly' },
-          southSchedule: { dayOfWeek: 2, startTime: '08:00', endTime: '10:00', frequency: 'weekly' },
+          side: 'N',
+          geometry: { type: 'LineString', coordinates: [[0, 0], [1, 0]] },
+          schedule: { dayOfWeek: 1, startTime: '08:00', endTime: '10:00', frequency: 'weekly' },
+        },
+        {
+          id: 'CNN1-S',
+          streetName: 'Chestnut St',
+          blockNumber: 2800,
+          cnn: 'CNN1',
+          side: 'S',
+          geometry: { type: 'LineString', coordinates: [[0, 0], [1, 0]] },
+          schedule: { dayOfWeek: 2, startTime: '08:00', endTime: '10:00', frequency: 'weekly' },
         },
       ];
 
@@ -299,15 +292,24 @@ describe('notification-sets', () => {
 
     it('handles blocks with both sides having same schedule', () => {
       const schedule: CleaningSchedule = { dayOfWeek: 1, startTime: '08:00', endTime: '10:00', frequency: 'weekly' };
-      const blocks: BlockWithId[] = [
+      const blocks: SideBlockWithId[] = [
         {
-          id: 'b1',
+          id: 'CNN1-N',
           streetName: 'Chestnut St',
           blockNumber: 2800,
           cnn: 'CNN1',
-          geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] },
-          northSchedule: schedule,
-          southSchedule: schedule,
+          side: 'N',
+          geometry: { type: 'LineString', coordinates: [[0, 0], [1, 0]] },
+          schedule,
+        },
+        {
+          id: 'CNN1-S',
+          streetName: 'Chestnut St',
+          blockNumber: 2800,
+          cnn: 'CNN1',
+          side: 'S',
+          geometry: { type: 'LineString', coordinates: [[0, 0], [1, 0]] },
+          schedule,
         },
       ];
 
@@ -319,15 +321,15 @@ describe('notification-sets', () => {
 
     it('includes correct schedule in notification set', () => {
       const schedule: CleaningSchedule = { dayOfWeek: 3, startTime: '09:00', endTime: '11:00', frequency: '1st_3rd' };
-      const blocks: BlockWithId[] = [
+      const blocks: SideBlockWithId[] = [
         {
-          id: 'b1',
+          id: 'CNN1-N',
           streetName: 'Chestnut St',
           blockNumber: 2800,
           cnn: 'CNN1',
-          geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] },
-          northSchedule: schedule,
-          southSchedule: null,
+          side: 'N',
+          geometry: { type: 'LineString', coordinates: [[0, 0], [1, 0]] },
+          schedule,
         },
       ];
 
@@ -337,15 +339,15 @@ describe('notification-sets', () => {
 
     it('includes userId in notification set', () => {
       const schedule: CleaningSchedule = { dayOfWeek: 1, startTime: '08:00', endTime: '10:00', frequency: 'weekly' };
-      const blocks: BlockWithId[] = [
+      const blocks: SideBlockWithId[] = [
         {
-          id: 'b1',
+          id: 'CNN1-N',
           streetName: 'Chestnut St',
           blockNumber: 2800,
           cnn: 'CNN1',
-          geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] },
-          northSchedule: schedule,
-          southSchedule: null,
+          side: 'N',
+          geometry: { type: 'LineString', coordinates: [[0, 0], [1, 0]] },
+          schedule,
         },
       ];
 
@@ -355,15 +357,15 @@ describe('notification-sets', () => {
 
     it('generates deterministic setKey', () => {
       const schedule: CleaningSchedule = { dayOfWeek: 1, startTime: '08:00', endTime: '10:00', frequency: 'weekly' };
-      const blocks: BlockWithId[] = [
+      const blocks: SideBlockWithId[] = [
         {
-          id: 'b1',
+          id: 'CNN1-N',
           streetName: 'Chestnut St',
           blockNumber: 2800,
           cnn: 'CNN1',
-          geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] },
-          northSchedule: schedule,
-          southSchedule: null,
+          side: 'N',
+          geometry: { type: 'LineString', coordinates: [[0, 0], [1, 0]] },
+          schedule,
         },
       ];
 
