@@ -12,12 +12,14 @@ interface NotificationTabsProps {
   notificationSets: NotificationSetWithStatus[];
   alertToken?: string;
   onDismiss?: (setId: string, cleaningDate: string) => Promise<void>;
+  isPreview?: boolean;
 }
 
 export function NotificationTabs({
   notificationSets,
   alertToken,
   onDismiss,
+  isPreview = false,
 }: NotificationTabsProps) {
   const [activeTab, setActiveTab] = useState<TabType>('active');
 
@@ -155,7 +157,7 @@ export function NotificationTabs({
   };
 
   return (
-    <div>
+    <div className={isPreview ? 'opacity-60 pointer-events-none' : ''}>
       {/* Tab buttons */}
       <div className="flex border-b border-gray-200 dark:border-gray-700 mb-6">
         {tabs.map((tab) => (

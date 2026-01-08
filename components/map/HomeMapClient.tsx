@@ -100,11 +100,13 @@ export function HomeMapClient({
 
   // Handle "Get Notified" button for unauthenticated users
   const handleGetNotified = () => {
-    // Store selected block IDs in sessionStorage for after authentication
+    // Pass selected block IDs via URL query param
     if (selectedBlockIds.size > 0) {
-      sessionStorage.setItem('pendingBlockIds', JSON.stringify(Array.from(selectedBlockIds)));
+      const blocksParam = Array.from(selectedBlockIds).join(',');
+      router.push(`/notifications?blocks=${blocksParam}`);
+    } else {
+      router.push('/notifications');
     }
-    router.push('/notifications');
   };
 
   const isLoading = blocksLoading;
