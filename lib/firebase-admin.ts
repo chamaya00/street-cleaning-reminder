@@ -67,7 +67,7 @@ function detectKeyFormat(pemKey: string): string {
 function getPrivateKey(): string {
   addInitLog('info', 'GET_PRIVATE_KEY', 'Starting private key retrieval');
 
-  const key = process.env.FIREBASE_ADMIN_PRIVATE_KEY;
+  let key = process.env.FIREBASE_ADMIN_PRIVATE_KEY;
   if (!key) {
     addInitLog('error', 'GET_PRIVATE_KEY', 'FIREBASE_ADMIN_PRIVATE_KEY is not set');
     throw new Error('FIREBASE_ADMIN_PRIVATE_KEY is not set');
@@ -79,6 +79,31 @@ function getPrivateKey(): string {
     startsWithDash: key.startsWith('-'),
     first30Chars: key.substring(0, 30),
   });
+
+  // Handle JSON-encoded keys (wrapped in quotes)
+  // Some deployment platforms store the key as a JSON string with surrounding quotes
+  if (key.startsWith('"') && key.endsWith('"')) {
+    addInitLog('info', 'GET_PRIVATE_KEY', 'Key appears to be JSON-encoded (wrapped in quotes), parsing...');
+    try {
+      const parsed = JSON.parse(key);
+      if (typeof parsed === 'string') {
+        key = parsed;
+        addInitLog('info', 'GET_PRIVATE_KEY', 'Successfully parsed JSON-encoded key', {
+          newLength: key.length,
+          startsWithDash: key.startsWith('-'),
+        });
+      } else {
+        addInitLog('warn', 'GET_PRIVATE_KEY', 'JSON.parse returned non-string, stripping quotes manually');
+        key = key.slice(1, -1);
+      }
+    } catch (parseError) {
+      addInitLog('warn', 'GET_PRIVATE_KEY', 'JSON.parse failed, stripping quotes manually', {
+        error: parseError instanceof Error ? parseError.message : String(parseError),
+      });
+      // Fallback: just strip the surrounding quotes
+      key = key.slice(1, -1);
+    }
+  }
 
   // Handle escaped newlines from environment variables
   const pemKey = key.replace(/\\n/g, '\n');
