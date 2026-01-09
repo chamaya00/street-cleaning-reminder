@@ -12,11 +12,20 @@ interface LoginPageClientProps {
 
 type VerificationStep = 'phone' | 'code';
 
+interface DebugInfo {
+  debugId?: string;
+  step?: string;
+  errorType?: string;
+  errorMessage?: string;
+  timestamp?: string;
+}
+
 interface FormState {
   phone: string;
   code: string;
   isLoading: boolean;
   error: string | null;
+  debugInfo: DebugInfo | null;
   step: VerificationStep;
 }
 
@@ -30,6 +39,7 @@ export function LoginPageClient({
     code: '',
     isLoading: false,
     error: null,
+    debugInfo: null,
     step: 'phone',
   });
 
@@ -48,12 +58,12 @@ export function LoginPageClient({
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formatted = formatPhoneForDisplay(e.target.value);
-    setFormState((prev) => ({ ...prev, phone: formatted, error: null }));
+    setFormState((prev) => ({ ...prev, phone: formatted, error: null, debugInfo: null }));
   };
 
   const handleCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/\D/g, '').slice(0, 6);
-    setFormState((prev) => ({ ...prev, code: value, error: null }));
+    setFormState((prev) => ({ ...prev, code: value, error: null, debugInfo: null }));
   };
 
   const handleSendCode = useCallback(
@@ -69,7 +79,7 @@ export function LoginPageClient({
         return;
       }
 
-      setFormState((prev) => ({ ...prev, isLoading: true, error: null }));
+      setFormState((prev) => ({ ...prev, isLoading: true, error: null, debugInfo: null }));
 
       try {
         const response = await fetch('/api/auth/send-code', {
@@ -81,10 +91,15 @@ export function LoginPageClient({
         const data = await response.json();
 
         if (!response.ok || !data.success) {
+          const debugInfo: DebugInfo = {
+            debugId: data.debugId,
+            ...(data.debugInfo || {}),
+          };
           setFormState((prev) => ({
             ...prev,
             isLoading: false,
             error: data.message || 'Failed to send verification code',
+            debugInfo: debugInfo.debugId ? debugInfo : null,
           }));
           return;
         }
@@ -93,12 +108,14 @@ export function LoginPageClient({
           ...prev,
           isLoading: false,
           step: 'code',
+          debugInfo: null,
         }));
       } catch {
         setFormState((prev) => ({
           ...prev,
           isLoading: false,
           error: 'Network error. Please check your connection and try again.',
+          debugInfo: null,
         }));
       }
     },
@@ -216,9 +233,30 @@ export function LoginPageClient({
                 </div>
 
                 {formState.error && (
-                  <p className="text-sm text-red-600 dark:text-red-400" role="alert">
-                    {formState.error}
-                  </p>
+                  <div className="space-y-2">
+                    <p className="text-sm text-red-600 dark:text-red-400" role="alert">
+                      {formState.error}
+                    </p>
+                    {formState.debugInfo && (
+                      <details className="text-xs bg-gray-100 dark:bg-gray-700 rounded p-2">
+                        <summary className="cursor-pointer text-gray-600 dark:text-gray-400 font-medium">
+                          Debug Info (click to expand)
+                        </summary>
+                        <pre className="mt-2 overflow-x-auto whitespace-pre-wrap text-gray-700 dark:text-gray-300">
+{JSON.stringify(formState.debugInfo, null, 2)}
+                        </pre>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            navigator.clipboard.writeText(JSON.stringify(formState.debugInfo, null, 2));
+                          }}
+                          className="mt-2 text-blue-600 dark:text-blue-400 hover:underline"
+                        >
+                          Copy debug info
+                        </button>
+                      </details>
+                    )}
+                  </div>
                 )}
 
                 <button
