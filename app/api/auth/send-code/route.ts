@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getAdminDb } from '@/lib/firebase-admin';
+import { getAdminDb, getFirebaseInitLogs } from '@/lib/firebase-admin';
 import { sendVerificationCode } from '@/lib/twilio';
 import { formatPhoneToE164, isValidPhoneNumber, generateVerificationCode } from '@/lib/utils';
 import { SendCodeRequest, SendCodeResponse } from '@/lib/types';
@@ -16,6 +16,14 @@ function generateDebugId(): string {
 }
 
 // Extended response type for debugging
+interface FirebaseInitLog {
+  timestamp: string;
+  level: 'info' | 'warn' | 'error';
+  step: string;
+  message: string;
+  data?: Record<string, unknown>;
+}
+
 interface SendCodeDebugResponse extends SendCodeResponse {
   debugId?: string;
   debugInfo?: {
@@ -23,6 +31,7 @@ interface SendCodeDebugResponse extends SendCodeResponse {
     errorType?: string;
     errorMessage?: string;
     timestamp: string;
+    firebaseInitLogs?: FirebaseInitLog[];
   };
 }
 
@@ -75,7 +84,8 @@ export async function POST(request: NextRequest): Promise<NextResponse<SendCodeD
             step: 'FIRESTORE_INIT',
             errorType: dbInitError instanceof Error ? dbInitError.name : 'Unknown',
             errorMessage: errMsg,
-            timestamp: new Date().toISOString()
+            timestamp: new Date().toISOString(),
+            firebaseInitLogs: getFirebaseInitLogs(),
           }
         },
         { status: 500 }
@@ -106,7 +116,8 @@ export async function POST(request: NextRequest): Promise<NextResponse<SendCodeD
             step: 'RATE_LIMIT_QUERY',
             errorType: rateLimitError instanceof Error ? rateLimitError.name : 'Unknown',
             errorMessage: errMsg,
-            timestamp: new Date().toISOString()
+            timestamp: new Date().toISOString(),
+            firebaseInitLogs: getFirebaseInitLogs(),
           }
         },
         { status: 500 }
@@ -149,7 +160,8 @@ export async function POST(request: NextRequest): Promise<NextResponse<SendCodeD
             step: 'STORE_CODE',
             errorType: storeError instanceof Error ? storeError.name : 'Unknown',
             errorMessage: errMsg,
-            timestamp: new Date().toISOString()
+            timestamp: new Date().toISOString(),
+            firebaseInitLogs: getFirebaseInitLogs(),
           }
         },
         { status: 500 }
@@ -222,7 +234,8 @@ export async function POST(request: NextRequest): Promise<NextResponse<SendCodeD
           step: 'UNEXPECTED',
           errorType: error instanceof Error ? error.name : 'Unknown',
           errorMessage: errMsg,
-          timestamp: new Date().toISOString()
+          timestamp: new Date().toISOString(),
+          firebaseInitLogs: getFirebaseInitLogs(),
         }
       },
       { status: 500 }
