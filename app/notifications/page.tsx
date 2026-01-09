@@ -13,6 +13,22 @@ import { Timestamp } from 'firebase-admin/firestore';
 import * as fs from 'fs';
 import * as path from 'path';
 
+// Helper to convert Firestore Timestamps to serializable ISO strings
+function serializeTimestamp(timestamp: Timestamp | Date | null): string {
+  if (!timestamp) return new Date().toISOString();
+  if (timestamp instanceof Timestamp) {
+    return timestamp.toDate().toISOString();
+  }
+  if (timestamp instanceof Date) {
+    return timestamp.toISOString();
+  }
+  // Handle plain objects with _seconds (Firestore Timestamp-like)
+  if (typeof timestamp === 'object' && '_seconds' in timestamp) {
+    return new Date((timestamp as { _seconds: number })._seconds * 1000).toISOString();
+  }
+  return new Date().toISOString();
+}
+
 // This page uses cookies for authentication, so it must be dynamic
 export const dynamic = 'force-dynamic';
 
@@ -131,15 +147,17 @@ export default async function NotificationsPage({ searchParams }: NotificationsP
         const computedSets = computeNotificationSets('preview', blocks);
 
         // Convert to NotificationSetWithStatus format for preview
+        // Use serialized ISO strings for timestamps to avoid Server->Client serialization errors
+        const nowIso = new Date().toISOString();
         previewNotificationSets = computedSets.map((set, index) => ({
           ...set,
           id: `preview-${index}`,
-          createdAt: Timestamp.now(),
-          updatedAt: Timestamp.now(),
+          createdAt: nowIso,
+          updatedAt: nowIso,
           isActive: false,
           nextReminderAt: null,
           nextReminderStage: null,
-        })) as NotificationSetWithStatus[];
+        })) as unknown as NotificationSetWithStatus[];
       }
     }
 
@@ -174,7 +192,8 @@ export default async function NotificationsPage({ searchParams }: NotificationsP
   );
 
   // Build notification sets with status
-  const notificationSets: NotificationSetWithStatus[] = notificationSetsSnapshot.docs.map(
+  // Serialize Timestamps to ISO strings to avoid Server->Client serialization errors
+  const notificationSets = notificationSetsSnapshot.docs.map(
     (doc) => {
       const setData = doc.data() as NotificationSet;
       const setId = doc.id;
@@ -200,9 +219,12 @@ export default async function NotificationsPage({ searchParams }: NotificationsP
         isActive,
         nextReminderAt,
         nextReminderStage,
+        // Serialize Firestore Timestamps to ISO strings
+        createdAt: serializeTimestamp(setData.createdAt as unknown as Timestamp),
+        updatedAt: serializeTimestamp(setData.updatedAt as unknown as Timestamp),
       };
     }
-  );
+  ) as unknown as NotificationSetWithStatus[];
 
   return (
     <NotificationsPageClient
