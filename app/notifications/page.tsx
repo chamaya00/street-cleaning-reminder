@@ -229,6 +229,7 @@ export default async function NotificationsPage({ searchParams }: NotificationsP
   return (
     <NotificationsPageClient
       isAuthenticated={true}
+      userId={user.userId}
       userPhone={user.phone}
       alertToken={alertToken}
       initialNotificationSets={notificationSets}

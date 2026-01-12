@@ -5,10 +5,12 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import type { NotificationSetWithStatus } from '@/lib/types';
 import { NotificationTabs } from './NotificationTabs';
+import { PushNotificationToggle } from './PushNotificationToggle';
 import { Header } from '@/components/layout/Header';
 
 interface NotificationsPageClientProps {
   isAuthenticated: boolean;
+  userId?: string;
   userPhone?: string;
   alertToken?: string;
   initialNotificationSets?: NotificationSetWithStatus[];
@@ -18,6 +20,7 @@ interface NotificationsPageClientProps {
 
 export function NotificationsPageClient({
   isAuthenticated,
+  userId,
   userPhone,
   alertToken,
   initialNotificationSets = [],
@@ -77,6 +80,14 @@ export function NotificationsPageClient({
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
             My Notifications
           </h1>
+
+          {/* Push Notification Toggle */}
+          {userId && (
+            <div className="mb-6">
+              <PushNotificationToggle userId={userId} />
+            </div>
+          )}
+
           <NotificationTabs
             notificationSets={notificationSets}
             alertToken={alertToken}
