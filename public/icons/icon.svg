@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="64" fill="#3b82f6"/>
+  <g fill="white">
+    <!-- Car icon -->
+    <path d="M128 320c0-17.7 14.3-32 32-32h192c17.7 0 32 14.3 32 32v32c0 17.7-14.3 32-32 32H160c-17.7 0-32-14.3-32-32v-32z"/>
+    <path d="M144 256l24-64c4-10.7 14.3-18 26-18h124c11.7 0 22 7.3 26 18l24 64"/>
+    <circle cx="176" cy="336" r="24"/>
+    <circle cx="336" cy="336" r="24"/>
+    <!-- Broom/cleaning icon above car -->
+    <path d="M256 100v80M220 120h72M236 140h40" stroke="white" stroke-width="12" stroke-linecap="round"/>
+  </g>
+</svg>
