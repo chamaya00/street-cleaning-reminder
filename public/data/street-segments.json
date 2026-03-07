@@ -1,6 +1,6 @@
 {
-  "version": "2026-02-28",
-  "generatedAt": "2026-02-28T14:17:19.128Z",
+  "version": "2026-03-07",
+  "generatedAt": "2026-03-07T14:19:27.416Z",
   "count": 12253,
   "segments": [
     {
@@ -5159,89 +5159,6 @@
         {
           "side": "North",
           "dayOfWeek": 3,
-          "startTime": "08:00",
-          "endTime": "10:00",
-          "weeksOfMonth": [
-            2,
-            4
-          ]
-        }
-      ]
-    },
-    {
-      "cnn": "2784000",
-      "streetName": "Bay St",
-      "fromAddress": "1001",
-      "toAddress": "1099",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.423466053,
-            37.804354925
-          ],
-          [
-            -122.425109521,
-            37.804145845
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "North",
-          "dayOfWeek": 5,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            2,
-            4
-          ]
-        },
-        {
-          "side": "North",
-          "dayOfWeek": 5,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            2,
-            4
-          ]
-        },
-        {
-          "side": "North",
-          "dayOfWeek": 2,
           "startTime": "08:00",
           "endTime": "10:00",
           "weeksOfMonth": [
@@ -32643,18 +32560,6 @@
         },
         {
           "side": "North",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "North",
           "dayOfWeek": 5,
           "startTime": "06:00",
           "endTime": "08:00",
@@ -32671,6 +32576,18 @@
           "weeksOfMonth": [
             1,
             3
+          ]
+        },
+        {
+          "side": "North",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
           ]
         }
       ]
@@ -38110,18 +38027,6 @@
         },
         {
           "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "South",
           "dayOfWeek": 1,
           "startTime": "06:00",
           "endTime": "08:00",
@@ -38138,6 +38043,18 @@
           "weeksOfMonth": [
             1,
             3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
           ]
         }
       ]
@@ -71292,18 +71209,6 @@
         },
         {
           "side": "North",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "North",
           "dayOfWeek": 5,
           "startTime": "06:00",
           "endTime": "08:00",
@@ -71330,6 +71235,18 @@
           "weeksOfMonth": [
             1,
             3
+          ]
+        },
+        {
+          "side": "North",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
           ]
         }
       ]
@@ -75018,18 +74935,6 @@
           ]
         },
         {
-          "side": "North",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
           "side": "South",
           "dayOfWeek": 2,
           "startTime": "06:00",
@@ -75096,6 +75001,18 @@
           "endTime": "08:00",
           "weeksOfMonth": [
             2,
+            4
+          ]
+        },
+        {
+          "side": "North",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
             4
           ]
         }
@@ -87962,49 +87879,6 @@
             2,
             3,
             4
-          ]
-        }
-      ]
-    },
-    {
-      "cnn": "2643000",
-      "streetName": "Baker St",
-      "fromAddress": "3601",
-      "toAddress": "3699",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.447097519,
-            37.804217193
-          ],
-          [
-            -122.447286871,
-            37.80516009
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "11:00",
-          "endTime": "13:00",
-          "weeksOfMonth": [
-            1,
-            3
           ]
         }
       ]
@@ -108147,6 +108021,16 @@
         },
         {
           "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "side": "South",
           "dayOfWeek": 3,
           "startTime": "06:00",
           "endTime": "08:00",
@@ -108155,16 +108039,6 @@
             2,
             3,
             4
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            3
           ]
         }
       ]
@@ -119183,18 +119057,6 @@
         },
         {
           "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "South",
           "dayOfWeek": 2,
           "startTime": "06:00",
           "endTime": "08:00",
@@ -119241,6 +119103,18 @@
           "weeksOfMonth": [
             1,
             3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
           ]
         }
       ]
@@ -125953,87 +125827,6 @@
             2,
             3,
             4
-          ]
-        }
-      ]
-    },
-    {
-      "cnn": "8463101",
-      "streetName": "Lombard St",
-      "fromAddress": "2401",
-      "toAddress": "2499",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.440977561,
-            37.799212367
-          ],
-          [
-            -122.441072551,
-            37.7991515
-          ],
-          [
-            -122.442568048,
-            37.798961432
-          ],
-          [
-            -122.442647897,
-            37.799000051
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            2,
-            4
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 5,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            2,
-            4
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 5,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            3
           ]
         }
       ]
@@ -132854,18 +132647,6 @@
         },
         {
           "side": "North",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "North",
           "dayOfWeek": 1,
           "startTime": "06:00",
           "endTime": "08:00",
@@ -132932,6 +132713,18 @@
           "weeksOfMonth": [
             1,
             3
+          ]
+        },
+        {
+          "side": "North",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
           ]
         }
       ]
@@ -158065,18 +157858,6 @@
           ]
         },
         {
-          "side": "North",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
           "side": "South",
           "dayOfWeek": 4,
           "startTime": "06:00",
@@ -158124,6 +157905,18 @@
           "weeksOfMonth": [
             1,
             3
+          ]
+        },
+        {
+          "side": "North",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
           ]
         }
       ]
@@ -160920,119 +160713,6 @@
           "dayOfWeek": 5,
           "startTime": "09:00",
           "endTime": "11:00",
-          "weeksOfMonth": [
-            2,
-            4
-          ]
-        }
-      ]
-    },
-    {
-      "cnn": "11715000",
-      "streetName": "Scott St",
-      "fromAddress": "3201",
-      "toAddress": "3299",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.440977561,
-            37.799212367
-          ],
-          [
-            -122.441177376,
-            37.800190186
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            2,
-            4
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 5,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 4,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 2,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 2,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            2,
-            4
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 4,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            2,
-            4
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 5,
-          "startTime": "06:00",
-          "endTime": "08:00",
           "weeksOfMonth": [
             2,
             4
@@ -180280,49 +179960,6 @@
             2,
             3,
             4
-          ]
-        }
-      ]
-    },
-    {
-      "cnn": "2637000",
-      "streetName": "Baker St",
-      "fromAddress": "3151",
-      "toAddress": "3199",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.446213016,
-            37.799818047
-          ],
-          [
-            -122.446348362,
-            37.800486488
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "11:00",
-          "endTime": "13:00",
-          "weeksOfMonth": [
-            1,
-            3
           ]
         }
       ]
@@ -205716,6 +205353,119 @@
           "dayOfWeek": 3,
           "startTime": "05:00",
           "endTime": "07:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "cnn": "11715000",
+      "streetName": "Scott St",
+      "fromAddress": "3201",
+      "toAddress": "3299",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.440977561,
+            37.799212367
+          ],
+          [
+            -122.441177376,
+            37.800190186
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            2,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 5,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 4,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 2,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 2,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            2,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 4,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            2,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 5,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            2,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
           "weeksOfMonth": [
             1,
             2,
@@ -252483,18 +252233,6 @@
         },
         {
           "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "South",
           "dayOfWeek": 4,
           "startTime": "06:00",
           "endTime": "08:00",
@@ -252521,6 +252259,18 @@
           "weeksOfMonth": [
             1,
             3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
           ]
         }
       ]
@@ -258214,18 +257964,6 @@
         },
         {
           "side": "North",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "North",
           "dayOfWeek": 1,
           "startTime": "06:00",
           "endTime": "08:00",
@@ -258272,6 +258010,18 @@
           "weeksOfMonth": [
             1,
             3
+          ]
+        },
+        {
+          "side": "North",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
           ]
         }
       ]
@@ -324742,18 +324492,6 @@
         },
         {
           "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "South",
           "dayOfWeek": 1,
           "startTime": "06:00",
           "endTime": "08:00",
@@ -324819,6 +324557,18 @@
           "endTime": "08:00",
           "weeksOfMonth": [
             2,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
             4
           ]
         }
@@ -336511,18 +336261,6 @@
         },
         {
           "side": "North",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "North",
           "dayOfWeek": 5,
           "startTime": "06:00",
           "endTime": "08:00",
@@ -336568,6 +336306,18 @@
           "endTime": "08:00",
           "weeksOfMonth": [
             2,
+            4
+          ]
+        },
+        {
+          "side": "North",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
             4
           ]
         }
@@ -344013,18 +343763,6 @@
         },
         {
           "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "South",
           "dayOfWeek": 1,
           "startTime": "06:00",
           "endTime": "08:00",
@@ -344051,6 +343789,18 @@
           "weeksOfMonth": [
             1,
             3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
           ]
         }
       ]
@@ -381628,18 +381378,6 @@
         },
         {
           "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "South",
           "dayOfWeek": 5,
           "startTime": "06:00",
           "endTime": "08:00",
@@ -381695,6 +381433,18 @@
           "endTime": "08:00",
           "weeksOfMonth": [
             2,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
             4
           ]
         }
@@ -429679,49 +429429,6 @@
       ]
     },
     {
-      "cnn": "8577000",
-      "streetName": "Lyon St",
-      "fromAddress": "2601",
-      "toAddress": "2699",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.446727777,
-            37.794706465
-          ],
-          [
-            -122.446870981,
-            37.795640692
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 4,
-          "startTime": "11:00",
-          "endTime": "13:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        }
-      ]
-    },
-    {
       "cnn": "3007000",
       "streetName": "Bocana St",
       "fromAddress": "357",
@@ -434426,119 +434133,6 @@
             2,
             3,
             4
-          ]
-        }
-      ]
-    },
-    {
-      "cnn": "4829000",
-      "streetName": "Divisadero St",
-      "fromAddress": "3201",
-      "toAddress": "3299",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.442647897,
-            37.799000051
-          ],
-          [
-            -122.442846092,
-            37.79997798
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 5,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            2,
-            4
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 2,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 5,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 4,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            2,
-            4
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            2,
-            4
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 2,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            2,
-            4
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 4,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            3
           ]
         }
       ]
@@ -439998,59 +439592,6 @@
             2,
             3,
             4
-          ]
-        }
-      ]
-    },
-    {
-      "cnn": "8583000",
-      "streetName": "Lyon St",
-      "fromAddress": "3201",
-      "toAddress": "3301",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.447695067,
-            37.800831913
-          ],
-          [
-            -122.447819573,
-            37.801633208
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 2,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            2,
-            4
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 2,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            3
           ]
         }
       ]
@@ -452023,59 +451564,6 @@
       ]
     },
     {
-      "cnn": "9696000",
-      "streetName": "Point St",
-      "fromAddress": "901",
-      "toAddress": "999",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.422006822,
-            37.805496649
-          ],
-          [
-            -122.423655075,
-            37.805286985
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "North",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 2,
-          "startTime": "08:00",
-          "endTime": "10:00",
-          "weeksOfMonth": [
-            2,
-            4
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 2,
-          "startTime": "08:00",
-          "endTime": "10:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        }
-      ]
-    },
-    {
       "cnn": "12559201",
       "streetName": "The Embarcadero",
       "fromAddress": "0",
@@ -455675,18 +455163,6 @@
         },
         {
           "side": "North",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "North",
           "dayOfWeek": 5,
           "startTime": "06:00",
           "endTime": "08:00",
@@ -455753,6 +455229,18 @@
           "weeksOfMonth": [
             1,
             3
+          ]
+        },
+        {
+          "side": "North",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
           ]
         }
       ]
@@ -462515,18 +462003,6 @@
         },
         {
           "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "South",
           "dayOfWeek": 5,
           "startTime": "06:00",
           "endTime": "08:00",
@@ -462543,6 +462019,18 @@
           "weeksOfMonth": [
             1,
             3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
           ]
         }
       ]
@@ -477843,18 +477331,6 @@
         },
         {
           "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "South",
           "dayOfWeek": 4,
           "startTime": "06:00",
           "endTime": "08:00",
@@ -477871,6 +477347,18 @@
           "weeksOfMonth": [
             1,
             3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
           ]
         }
       ]
@@ -479766,6 +479254,89 @@
           "dayOfWeek": 5,
           "startTime": "12:00",
           "endTime": "14:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "cnn": "2784000",
+      "streetName": "Bay St",
+      "fromAddress": "1001",
+      "toAddress": "1099",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.423466053,
+            37.804354925
+          ],
+          [
+            -122.425109521,
+            37.804145845
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "North",
+          "dayOfWeek": 5,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            2,
+            4
+          ]
+        },
+        {
+          "side": "North",
+          "dayOfWeek": 5,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            2,
+            4
+          ]
+        },
+        {
+          "side": "North",
+          "dayOfWeek": 2,
+          "startTime": "08:00",
+          "endTime": "10:00",
+          "weeksOfMonth": [
+            2,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
           "weeksOfMonth": [
             1,
             2,
@@ -530762,51 +530333,6 @@
       ]
     },
     {
-      "cnn": "8465101",
-      "streetName": "Lombard St",
-      "fromAddress": "2601",
-      "toAddress": "2631",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.444318619,
-            37.798790246
-          ],
-          [
-            -122.444374203,
-            37.798734275
-          ],
-          [
-            -122.444513305,
-            37.798724225
-          ],
-          [
-            -122.44476363,
-            37.798759849
-          ],
-          [
-            -122.444827865,
-            37.798839629
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        }
-      ]
-    },
-    {
       "cnn": "4122000",
       "streetName": "Clay St",
       "fromAddress": "3501",
@@ -536054,49 +535580,6 @@
           "weeksOfMonth": [
             2,
             4
-          ]
-        }
-      ]
-    },
-    {
-      "cnn": "2642000",
-      "streetName": "Baker St",
-      "fromAddress": "3501",
-      "toAddress": "3599",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.446910118,
-            37.803283997
-          ],
-          [
-            -122.447097519,
-            37.804217193
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "11:00",
-          "endTime": "13:00",
-          "weeksOfMonth": [
-            1,
-            3
           ]
         }
       ]
@@ -546830,6 +546313,49 @@
       ]
     },
     {
+      "cnn": "2643000",
+      "streetName": "Baker St",
+      "fromAddress": "3601",
+      "toAddress": "3699",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.447097519,
+            37.804217193
+          ],
+          [
+            -122.447286871,
+            37.80516009
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "11:00",
+          "endTime": "13:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
       "cnn": "9358000",
       "streetName": "Moraga St",
       "fromAddress": "2701",
@@ -549386,49 +548912,6 @@
             2,
             3,
             4
-          ]
-        }
-      ]
-    },
-    {
-      "cnn": "2638000",
-      "streetName": "Baker St",
-      "fromAddress": "3201",
-      "toAddress": "3299",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.446348362,
-            37.800486488
-          ],
-          [
-            -122.446530292,
-            37.801417787
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "11:00",
-          "endTime": "13:00",
-          "weeksOfMonth": [
-            1,
-            3
           ]
         }
       ]
@@ -566322,6 +565805,119 @@
       ]
     },
     {
+      "cnn": "4829000",
+      "streetName": "Divisadero St",
+      "fromAddress": "3201",
+      "toAddress": "3299",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.442647897,
+            37.799000051
+          ],
+          [
+            -122.442846092,
+            37.79997798
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 5,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            2,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 2,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 5,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 4,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            2,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            2,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 2,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            2,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 4,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
       "cnn": "6860000",
       "streetName": "Head St",
       "fromAddress": "833",
@@ -569093,6 +568689,87 @@
           "dayOfWeek": 3,
           "startTime": "09:00",
           "endTime": "11:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "cnn": "8463101",
+      "streetName": "Lombard St",
+      "fromAddress": "2401",
+      "toAddress": "2499",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.440977561,
+            37.799212367
+          ],
+          [
+            -122.441072551,
+            37.7991515
+          ],
+          [
+            -122.442568048,
+            37.798961432
+          ],
+          [
+            -122.442647897,
+            37.799000051
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            2,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 5,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            2,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 5,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
           "weeksOfMonth": [
             1,
             2,
@@ -590678,6 +590355,49 @@
       ]
     },
     {
+      "cnn": "8577000",
+      "streetName": "Lyon St",
+      "fromAddress": "2601",
+      "toAddress": "2699",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.446727777,
+            37.794706465
+          ],
+          [
+            -122.446870981,
+            37.795640692
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 4,
+          "startTime": "11:00",
+          "endTime": "13:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
       "cnn": "8553000",
       "streetName": "Lyndhurst Dr",
       "fromAddress": "51",
@@ -600080,53 +599800,6 @@
             2,
             3,
             4
-          ]
-        }
-      ]
-    },
-    {
-      "cnn": "8581000",
-      "streetName": "Lyon St",
-      "fromAddress": "3001",
-      "toAddress": "3099",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.447303044,
-            37.798459233
-          ],
-          [
-            -122.447341438,
-            37.798552686
-          ],
-          [
-            -122.447466031,
-            37.799389887
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "06:00",
-          "endTime": "08:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 4,
-          "startTime": "11:00",
-          "endTime": "13:00",
-          "weeksOfMonth": [
-            1,
-            3
           ]
         }
       ]
@@ -627094,6 +626767,59 @@
           "weeksOfMonth": [
             1,
             3
+          ]
+        }
+      ]
+    },
+    {
+      "cnn": "9696000",
+      "streetName": "Point St",
+      "fromAddress": "901",
+      "toAddress": "999",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.422006822,
+            37.805496649
+          ],
+          [
+            -122.423655075,
+            37.805286985
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 2,
+          "startTime": "08:00",
+          "endTime": "10:00",
+          "weeksOfMonth": [
+            2,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 2,
+          "startTime": "08:00",
+          "endTime": "10:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "side": "North",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
           ]
         }
       ]
@@ -661846,6 +661572,53 @@
       ]
     },
     {
+      "cnn": "8581000",
+      "streetName": "Lyon St",
+      "fromAddress": "3001",
+      "toAddress": "3099",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.447303044,
+            37.798459233
+          ],
+          [
+            -122.447341438,
+            37.798552686
+          ],
+          [
+            -122.447466031,
+            37.799389887
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 4,
+          "startTime": "11:00",
+          "endTime": "13:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
       "cnn": "1859000",
       "streetName": "38th Ave",
       "fromAddress": "2300",
@@ -668156,6 +667929,59 @@
           "endTime": "10:00",
           "weeksOfMonth": [
             2,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "cnn": "8583000",
+      "streetName": "Lyon St",
+      "fromAddress": "3201",
+      "toAddress": "3301",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.447695067,
+            37.800831913
+          ],
+          [
+            -122.447819573,
+            37.801633208
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 2,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            2,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 2,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
             4
           ]
         }
@@ -681598,6 +681424,49 @@
       ]
     },
     {
+      "cnn": "2637000",
+      "streetName": "Baker St",
+      "fromAddress": "3151",
+      "toAddress": "3199",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.446213016,
+            37.799818047
+          ],
+          [
+            -122.446348362,
+            37.800486488
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "11:00",
+          "endTime": "13:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
       "cnn": "6575103",
       "streetName": "Guerrero St",
       "fromAddress": "165",
@@ -687760,6 +687629,49 @@
       ]
     },
     {
+      "cnn": "2638000",
+      "streetName": "Baker St",
+      "fromAddress": "3201",
+      "toAddress": "3299",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.446348362,
+            37.800486488
+          ],
+          [
+            -122.446530292,
+            37.801417787
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "11:00",
+          "endTime": "13:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
       "cnn": "7703000",
       "streetName": "Junipero Serra Frontage, East",
       "fromAddress": "1",
@@ -689325,6 +689237,49 @@
           "weeksOfMonth": [
             1,
             3
+          ]
+        }
+      ]
+    },
+    {
+      "cnn": "2642000",
+      "streetName": "Baker St",
+      "fromAddress": "3501",
+      "toAddress": "3599",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.446910118,
+            37.803283997
+          ],
+          [
+            -122.447097519,
+            37.804217193
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "11:00",
+          "endTime": "13:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
           ]
         }
       ]
@@ -698519,6 +698474,51 @@
           "endTime": "10:00",
           "weeksOfMonth": [
             2,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "cnn": "8465101",
+      "streetName": "Lombard St",
+      "fromAddress": "2601",
+      "toAddress": "2631",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.444318619,
+            37.798790246
+          ],
+          [
+            -122.444374203,
+            37.798734275
+          ],
+          [
+            -122.444513305,
+            37.798724225
+          ],
+          [
+            -122.44476363,
+            37.798759849
+          ],
+          [
+            -122.444827865,
+            37.798839629
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "06:00",
+          "endTime": "08:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
             4
           ]
         }
