@@ -1,6 +1,6 @@
 {
-  "version": "2026-04-25",
-  "generatedAt": "2026-04-25T14:37:59.150Z",
+  "version": "2026-05-02",
+  "generatedAt": "2026-05-02T14:41:46.631Z",
   "count": 12253,
   "segments": [
     {
@@ -262104,8 +262104,8 @@
     {
       "cnn": "2865000",
       "streetName": "Beale St",
-      "fromAddress": "201",
-      "toAddress": "299",
+      "fromAddress": "",
+      "toAddress": "",
       "geometry": {
         "type": "LineString",
         "coordinates": [
@@ -334076,8 +334076,8 @@
     {
       "cnn": "8629000",
       "streetName": "Main St",
-      "fromAddress": "201",
-      "toAddress": "299",
+      "fromAddress": "",
+      "toAddress": "",
       "geometry": {
         "type": "LineString",
         "coordinates": [
