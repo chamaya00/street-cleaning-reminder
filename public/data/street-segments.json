@@ -1,6 +1,6 @@
 {
-  "version": "2026-05-09",
-  "generatedAt": "2026-05-09T14:44:35.325Z",
+  "version": "2026-05-16",
+  "generatedAt": "2026-05-16T14:51:12.029Z",
   "count": 12253,
   "segments": [
     {
@@ -5164,6 +5164,49 @@
           "weeksOfMonth": [
             2,
             4
+          ]
+        }
+      ]
+    },
+    {
+      "cnn": "7616000",
+      "streetName": "Jordan Ave",
+      "fromAddress": "2",
+      "toAddress": "98",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.456963372,
+            37.785963787
+          ],
+          [
+            -122.45681322,
+            37.783928912
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 4,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            3
           ]
         }
       ]
@@ -41640,49 +41683,6 @@
       ]
     },
     {
-      "cnn": "10487000",
-      "streetName": "Pine St",
-      "fromAddress": "2401",
-      "toAddress": "2499",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.435293132,
-            37.787741165
-          ],
-          [
-            -122.436935447,
-            37.787532502
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "North",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        }
-      ]
-    },
-    {
       "cnn": "1866000",
       "streetName": "39th Ave",
       "fromAddress": "600",
@@ -43034,47 +43034,6 @@
             2,
             3,
             4
-          ]
-        }
-      ]
-    },
-    {
-      "cnn": "3575000",
-      "streetName": "California St",
-      "fromAddress": "3801",
-      "toAddress": "3849",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.456963372,
-            37.785963787
-          ],
-          [
-            -122.458061917,
-            37.785824278
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "North",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 2,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
           ]
         }
       ]
@@ -77225,6 +77184,51 @@
       ]
     },
     {
+      "cnn": "10484000",
+      "streetName": "Pine St",
+      "fromAddress": "2201",
+      "toAddress": "2247",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.432003325,
+            37.788159075
+          ],
+          [
+            -122.432825558,
+            37.788054635
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "North",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
       "cnn": "10888000",
       "streetName": "Rae Ave",
       "fromAddress": "1",
@@ -80704,47 +80708,6 @@
             2,
             3,
             4
-          ]
-        }
-      ]
-    },
-    {
-      "cnn": "122000",
-      "streetName": "02nd Ave",
-      "fromAddress": "300",
-      "toAddress": "398",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.460137199,
-            37.783136488
-          ],
-          [
-            -122.459999658,
-            37.781213478
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
           ]
         }
       ]
@@ -105140,49 +105103,6 @@
       ]
     },
     {
-      "cnn": "10481000",
-      "streetName": "Pine St",
-      "fromAddress": "1901",
-      "toAddress": "1999",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.427059672,
-            37.788786895
-          ],
-          [
-            -122.428712111,
-            37.788577068
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "North",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        }
-      ]
-    },
-    {
       "cnn": "5751000",
       "streetName": "France Ave",
       "fromAddress": "801",
@@ -126379,6 +126299,49 @@
       ]
     },
     {
+      "cnn": "314000",
+      "streetName": "06th Ave",
+      "fromAddress": "200",
+      "toAddress": "204",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.464572159,
+            37.784993973
+          ],
+          [
+            -122.464551383,
+            37.784791866
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
       "cnn": "6062201",
       "streetName": "Geary Blvd",
       "fromAddress": "0",
@@ -131025,47 +130988,6 @@
           "weeksOfMonth": [
             2,
             4
-          ]
-        }
-      ]
-    },
-    {
-      "cnn": "314000",
-      "streetName": "06th Ave",
-      "fromAddress": "200",
-      "toAddress": "204",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.464572159,
-            37.784993973
-          ],
-          [
-            -122.464551383,
-            37.784791866
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
           ]
         }
       ]
@@ -136536,47 +136458,6 @@
             2,
             3,
             4
-          ]
-        }
-      ]
-    },
-    {
-      "cnn": "121000",
-      "streetName": "02nd Ave",
-      "fromAddress": "200",
-      "toAddress": "298",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.460269601,
-            37.785006281
-          ],
-          [
-            -122.460137199,
-            37.783136488
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
           ]
         }
       ]
@@ -149929,7 +149810,9 @@
           "endTime": "09:00",
           "weeksOfMonth": [
             1,
-            3
+            2,
+            3,
+            4
           ]
         }
       ]
@@ -186425,7 +186308,9 @@
           "endTime": "09:00",
           "weeksOfMonth": [
             1,
-            3
+            2,
+            3,
+            4
           ]
         }
       ]
@@ -188980,47 +188865,6 @@
           "weeksOfMonth": [
             2,
             4
-          ]
-        }
-      ]
-    },
-    {
-      "cnn": "7617000",
-      "streetName": "Jordan Ave",
-      "fromAddress": "100",
-      "toAddress": "198",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.45681322,
-            37.783928912
-          ],
-          [
-            -122.456629211,
-            37.781439142
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 4,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
           ]
         }
       ]
@@ -201428,7 +201272,9 @@
           "endTime": "09:00",
           "weeksOfMonth": [
             1,
-            3
+            2,
+            3,
+            4
           ]
         }
       ]
@@ -230751,6 +230597,49 @@
       ]
     },
     {
+      "cnn": "120000",
+      "streetName": "02nd Ave",
+      "fromAddress": "178",
+      "toAddress": "198",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.460308245,
+            37.785538555
+          ],
+          [
+            -122.460269601,
+            37.785006281
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
       "cnn": "8274000",
       "streetName": "Leavenworth St",
       "fromAddress": "2751",
@@ -233966,6 +233855,49 @@
           "weeksOfMonth": [
             2,
             4
+          ]
+        }
+      ]
+    },
+    {
+      "cnn": "121000",
+      "streetName": "02nd Ave",
+      "fromAddress": "200",
+      "toAddress": "298",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.460269601,
+            37.785006281
+          ],
+          [
+            -122.460137199,
+            37.783136488
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            3
           ]
         }
       ]
@@ -248342,6 +248274,49 @@
             2,
             3,
             4
+          ]
+        }
+      ]
+    },
+    {
+      "cnn": "239000",
+      "streetName": "04th Ave",
+      "fromAddress": "182",
+      "toAddress": "198",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.462441444,
+            37.785266126
+          ],
+          [
+            -122.462416302,
+            37.784906862
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            3
           ]
         }
       ]
@@ -263616,7 +263591,9 @@
           "endTime": "09:00",
           "weeksOfMonth": [
             1,
-            3
+            2,
+            3,
+            4
           ]
         }
       ]
@@ -285554,7 +285531,9 @@
           "endTime": "09:00",
           "weeksOfMonth": [
             1,
-            3
+            2,
+            3,
+            4
           ]
         }
       ]
@@ -294822,6 +294801,51 @@
           "endTime": "10:00",
           "weeksOfMonth": [
             2,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "cnn": "10490000",
+      "streetName": "Pine St",
+      "fromAddress": "2701",
+      "toAddress": "2799",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.440249957,
+            37.787112456
+          ],
+          [
+            -122.44191562,
+            37.786900331
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "North",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
             4
           ]
         }
@@ -318090,47 +318114,6 @@
       ]
     },
     {
-      "cnn": "521000",
-      "streetName": "12th Ave",
-      "fromAddress": "200",
-      "toAddress": "298",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.470981486,
-            37.784524479
-          ],
-          [
-            -122.470845997,
-            37.782652401
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        }
-      ]
-    },
-    {
       "cnn": "869000",
       "streetName": "18th St",
       "fromAddress": "2801",
@@ -318813,6 +318796,49 @@
           "weeksOfMonth": [
             2,
             4
+          ]
+        }
+      ]
+    },
+    {
+      "cnn": "3574000",
+      "streetName": "California St",
+      "fromAddress": "0",
+      "toAddress": "0",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.456685173,
+            37.78600003
+          ],
+          [
+            -122.456963372,
+            37.785963787
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "North",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 2,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            3
           ]
         }
       ]
@@ -322760,7 +322786,9 @@
           "endTime": "09:00",
           "weeksOfMonth": [
             1,
-            3
+            2,
+            3,
+            4
           ]
         }
       ]
@@ -335020,7 +335048,9 @@
           "endTime": "09:00",
           "weeksOfMonth": [
             1,
-            3
+            2,
+            3,
+            4
           ]
         }
       ]
@@ -371909,6 +371939,51 @@
       ]
     },
     {
+      "cnn": "10489000",
+      "streetName": "Pine St",
+      "fromAddress": "2601",
+      "toAddress": "2699",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.438581571,
+            37.787324904
+          ],
+          [
+            -122.440249957,
+            37.787112456
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "North",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
       "cnn": "9037000",
       "streetName": "Minerva St",
       "fromAddress": "201",
@@ -381014,49 +381089,6 @@
       ]
     },
     {
-      "cnn": "10485000",
-      "streetName": "Pine St",
-      "fromAddress": "2249",
-      "toAddress": "2299",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.432825558,
-            37.788054635
-          ],
-          [
-            -122.433647124,
-            37.787950273
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "North",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        }
-      ]
-    },
-    {
       "cnn": "13231000",
       "streetName": "Vernon St",
       "fromAddress": "201",
@@ -388389,6 +388421,49 @@
       ]
     },
     {
+      "cnn": "521000",
+      "streetName": "12th Ave",
+      "fromAddress": "200",
+      "toAddress": "298",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.470981486,
+            37.784524479
+          ],
+          [
+            -122.470845997,
+            37.782652401
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
       "cnn": "9415000",
       "streetName": "Moultrie St",
       "fromAddress": "401",
@@ -389278,6 +389353,51 @@
           "dayOfWeek": 2,
           "startTime": "00:00",
           "endTime": "06:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "cnn": "10488000",
+      "streetName": "Pine St",
+      "fromAddress": "2501",
+      "toAddress": "2599",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.436935447,
+            37.787532502
+          ],
+          [
+            -122.438581571,
+            37.787324904
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "North",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "07:00",
+          "endTime": "09:00",
           "weeksOfMonth": [
             1,
             2,
@@ -400868,6 +400988,51 @@
           "dayOfWeek": 3,
           "startTime": "09:00",
           "endTime": "11:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "cnn": "10481000",
+      "streetName": "Pine St",
+      "fromAddress": "1901",
+      "toAddress": "1999",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.427059672,
+            37.788786895
+          ],
+          [
+            -122.428712111,
+            37.788577068
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "North",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "07:00",
+          "endTime": "09:00",
           "weeksOfMonth": [
             1,
             2,
@@ -437635,49 +437800,6 @@
       ]
     },
     {
-      "cnn": "10484000",
-      "streetName": "Pine St",
-      "fromAddress": "2201",
-      "toAddress": "2247",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.432003325,
-            37.788159075
-          ],
-          [
-            -122.432825558,
-            37.788054635
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "North",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        }
-      ]
-    },
-    {
       "cnn": "6512000",
       "streetName": "Greenwich St",
       "fromAddress": "1601",
@@ -439520,47 +439642,6 @@
       ]
     },
     {
-      "cnn": "3574000",
-      "streetName": "California St",
-      "fromAddress": "0",
-      "toAddress": "0",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.456685173,
-            37.78600003
-          ],
-          [
-            -122.456963372,
-            37.785963787
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 2,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "North",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        }
-      ]
-    },
-    {
       "cnn": "10282000",
       "streetName": "Parkridge Dr",
       "fromAddress": "1",
@@ -440743,6 +440824,51 @@
           "endTime": "08:00",
           "weeksOfMonth": [
             2,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "cnn": "10485000",
+      "streetName": "Pine St",
+      "fromAddress": "2249",
+      "toAddress": "2299",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.432825558,
+            37.788054635
+          ],
+          [
+            -122.433647124,
+            37.787950273
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "North",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
             4
           ]
         }
@@ -444466,47 +444592,6 @@
             2,
             3,
             4
-          ]
-        }
-      ]
-    },
-    {
-      "cnn": "241000",
-      "streetName": "04th Ave",
-      "fromAddress": "300",
-      "toAddress": "398",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.462278766,
-            37.783038339
-          ],
-          [
-            -122.462139278,
-            37.781110996
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
           ]
         }
       ]
@@ -449033,7 +449118,9 @@
           "endTime": "09:00",
           "weeksOfMonth": [
             1,
-            3
+            2,
+            3,
+            4
           ]
         }
       ]
@@ -466540,47 +466627,6 @@
       ]
     },
     {
-      "cnn": "3576000",
-      "streetName": "California St",
-      "fromAddress": "3851",
-      "toAddress": "3899",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.458061917,
-            37.785824278
-          ],
-          [
-            -122.459178766,
-            37.785681692
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "North",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 2,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        }
-      ]
-    },
-    {
       "cnn": "4610000",
       "streetName": "Davis St",
       "fromAddress": "701",
@@ -474148,6 +474194,49 @@
       ]
     },
     {
+      "cnn": "122000",
+      "streetName": "02nd Ave",
+      "fromAddress": "300",
+      "toAddress": "398",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.460137199,
+            37.783136488
+          ],
+          [
+            -122.459999658,
+            37.781213478
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
       "cnn": "5537000",
       "streetName": "Fillmore St",
       "fromAddress": "601",
@@ -478592,6 +478681,49 @@
             2,
             3,
             4
+          ]
+        }
+      ]
+    },
+    {
+      "cnn": "464000",
+      "streetName": "10th Ave",
+      "fromAddress": "300",
+      "toAddress": "398",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.468704481,
+            37.782750917
+          ],
+          [
+            -122.468563873,
+            37.780822032
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            3
           ]
         }
       ]
@@ -488827,47 +488959,6 @@
       ]
     },
     {
-      "cnn": "522000",
-      "streetName": "12th Ave",
-      "fromAddress": "300",
-      "toAddress": "398",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.470845997,
-            37.782652401
-          ],
-          [
-            -122.47071675,
-            37.780723354
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        }
-      ]
-    },
-    {
       "cnn": "3443000",
       "streetName": "Bush St",
       "fromAddress": "1301",
@@ -491260,47 +491351,6 @@
           "dayOfWeek": 5,
           "startTime": "12:00",
           "endTime": "14:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        }
-      ]
-    },
-    {
-      "cnn": "316000",
-      "streetName": "06th Ave",
-      "fromAddress": "300",
-      "toAddress": "398",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.464425025,
-            37.782939934
-          ],
-          [
-            -122.46427917,
-            37.781018922
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "07:00",
-          "endTime": "09:00",
           "weeksOfMonth": [
             1,
             3
@@ -495566,47 +495616,6 @@
             2,
             3,
             4
-          ]
-        }
-      ]
-    },
-    {
-      "cnn": "120000",
-      "streetName": "02nd Ave",
-      "fromAddress": "178",
-      "toAddress": "198",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.460308245,
-            37.785538555
-          ],
-          [
-            -122.460269601,
-            37.785006281
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
           ]
         }
       ]
@@ -517097,47 +517106,6 @@
       ]
     },
     {
-      "cnn": "463000",
-      "streetName": "10th Ave",
-      "fromAddress": "200",
-      "toAddress": "298",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.468839738,
-            37.784620906
-          ],
-          [
-            -122.468704481,
-            37.782750917
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        }
-      ]
-    },
-    {
       "cnn": "514000",
       "streetName": "11th St",
       "fromAddress": "269",
@@ -527242,6 +527210,49 @@
       ]
     },
     {
+      "cnn": "315000",
+      "streetName": "06th Ave",
+      "fromAddress": "206",
+      "toAddress": "298",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.464551383,
+            37.784791866
+          ],
+          [
+            -122.464425025,
+            37.782939934
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
       "cnn": "2248000",
       "streetName": "Amazon Ave",
       "fromAddress": "501",
@@ -528786,6 +528797,49 @@
           "dayOfWeek": 1,
           "startTime": "08:00",
           "endTime": "10:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "cnn": "316000",
+      "streetName": "06th Ave",
+      "fromAddress": "300",
+      "toAddress": "398",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.464425025,
+            37.782939934
+          ],
+          [
+            -122.46427917,
+            37.781018922
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
           "weeksOfMonth": [
             1,
             2,
@@ -536018,6 +536072,49 @@
       ]
     },
     {
+      "cnn": "241000",
+      "streetName": "04th Ave",
+      "fromAddress": "300",
+      "toAddress": "398",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.462278766,
+            37.783038339
+          ],
+          [
+            -122.462139278,
+            37.781110996
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
       "cnn": "11713000",
       "streetName": "Scott St",
       "fromAddress": "3001",
@@ -536974,7 +537071,9 @@
           "endTime": "09:00",
           "weeksOfMonth": [
             1,
-            3
+            2,
+            3,
+            4
           ]
         }
       ]
@@ -538758,6 +538857,49 @@
       ]
     },
     {
+      "cnn": "7617000",
+      "streetName": "Jordan Ave",
+      "fromAddress": "100",
+      "toAddress": "198",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.45681322,
+            37.783928912
+          ],
+          [
+            -122.456629211,
+            37.781439142
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 4,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
       "cnn": "10722000",
       "streetName": "Powhattan Ave",
       "fromAddress": "1051",
@@ -539398,32 +539540,34 @@
       ]
     },
     {
-      "cnn": "10479000",
-      "streetName": "Pine St",
-      "fromAddress": "1701",
-      "toAddress": "1799",
+      "cnn": "389000",
+      "streetName": "08th Ave",
+      "fromAddress": "300",
+      "toAddress": "398",
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            -122.423781082,
-            37.789203141
+            -122.466562652,
+            37.782849408
           ],
           [
-            -122.42542298,
-            37.788994699
+            -122.466426903,
+            37.780924588
           ]
         ]
       },
       "schedules": [
         {
-          "side": "North",
+          "side": "South",
           "dayOfWeek": 3,
           "startTime": "07:00",
           "endTime": "09:00",
           "weeksOfMonth": [
             1,
-            3
+            2,
+            3,
+            4
           ]
         },
         {
@@ -539433,9 +539577,7 @@
           "endTime": "09:00",
           "weeksOfMonth": [
             1,
-            2,
-            3,
-            4
+            3
           ]
         }
       ]
@@ -554870,6 +555012,51 @@
       ]
     },
     {
+      "cnn": "10483000",
+      "streetName": "Pine St",
+      "fromAddress": "2101",
+      "toAddress": "2199",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.430355918,
+            37.788368313
+          ],
+          [
+            -122.432003325,
+            37.788159075
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "North",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
       "cnn": "3384000",
       "streetName": "Burnett Ave",
       "fromAddress": "545",
@@ -559651,47 +559838,6 @@
       ]
     },
     {
-      "cnn": "464000",
-      "streetName": "10th Ave",
-      "fromAddress": "300",
-      "toAddress": "398",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.468704481,
-            37.782750917
-          ],
-          [
-            -122.468563873,
-            37.780822032
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        }
-      ]
-    },
-    {
       "cnn": "3550000",
       "streetName": "California St",
       "fromAddress": "1701",
@@ -559725,47 +559871,6 @@
         {
           "side": "North",
           "dayOfWeek": 5,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        }
-      ]
-    },
-    {
-      "cnn": "7616000",
-      "streetName": "Jordan Ave",
-      "fromAddress": "2",
-      "toAddress": "98",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.456963372,
-            37.785963787
-          ],
-          [
-            -122.45681322,
-            37.783928912
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 4,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 3,
           "startTime": "07:00",
           "endTime": "09:00",
           "weeksOfMonth": [
@@ -560097,49 +560202,6 @@
           "endTime": "15:00",
           "weeksOfMonth": [
             2,
-            4
-          ]
-        }
-      ]
-    },
-    {
-      "cnn": "10490000",
-      "streetName": "Pine St",
-      "fromAddress": "2701",
-      "toAddress": "2799",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.440249957,
-            37.787112456
-          ],
-          [
-            -122.44191562,
-            37.786900331
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "North",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
             4
           ]
         }
@@ -562972,47 +563034,6 @@
             2,
             3,
             4
-          ]
-        }
-      ]
-    },
-    {
-      "cnn": "10273000",
-      "streetName": "Parker Ave",
-      "fromAddress": "2",
-      "toAddress": "98",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.454774456,
-            37.786243821
-          ],
-          [
-            -122.454617803,
-            37.784029989
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 4,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
           ]
         }
       ]
@@ -580270,49 +580291,6 @@
       ]
     },
     {
-      "cnn": "10480000",
-      "streetName": "Pine St",
-      "fromAddress": "1801",
-      "toAddress": "1899",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.42542298,
-            37.788994699
-          ],
-          [
-            -122.427059672,
-            37.788786895
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "North",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        }
-      ]
-    },
-    {
       "cnn": "11758000",
       "streetName": "Seneca Ave",
       "fromAddress": "67",
@@ -580397,6 +580375,51 @@
           "dayOfWeek": 3,
           "startTime": "12:00",
           "endTime": "14:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "cnn": "10479000",
+      "streetName": "Pine St",
+      "fromAddress": "1701",
+      "toAddress": "1799",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.423781082,
+            37.789203141
+          ],
+          [
+            -122.42542298,
+            37.788994699
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "North",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "07:00",
+          "endTime": "09:00",
           "weeksOfMonth": [
             1,
             2,
@@ -602902,6 +602925,49 @@
       ]
     },
     {
+      "cnn": "10273000",
+      "streetName": "Parker Ave",
+      "fromAddress": "2",
+      "toAddress": "98",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.454774456,
+            37.786243821
+          ],
+          [
+            -122.454617803,
+            37.784029989
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 4,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
       "cnn": "11587000",
       "streetName": "Santa Rita Ave",
       "fromAddress": "1",
@@ -617489,6 +617555,49 @@
       ]
     },
     {
+      "cnn": "3576000",
+      "streetName": "California St",
+      "fromAddress": "3851",
+      "toAddress": "3899",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.458061917,
+            37.785824278
+          ],
+          [
+            -122.459178766,
+            37.785681692
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 2,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        },
+        {
+          "side": "North",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
       "cnn": "13366000",
       "streetName": "Waller St",
       "fromAddress": "655",
@@ -620251,6 +620360,51 @@
           "weeksOfMonth": [
             1,
             3
+          ]
+        }
+      ]
+    },
+    {
+      "cnn": "10480000",
+      "streetName": "Pine St",
+      "fromAddress": "1801",
+      "toAddress": "1899",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.42542298,
+            37.788994699
+          ],
+          [
+            -122.427059672,
+            37.788786895
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "North",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
           ]
         }
       ]
@@ -625315,6 +625469,51 @@
       ]
     },
     {
+      "cnn": "10487000",
+      "streetName": "Pine St",
+      "fromAddress": "2401",
+      "toAddress": "2499",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.435293132,
+            37.787741165
+          ],
+          [
+            -122.436935447,
+            37.787532502
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "side": "North",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
       "cnn": "6923000",
       "streetName": "Hill St",
       "fromAddress": "501",
@@ -625775,6 +625974,49 @@
             2,
             3,
             4
+          ]
+        }
+      ]
+    },
+    {
+      "cnn": "3575000",
+      "streetName": "California St",
+      "fromAddress": "3801",
+      "toAddress": "3849",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.456963372,
+            37.785963787
+          ],
+          [
+            -122.458061917,
+            37.785824278
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "North",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 2,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            3
           ]
         }
       ]
@@ -642750,47 +642992,6 @@
       ]
     },
     {
-      "cnn": "389000",
-      "streetName": "08th Ave",
-      "fromAddress": "300",
-      "toAddress": "398",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.466562652,
-            37.782849408
-          ],
-          [
-            -122.466426903,
-            37.780924588
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        }
-      ]
-    },
-    {
       "cnn": "10103000",
       "streetName": "Pacheco St",
       "fromAddress": "2701",
@@ -644106,49 +644307,6 @@
           "dayOfWeek": 4,
           "startTime": "09:00",
           "endTime": "11:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        }
-      ]
-    },
-    {
-      "cnn": "10488000",
-      "streetName": "Pine St",
-      "fromAddress": "2501",
-      "toAddress": "2599",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.436935447,
-            37.787532502
-          ],
-          [
-            -122.438581571,
-            37.787324904
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "North",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "07:00",
-          "endTime": "09:00",
           "weeksOfMonth": [
             1,
             2,
@@ -656396,49 +656554,6 @@
       ]
     },
     {
-      "cnn": "10483000",
-      "streetName": "Pine St",
-      "fromAddress": "2101",
-      "toAddress": "2199",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.430355918,
-            37.788368313
-          ],
-          [
-            -122.432003325,
-            37.788159075
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "North",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        }
-      ]
-    },
-    {
       "cnn": "2710000",
       "streetName": "Bancroft Ave",
       "fromAddress": "1501",
@@ -661874,6 +661989,49 @@
       ]
     },
     {
+      "cnn": "522000",
+      "streetName": "12th Ave",
+      "fromAddress": "300",
+      "toAddress": "398",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.470845997,
+            37.782652401
+          ],
+          [
+            -122.47071675,
+            37.780723354
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
       "cnn": "9523000",
       "streetName": "Naylor St",
       "fromAddress": "1",
@@ -662282,49 +662440,6 @@
           "dayOfWeek": 5,
           "startTime": "13:00",
           "endTime": "15:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        }
-      ]
-    },
-    {
-      "cnn": "10489000",
-      "streetName": "Pine St",
-      "fromAddress": "2601",
-      "toAddress": "2699",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.438581571,
-            37.787324904
-          ],
-          [
-            -122.440249957,
-            37.787112456
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "side": "North",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
           "weeksOfMonth": [
             1,
             3
@@ -670532,6 +670647,49 @@
             2,
             3,
             4
+          ]
+        }
+      ]
+    },
+    {
+      "cnn": "463000",
+      "streetName": "10th Ave",
+      "fromAddress": "200",
+      "toAddress": "298",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.468839738,
+            37.784620906
+          ],
+          [
+            -122.468704481,
+            37.782750917
+          ]
+        ]
+      },
+      "schedules": [
+        {
+          "side": "South",
+          "dayOfWeek": 3,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "side": "South",
+          "dayOfWeek": 1,
+          "startTime": "07:00",
+          "endTime": "09:00",
+          "weeksOfMonth": [
+            1,
+            3
           ]
         }
       ]
@@ -682206,47 +682364,6 @@
       ]
     },
     {
-      "cnn": "315000",
-      "streetName": "06th Ave",
-      "fromAddress": "206",
-      "toAddress": "298",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.464551383,
-            37.784791866
-          ],
-          [
-            -122.464425025,
-            37.782939934
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        }
-      ]
-    },
-    {
       "cnn": "12264000",
       "streetName": "Sunnydale Ave",
       "fromAddress": "1101",
@@ -689735,47 +689852,6 @@
             2,
             3,
             4
-          ]
-        }
-      ]
-    },
-    {
-      "cnn": "239000",
-      "streetName": "04th Ave",
-      "fromAddress": "182",
-      "toAddress": "198",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -122.462441444,
-            37.785266126
-          ],
-          [
-            -122.462416302,
-            37.784906862
-          ]
-        ]
-      },
-      "schedules": [
-        {
-          "side": "South",
-          "dayOfWeek": 1,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
-          ]
-        },
-        {
-          "side": "South",
-          "dayOfWeek": 3,
-          "startTime": "07:00",
-          "endTime": "09:00",
-          "weeksOfMonth": [
-            1,
-            3
           ]
         }
       ]
