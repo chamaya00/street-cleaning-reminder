@@ -1,6 +1,6 @@
 {
-  "version": "2026-06-06",
-  "generatedAt": "2026-06-06T15:09:43.952Z",
+  "version": "2026-06-13",
+  "generatedAt": "2026-06-13T15:28:48.965Z",
   "count": 12253,
   "segments": [
     {
@@ -481357,8 +481357,8 @@
     {
       "cnn": "12761000",
       "streetName": "Twin Peaks Blvd",
-      "fromAddress": "151",
-      "toAddress": "161",
+      "fromAddress": "161",
+      "toAddress": "179",
       "geometry": {
         "type": "LineString",
         "coordinates": [
@@ -515892,7 +515892,7 @@
       "cnn": "12762000",
       "streetName": "Twin Peaks Blvd",
       "fromAddress": "163",
-      "toAddress": "199",
+      "toAddress": "181",
       "geometry": {
         "type": "LineString",
         "coordinates": [
